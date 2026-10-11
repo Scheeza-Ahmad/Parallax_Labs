@@ -1,0 +1,34 @@
+{
+  "input": "data\\raw\\wikipedia-7000.jsonl",
+  "output": "data\\processed\\clean_corpus.jsonl",
+  "counts": {
+    "input": 7000,
+    "accepted": 6954,
+    "empty_text": 0,
+    "duplicate": 0,
+    "invalid_schema": 0,
+    "malformed_json": 0,
+    "uncertain_language": 43,
+    "non_english": 3
+  },
+  "rejected": 46,
+  "length_characters": {
+    "min": 68,
+    "max": 51461,
+    "mean": 3582.9669255104977,
+    "median": 1552.5
+  },
+  "configuration": {
+    "unicode": "NFC",
+    "target_language": "en",
+    "detector": "langdetect",
+    "seed": 0,
+    "minimum_letters": 50,
+    "confidence_threshold": 0.9,
+    "detection_max_characters": 10000,
+    "deduplication": "source ID or exact cleaned-text SHA256"
+  },
+  "validated_records": 6954,
+  "minimum_required": 5000,
+  "passed": true
+}

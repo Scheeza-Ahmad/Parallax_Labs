@@ -1,0 +1,14 @@
+{
+  "dataset": "wikimedia/wikipedia",
+  "config": "20231101.simple",
+  "revision": "b04c8d1ceb2f5cd4588862100d08de323dccfbaa",
+  "download_url": "https://huggingface.co/datasets/wikimedia/wikipedia/resolve/b04c8d1ceb2f5cd4588862100d08de323dccfbaa/20231101.simple/train-00000-of-00001.parquet",
+  "acquired_at_utc": "2026-10-11T11:05:26.922596+00:00",
+  "license": "CC-BY-SA-3.0 and GFDL (dataset card)",
+  "attribution": "Wikipedia contributors; individual article URLs retained",
+  "selection": "First N whole articles in immutable parquet row order; no random sampling",
+  "selected_records": 7000,
+  "snapshot_records": 241787,
+  "archive_sha256": "31bded16768a47c286becd292079122f5d7d4397a17b87d4250a00ccd581e6f0",
+  "raw_jsonl": "data/raw/wikipedia-7000.jsonl"
+}

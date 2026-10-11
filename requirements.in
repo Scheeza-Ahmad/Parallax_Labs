@@ -1,0 +1,8 @@
+pandas
+sentence-transformers
+chromadb
+spacy
+beautifulsoup4
+langdetect
+pyarrow
+pytest

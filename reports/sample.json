@@ -1,0 +1,34 @@
+{
+  "input": "data\\raw\\sample-100.jsonl",
+  "output": "data\\processed\\sample-100.jsonl",
+  "counts": {
+    "input": 100,
+    "accepted": 100,
+    "empty_text": 0,
+    "duplicate": 0,
+    "invalid_schema": 0,
+    "malformed_json": 0,
+    "uncertain_language": 0,
+    "non_english": 0
+  },
+  "rejected": 0,
+  "length_characters": {
+    "min": 71,
+    "max": 25805,
+    "mean": 4353.6,
+    "median": 2455.5
+  },
+  "configuration": {
+    "unicode": "NFC",
+    "target_language": "en",
+    "detector": "langdetect",
+    "seed": 0,
+    "minimum_letters": 50,
+    "confidence_threshold": 0.9,
+    "detection_max_characters": 10000,
+    "deduplication": "source ID or exact cleaned-text SHA256"
+  },
+  "validated_records": 100,
+  "minimum_required": 1,
+  "passed": true
+}

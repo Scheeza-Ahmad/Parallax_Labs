@@ -1,0 +1,33 @@
+{
+  "python": "3.11.9",
+  "platform": "Windows-10-10.0.26200-SP0",
+  "imports": {
+    "pandas": {
+      "ok": true,
+      "version": "3.0.6"
+    },
+    "sentence_transformers": {
+      "ok": true,
+      "version": "6.1.0"
+    },
+    "chromadb": {
+      "ok": true,
+      "version": "1.5.9"
+    },
+    "spacy": {
+      "ok": true,
+      "version": "3.8.16"
+    },
+    "torch": {
+      "ok": true,
+      "version": "2.14.1+cpu"
+    }
+  },
+  "cuda": {
+    "available": false,
+    "runtime": null,
+    "device_count": 0
+  },
+  "gpu_error": "CUDA unavailable: mandatory GPU requirement is BLOCKED",
+  "passed": false
+}

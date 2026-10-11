@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-11",
+  "command": ".\\.venv\\Scripts\\python.exe -m pytest -q",
+  "exit_code": 0,
+  "passed": 16,
+  "failed": 0,
+  "duration_seconds": 3.71,
+  "scope": "Cleaning, language filtering, pipeline counts, read-back, raw preservation, overwrite refusal and minimum size"
+}
