@@ -1,0 +1,41 @@
+{
+  "encoder": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "normalized": true,
+    "max_seq_length": 256,
+    "device": "cpu",
+    "batch_size": 32,
+    "threads": 4,
+    "model_load_seconds": 0.8918507999915164
+  },
+  "signature": {
+    "encoder": {
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+      "dimension": 384,
+      "normalized": true,
+      "max_seq_length": 256
+    },
+    "corpus_sha256": "99eb72d3d27c93f27258da94f513878bbf77587785ad1e2179abf7318392382a",
+    "documents": 6954,
+    "chunks": 31984,
+    "strategy": "token-window-v1",
+    "chunk_size": 220,
+    "overlap": 32
+  },
+  "input": "data\\processed\\clean_corpus.jsonl",
+  "sample_only": false,
+  "database": "vector_store",
+  "collection": "wikipedia_minilm_v1",
+  "encoded_chunks": 0,
+  "skipped_existing_chunks": 31984,
+  "stored_chunks": 31984,
+  "chunking_seconds": 51.5609628999955,
+  "encoding_seconds": 0.0,
+  "database_write_seconds": 0.0,
+  "encoding_chunks_per_second": null,
+  "readback_passed": true,
+  "recorded_at_utc": "2026-10-16T16:17:14.086679+00:00"
+}

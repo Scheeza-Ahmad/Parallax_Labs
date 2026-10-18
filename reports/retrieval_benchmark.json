@@ -1,0 +1,2769 @@
+{
+  "encoder": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "normalized": true,
+    "max_seq_length": 256,
+    "device": "cpu",
+    "batch_size": 32,
+    "threads": 4,
+    "model_load_seconds": 0.9392087000014726
+  },
+  "collection": "wikipedia_minilm_v1",
+  "collection_signature": {
+    "chunk_size": 220,
+    "chunks": 31984,
+    "corpus_sha256": "99eb72d3d27c93f27258da94f513878bbf77587785ad1e2179abf7318392382a",
+    "documents": 6954,
+    "encoder": {
+      "dimension": 384,
+      "max_seq_length": 256,
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "normalized": true,
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "overlap": 32,
+    "strategy": "token-window-v1"
+  },
+  "stored_chunks": 31984,
+  "query_count": 8,
+  "repeats": 3,
+  "measured_searches": 24,
+  "warmup_searches": 8,
+  "warmup_seconds": 1.0058783999993466,
+  "summary_ms": {
+    "query_embedding": {
+      "mean": 31.18739999869528,
+      "median": 24.843999999575317,
+      "p95": 73.37070000357926
+    },
+    "database_search": {
+      "mean": 6.266550000873394,
+      "median": 5.942300005699508,
+      "p95": 7.667600002605468
+    },
+    "total_retrieval": {
+      "mean": 37.45394999956867,
+      "median": 30.990650004241616,
+      "p95": 79.26880000741221
+    }
+  },
+  "measurement": "perf_counter; encoding includes token validation and numpy conversion; database search includes Chroma query and result deserialization; total is their sum. Excludes process/import/model/client startup, count/compatibility checks, warm-up, hit formatting, console and report I/O. p95 uses nearest rank.",
+  "relevance": "Unlabelled exploratory queries; no precision or recall claimed.",
+  "results": [
+    {
+      "query": "How did Alan Turing contribute to computing?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "4b04d33929d11bb9876a332c05e642d82aa7d1977ae02d442d24ee8a9e3764be",
+          "metadata": {
+            "doc_id": "13",
+            "char_end": 2785,
+            "chunk_index": 2,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "token_end": 596,
+            "source": "Simple English Wikipedia",
+            "token_start": 376,
+            "char_start": 1725,
+            "token_count": 220,
+            "language": "en",
+            "language_confidence": 0.9999975933686452,
+            "title": "Alan Turing"
+          },
+          "cosine_distance": 0.38617467880249023,
+          "snippet": ", almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died before the law came into force, making it possible for living convicted gay men to seek pardons for offences now no longer on the statute book.\n\nTuring died in 1954, after being subjected by "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "b8e5daf9b24bf554cbec4c59e2fc8b81f8a350270c1000a42b6e28e5bab7f853",
+          "metadata": {
+            "char_end": 1884,
+            "char_start": 768,
+            "title": "Alan Turing",
+            "token_start": 188,
+            "token_end": 408,
+            "chunk_index": 1,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "language_confidence": 0.9999975933686452,
+            "token_count": 220,
+            "language": "en",
+            "doc_id": "13",
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.38890624046325684,
+          "snippet": ", North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at Alexandra School and College. On October 1st 1907 she married Julius Mathison Turing, who was Reverend John Robert Turing and Fanny Boyd, in Dublin. Alan Turing was born on June 23rd 1912. He would go on to be r"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "cb2f5780ef23cce723674bfc526625d8834b7567dcf3a7b8ac7b38aaa830cdc5",
+          "metadata": {
+            "doc_id": "112",
+            "token_start": 564,
+            "chunk_index": 3,
+            "char_start": 2998,
+            "token_count": 220,
+            "language_confidence": 0.9999957613789175,
+            "token_end": 784,
+            "language": "en",
+            "char_end": 4112,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Computer",
+            "title": "Computer"
+          },
+          "cosine_distance": 0.42957043647766113,
+          "snippet": "machine code) that the computer will understand and do what is needed.\n\nHistory of computers\n\nFirst computer\nIn 1837, Charles Babbage proposed the first general mechanical computer, the Analytical Engine. The Analytical Engine contained an Arithmetic Logic Unit, basic flow control, punched cards, and integrated memory. It is the first general-purpo"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "9fddd431b3bc3b9b72e0540495d82400b05718c6a58a092dc1c557da51ed298e",
+          "metadata": {
+            "token_end": 220,
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "doc_id": "13",
+            "language_confidence": 0.9999975933686452,
+            "char_end": 907,
+            "token_start": 0,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "char_start": 0,
+            "title": "Alan Turing",
+            "chunk_index": 0
+          },
+          "cosine_distance": 0.43733954429626465,
+          "snippet": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist. He was born in Maida Vale, London.\n\nEarly life and family\nAlan Mathison Turing was born in Maida Vale, [London] on 23 June 1912. His father was part of a family of merchants from Scotland. His mother, Ethel Sara"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "44e90a061bbf835bc79897b56fead43322551cef42035cdec3fb62e8a96e2b05",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Computer",
+            "title": "Computer",
+            "language_confidence": 0.9999957613789175,
+            "char_end": 5873,
+            "chunk_index": 5,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "doc_id": "112",
+            "token_end": 1160,
+            "char_start": 4852,
+            "token_count": 220,
+            "token_start": 940
+          },
+          "cosine_distance": 0.44268929958343506,
+          "snippet": "night throughout the year. Some count this daily adjustment as computer programming.\n\nOthers say the first computer was made by Charles Babbage. Ada Lovelace is considered to be the first programmer.\n\nThe computing era\nAt the end of the Middle Ages, people started thinking math and engineering were more important. In 1623, Wilhelm Schickard made a "
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 29.575399996247143,
+        "database_search": 5.915000001550652,
+        "total_retrieval": 35.490399997797795
+      },
+      "repeat": 1
+    },
+    {
+      "query": "What is an atom made of?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "dc73bf5e455e8c4e1acce9f83424a51f922430023e8c272ee3adb711278251df",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "doc_id": "47",
+            "language_confidence": 0.999997608535479,
+            "char_start": 871,
+            "language": "en",
+            "chunk_index": 1,
+            "token_count": 220,
+            "token_start": 188,
+            "char_end": 1954,
+            "title": "Atom",
+            "token_end": 408
+          },
+          "cosine_distance": 0.32181453704833984,
+          "snippet": "middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of protons belong to the same chemical element. Examples of elements are carbon and gold. Atoms with the same number of protons, but different numbers of neutrons, are calle"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "906ccc3e37bad36a4aead966b33e1e46ecaa1071752cd70cff8c26010edc28f1",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "token_start": 0,
+            "language_confidence": 0.999997608535479,
+            "doc_id": "47",
+            "token_count": 220,
+            "title": "Atom",
+            "chunk_index": 0,
+            "char_end": 1057,
+            "source": "Simple English Wikipedia",
+            "token_end": 220,
+            "char_start": 0,
+            "language": "en"
+          },
+          "cosine_distance": 0.32796168327331543,
+          "snippet": "An atom is the basic unit of matter. All normal matter – everything that has mass – is made of atoms. This includes solids, liquids, and gases. The atom cannot be broken to parts by chemistry, so people once thought it was the smallest and simplest particle of matter. There are over 100 different kinds of atoms, called chemical elements. Each kind "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "60f10301cb6e23b69813880b0820fa1b654619f6fb43e40e4dea6572ceabac93",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Proton",
+            "doc_id": "9526",
+            "language_confidence": 0.9999981299112684,
+            "title": "Proton",
+            "chunk_index": 0,
+            "language": "en",
+            "char_start": 0,
+            "token_start": 0,
+            "source": "Simple English Wikipedia",
+            "char_end": 872,
+            "token_count": 220,
+            "token_end": 220
+          },
+          "cosine_distance": 0.39678215980529785,
+          "snippet": "A proton is part of an atom. They are found in the nucleus of an atom along with neutrons. The periodic table groups atoms according to how many protons they have. A single atom of hydrogen (the lightest kind of atom) is made up of an electron moving around a proton. Most of the mass of this atom is in the proton, which is almost 2000 times heavier"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "8aed412f2d8e596acf3c5318292ee74b28fda80f7b0baf38ec2e8a1bce0737db",
+          "metadata": {
+            "language": "en",
+            "char_start": 1799,
+            "title": "Atom",
+            "source": "Simple English Wikipedia",
+            "doc_id": "47",
+            "token_end": 596,
+            "token_start": 376,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "language_confidence": 0.999997608535479,
+            "token_count": 220,
+            "char_end": 2838,
+            "chunk_index": 2
+          },
+          "cosine_distance": 0.40401721000671387,
+          "snippet": "This is what causes radioactivity. Atoms can also join to make larger atoms at very high temperatures, such as inside a star. These changes are studied in nuclear physics. Most atoms on Earth are not radioactive. They are rarely made, destroyed, or changed into another kind of atom.\n\nHistory\nThe word \"atom\" comes from the Greek (ἀτόμος) \"atomos\", w"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "b4d8b656ba5695a120c2e130e78045a9cbc8165e1a5852fd753551836c8b9f8c",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "char_end": 7374,
+            "token_start": 1316,
+            "title": "Atom",
+            "chunk_index": 7,
+            "char_start": 6324,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "doc_id": "47",
+            "token_count": 220,
+            "language_confidence": 0.999997608535479,
+            "token_end": 1536
+          },
+          "cosine_distance": 0.40576887130737305,
+          "snippet": "The Schrödinger equation says where an electron is likely to be. This area is called the electron's orbital.\n\nIn 1937, German chemist Otto Hahn became the first person to make nuclear fission in a laboratory. He discovered this by chance when shooting neutrons at a uranium atom, hoping to make a new isotope. However, instead of a new isotope, the u"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 23.018099993350916,
+        "database_search": 5.618399998638779,
+        "total_retrieval": 28.636499991989695
+      },
+      "repeat": 1
+    },
+    {
+      "query": "Why is August named after a Roman emperor?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "317ec4140f9bf31416c01c94a222da17bff442eebf482a08a7d54feef9acdc39",
+          "metadata": {
+            "chunk_index": 0,
+            "token_end": 220,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "char_start": 0,
+            "doc_id": "2",
+            "token_count": 220,
+            "language_confidence": 0.999997817305584,
+            "language": "en",
+            "token_start": 0,
+            "title": "August",
+            "char_end": 1004
+          },
+          "cosine_distance": 0.27345210313796997,
+          "snippet": "August (Aug.) is the eighth month of the year in the Gregorian calendar, coming between July and September. It has 31 days. It is named after the Roman emperor Augustus Caesar.\n\nAugust does not begin on the same day of the week as any other month in common years, but begins on the same day of the week as February in leap years. August always ends o"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "4398c7b5892da76d7f2890ccdd32c1ef4e7bbddae061923fcdd0eb3b7440da0d",
+          "metadata": {
+            "char_end": 2722,
+            "language_confidence": 0.9999982560705548,
+            "token_end": 596,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "title": "Augustus",
+            "char_start": 1723,
+            "doc_id": "15583",
+            "language": "en",
+            "token_start": 376,
+            "chunk_index": 2,
+            "source_url": "https://simple.wikipedia.org/wiki/Augustus"
+          },
+          "cosine_distance": 0.342398464679718,
+          "snippet": "30 BC. Lepidus was sidelined, blamed for a revolt in Sicily, and removed from government. He died peacefully in exile in Circeii in Italy in the year 13 BC.\n\nAfter winning the power struggle, Octavian was voted as Emperor by the Roman Senate in 31 BC. He took the name \"Augustus\" (which meant 'exalted'). He ruled until AD 14, when his stepson and so"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "71b7080aeb4cdc9a886ac81a70591b5f69a276f278745f45ee2be1d301a146c4",
+          "metadata": {
+            "token_count": 220,
+            "char_start": 0,
+            "token_start": 0,
+            "source": "Simple English Wikipedia",
+            "doc_id": "5464",
+            "title": "4",
+            "language": "en",
+            "char_end": 993,
+            "chunk_index": 0,
+            "token_end": 220,
+            "language_confidence": 0.9999976211542846,
+            "source_url": "https://simple.wikipedia.org/wiki/4"
+          },
+          "cosine_distance": 0.3442739248275757,
+          "snippet": "The year 4 (IV) was a leap year which started on a Tuesday, according to the Julian calendar. According to the Gregorian calendar, it started on a Thursday. At the time, it was known as the Year of the Consulship of Catus and Saturninus. It was called the fourth year since the early medieval period, when the Anno Domini calendar era became the usua"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "76dd25f3ac3e048570e6a5b0fc0978fd6ff5531eac341af2c02fc182f0c42b09",
+          "metadata": {
+            "token_end": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/8",
+            "language_confidence": 0.999997337896984,
+            "chunk_index": 0,
+            "doc_id": "5468",
+            "source": "Simple English Wikipedia",
+            "char_end": 909,
+            "language": "en",
+            "char_start": 0,
+            "token_start": 0,
+            "token_count": 220,
+            "title": "8"
+          },
+          "cosine_distance": 0.38108301162719727,
+          "snippet": "8 (VIII) is a leap year of the Julian calendar which started on a Sunday. According to the Gregorian calendar, it started on a Tuesday. It was the 8th year of the 1st century.\n\nEvents\n\nRoman Empire\nAugust 3 – Roman general Tiberius defeats Dalmatians on the river Bathinus.\nVipsania Julia is exiled. Lucius Aemilius Paullus and his family are disgrac"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "65ef3ef9470fe505e6a327592b5ca907f77c045726408ef8f9580720324dfdae",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "token_end": 408,
+            "char_end": 1884,
+            "token_start": 188,
+            "chunk_index": 1,
+            "language_confidence": 0.999997817305584,
+            "title": "August",
+            "doc_id": "2",
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "char_start": 848
+          },
+          "cosine_distance": 0.3836885690689087,
+          "snippet": "disagree). In 153 BC January 1 was determined as the beginning of the year.\n\nAugust is named for Augustus Caesar who became Roman consul in this month. The month has 31 days because Julius Caesar added two days when he created the Julian calendar in 45 BC. August is after July and before September.\n\nAugust, in either hemisphere, is the seasonal equ"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 24.674200001754798,
+        "database_search": 6.708899993100204,
+        "total_retrieval": 31.383099994855
+      },
+      "repeat": 1
+    },
+    {
+      "query": "How does aquaculture produce food?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "ecab29cec7c3ca4da78c52c1faa87c6ff9ac488ccecc5e207bcc6e1611dd0057",
+          "metadata": {
+            "token_start": 0,
+            "chunk_index": 0,
+            "char_start": 0,
+            "language": "en",
+            "char_end": 993,
+            "token_count": 211,
+            "title": "Aquaculture",
+            "token_end": 211,
+            "language_confidence": 0.999997013107133,
+            "source_url": "https://simple.wikipedia.org/wiki/Aquaculture",
+            "source": "Simple English Wikipedia",
+            "doc_id": "30"
+          },
+          "cosine_distance": 0.26852738857269287,
+          "snippet": "Aquaculture is the farming of fish, shrimp, abalones, algae, and other seafood. Aquaculture supplies fish, such as catfish, salmon, and trout. It was developed a few thousand years ago in China. Aquaculture supplies over 20% of all the seafood harvested.\n\nFish farming has been practiced, in some parts of the world, for thousands of years. Goldfish "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "c09c443d2df6f54a32ec24d4aa39d7b20a44b870adec7bb45dade1d75e04e701",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "chunk_index": 1,
+            "language": "en",
+            "language_confidence": 0.999996859012014,
+            "char_end": 2001,
+            "source_url": "https://simple.wikipedia.org/wiki/Tuna",
+            "token_count": 220,
+            "title": "Tuna",
+            "doc_id": "15276",
+            "token_start": 188,
+            "char_start": 902,
+            "token_end": 408
+          },
+          "cosine_distance": 0.44286513328552246,
+          "snippet": "and northwestern Pacific Oceans. Other populations seem to support fairly healthy fisheries (for example, the central and western Pacific skipjack tuna), but there is mounting evidence that overfishing threatens tuna fisheries worldwide.\n\nSome fishermen in Australia now grow Southern bluefin tuna in fish farms. Fish farms are areas of water with ne"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "f538a7519c17bcd2e9184cefe7e4a03e9aa2825f72f925160afffec7b687822e",
+          "metadata": {
+            "token_start": 188,
+            "language": "en",
+            "language_confidence": 0.9999964434233688,
+            "chunk_index": 1,
+            "token_count": 140,
+            "char_start": 848,
+            "token_end": 328,
+            "char_end": 1510,
+            "source": "Simple English Wikipedia",
+            "title": "Salmon",
+            "source_url": "https://simple.wikipedia.org/wiki/Salmon",
+            "doc_id": "20095"
+          },
+          "cosine_distance": 0.47713369131088257,
+          "snippet": "xanthin. Wild salmon get it from the krill and shrimp they eat, while farmed salmon gets traces of it in kibble (compound feed). If they don't have the pigment, their flesh has a gray color.\n\nEating\nUsual ways to make food out of salmon are smoking, cold smoking and graving.\n\nMain species\n\nAtlantic salmon\nAustralian salmon\nChinook salmon\nChum salmo"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "a6f88612ab9e8aa9fac0225861d903d4d54503e77d1c9d38c12d49ae60d1ef90",
+          "metadata": {
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "doc_id": "19",
+            "title": "Farming",
+            "token_end": 1357,
+            "token_start": 1316,
+            "token_count": 41,
+            "char_end": 6909,
+            "source_url": "https://simple.wikipedia.org/wiki/Farming",
+            "char_start": 6633,
+            "chunk_index": 7,
+            "language_confidence": 0.9999980747959352
+          },
+          "cosine_distance": 0.49464738368988037,
+          "snippet": ".\n\nRelated pages\nAquaculture\nBee keeping\nAnimal husbandry\nFertilizers\nCrop rotation\nUrban farming\nBreeding\nFencing\nRanching\nPlantation\nCrop protection\nCultured meat\nGenetically modified food\n\nAgriculture by country\nAgriculture in Azerbaijan\nAgriculture in Pakistan\n\nReferences"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "4da6fcd8d24d8a63caa42a4d0d15330ef2bcdce1a8a24ff0c2f870ebc4581dd3",
+          "metadata": {
+            "language_confidence": 0.9999961740495416,
+            "source": "Simple English Wikipedia",
+            "char_start": 0,
+            "char_end": 242,
+            "chunk_index": 0,
+            "doc_id": "12378",
+            "token_count": 46,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Seafood",
+            "title": "Seafood",
+            "token_end": 46,
+            "token_start": 0
+          },
+          "cosine_distance": 0.5032860040664673,
+          "snippet": "Seafood is food made from fish or other sea animals such as shrimp and lobsters. The harvesting (collecting) of seafood is called fishing.\n\nSeafood is rich in protein and is usually thought as healthy food.\n\nRelated pages\nAquaculture\n\nSeafood"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 22.60769999702461,
+        "database_search": 5.900899996049702,
+        "total_retrieval": 28.508599993074313
+      },
+      "repeat": 1
+    },
+    {
+      "query": "What is the difference between astronomy and astrology?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "d965e9ec1386e2bb1f8599673a8690896e67685da922eb1a6fb347a0c7688ddd",
+          "metadata": {
+            "char_start": 0,
+            "token_start": 0,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "chunk_index": 0,
+            "token_end": 220,
+            "token_count": 220,
+            "language_confidence": 0.999995940059109,
+            "source": "Simple English Wikipedia",
+            "char_end": 1158,
+            "doc_id": "48",
+            "title": "Astronomy"
+          },
+          "cosine_distance": 0.30682599544525146,
+          "snippet": "Astronomy is the scientific study of celestial bodies. That means stars, galaxies, planets, moons, asteroids, comets and nebulae are studied, as are supernovae explosions, gamma ray bursts, and cosmic microwave background radiation. Astronomy concerns the development, physics, chemistry, meteorology and movement of celestial bodies. The big questio"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "35e4244002e439e3cf444dabf2886417b1b97d48b9a9d1433ec45238ea767dd7",
+          "metadata": {
+            "doc_id": "48",
+            "token_end": 2475,
+            "token_start": 2255,
+            "char_start": 11487,
+            "language_confidence": 0.999995940059109,
+            "token_count": 220,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "title": "Astronomy",
+            "chunk_index": 12,
+            "char_end": 12663,
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.41371309757232666,
+          "snippet": "can help us understand how other stars work and are formed. Changes in the Sun can affect the weather and climate on Earth. A stream of charged particles called the Solar wind is constantly sent off from the Sun. The Solar wind hitting the Earth's magnetic field causes the northern lights.\n\nStellar Astronomy\n\nStellar Astronomy, sometimes generally "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "596a934c7ed33ed1cc89ad5fd482b4ed1cbe68b9a39d9130ff1c5b59e1c44e4c",
+          "metadata": {
+            "chunk_index": 0,
+            "token_start": 0,
+            "title": "Astrophysics",
+            "token_count": 220,
+            "char_start": 0,
+            "doc_id": "9235",
+            "char_end": 1093,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Astrophysics",
+            "token_end": 220,
+            "language_confidence": 0.9999969457385728,
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.41658520698547363,
+          "snippet": "Astrophysics is the study of how stars, planets and other things in the Universe work, and how we can learn about them. Astrophysicists use physics to explain what astronomers find and see.\n\nAstrophysics is also the study of how the Universe started and how it is changing with time. This part of astrophysics is called cosmology.\n\nHistory\n\nFor a lon"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "109dd8d18ef5a8710e71fdd36909ac3e8ff9ecdf3ac5adcf6840963dabe1d311",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "char_end": 374,
+            "token_start": 0,
+            "language_confidence": 0.9999974918082414,
+            "doc_id": "4491",
+            "char_start": 0,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomer",
+            "chunk_index": 0,
+            "title": "Astronomer",
+            "token_end": 64,
+            "token_count": 64
+          },
+          "cosine_distance": 0.43529564142227173,
+          "snippet": "An astronomer is a scientist who studies astronomy. Observational astronomers work in observatories with telescopes to collect information from things in outer space such as planets, stars, or galaxies. Theoretical astronomers study the collected information, and use it to help us understand how the universe behaves.\n\nRelated pages\nList of Astronom"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "b7c970595bbcb6b1077ad1b3674aa2834f8351856b686274e147b7b939990547",
+          "metadata": {
+            "title": "Astrophysics",
+            "chunk_index": 1,
+            "token_start": 188,
+            "source_url": "https://simple.wikipedia.org/wiki/Astrophysics",
+            "token_end": 408,
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.9999969457385728,
+            "language": "en",
+            "char_end": 2068,
+            "char_start": 933,
+            "doc_id": "9235",
+            "token_count": 220
+          },
+          "cosine_distance": 0.4530593156814575,
+          "snippet": "out how the planets moved, the science of astrophysics was born. Sir Isaac Newton realized that the same rules of mechanics that he had found on the surface of the Earth also could be used to predict how the planets moved. He said, \"As above, so below\". By this, he meant that we can study how things work on this planet to find out how things work i"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 25.517100002616644,
+        "database_search": 5.114200001116842,
+        "total_retrieval": 30.631300003733486
+      },
+      "repeat": 1
+    },
+    {
+      "query": "Where is Afghanistan located?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "0a19c878c345c51fbdc7d453bae87f15cf61577d4bff0aa4da2ee2b67980335a",
+          "metadata": {
+            "token_end": 220,
+            "doc_id": "52",
+            "char_end": 1075,
+            "chunk_index": 0,
+            "char_start": 0,
+            "token_start": 0,
+            "token_count": 220,
+            "language": "en",
+            "title": "Afghanistan",
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "language_confidence": 0.9999968750555062
+          },
+          "cosine_distance": 0.3095492124557495,
+          "snippet": "Afghanistan, officially the Islamic Emirate of Afghanistan (Pashto/Dari: ), is a country in Central Asia. It borders with Pakistan in the south and east, Iran in the west, Turkmenistan, Uzbekistan and Tajikistan in the north, and China in the far northeast. Kabul is the country's capital city.\n\nAfghanistan is currently governed by the Taliban, afte"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "67932db60d49ec4041a03e0dd94d2ec87e9ccdc29b9064bd2cc0c78d150d5872",
+          "metadata": {
+            "token_end": 1160,
+            "char_end": 5464,
+            "token_start": 940,
+            "char_start": 4341,
+            "token_count": 220,
+            "title": "Afghanistan",
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "doc_id": "52",
+            "chunk_index": 5,
+            "language_confidence": 0.9999968750555062
+          },
+          "cosine_distance": 0.3492131233215332,
+          "snippet": "from place to place with their animals and belongings. Some people live in the high central mountains. Some live in the deserts in the south and southwest. Millions of people left Afghanistan to get away from the wars that happened in the late 20th and early 21st centuries. Most of them lived in neighboring Pakistan and Iran.\n\nHistory\nAfghanistan i"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "51ed67f1049a2a05d9e6b4d5d547049eaab7b1b8c19cf066b012f6a8e1d7ef65",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_start": 376,
+            "chunk_index": 2,
+            "doc_id": "52",
+            "char_start": 1808,
+            "language": "en",
+            "language_confidence": 0.9999968750555062,
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "char_end": 2838,
+            "title": "Afghanistan",
+            "token_end": 596
+          },
+          "cosine_distance": 0.3750185966491699,
+          "snippet": "continental climate with hot summers and cold winters. Having no water sometimes causes problems for farmers. Sandstorms happen a lot in the desert.\n\nPlants and animals\n\nSouthern Afghanistan has not many plants because it is dry. There are more plants where there is more water. Mountains have forests of pine and fir, cedar, oak, walnut, alder, and "
+        },
+        {
+          "rank": 4,
+          "chunk_id": "98a20f0f1f107e2650f03161105f4d645ce0efde112812958c41aa2ac943e773",
+          "metadata": {
+            "char_start": 3484,
+            "title": "Afghanistan",
+            "token_start": 752,
+            "char_end": 4509,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "chunk_index": 4,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "language": "en",
+            "token_end": 972,
+            "doc_id": "52",
+            "language_confidence": 0.9999968750555062
+          },
+          "cosine_distance": 0.39369672536849976,
+          "snippet": "i-Persian and Pashto are the official languages of Afghanistan. Many people speak both languages. Both are Indo-European languages from the Iranian languages sub-family. They are usually written with the Arabic alphabet. Uzbek and Turkmen are widely spoken in the north and Nuristani and Pashai are spoken in the east. Around 99% of all Afghans follo"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "268aca458954dcdcb5989a2e30baca2f629e5e8cbb9436a11b4bedf6f6dda01c",
+          "metadata": {
+            "char_end": 18844,
+            "token_count": 132,
+            "language_confidence": 0.9999968750555062,
+            "title": "Afghanistan",
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "token_start": 3760,
+            "language": "en",
+            "token_end": 3892,
+            "chunk_index": 20,
+            "doc_id": "52",
+            "char_start": 18097
+          },
+          "cosine_distance": 0.40964651107788086,
+          "snippet": "Afghanistan was held on October 20; \"The participants [... were] India, USA, Afghanistan, China, Pakistan, Iran and Central Asian\" countries, media said.\n\nDiplomatic missions that still represent the Islamic Republic of Afghanistan\nThe ambassador in Oslo, Norway does not recognize the Taliban-led government (as of 2021's fourth quarter).\n\nRelated p"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 20.971499994629994,
+        "database_search": 6.146300002001226,
+        "total_retrieval": 27.11779999663122
+      },
+      "repeat": 1
+    },
+    {
+      "query": "How does addition work in arithmetic?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "e26727db813fc5f4849926cabd1d62227342674a318d90e5310dad2bb89a955d",
+          "metadata": {
+            "title": "Addition",
+            "char_end": 1107,
+            "chunk_index": 0,
+            "token_start": 0,
+            "token_end": 220,
+            "language_confidence": 0.9999986174447106,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "token_count": 220,
+            "doc_id": "22",
+            "source_url": "https://simple.wikipedia.org/wiki/Addition",
+            "char_start": 0
+          },
+          "cosine_distance": 0.2781028747558594,
+          "snippet": "Not to be confused with building extension which are also called additions\n\nIn mathematics, addition, represented by the symbol , is an operation which combines two mathematical objects together into another mathematical object of the same type, called the sum. Addition can occur with simple objects such as numbers, and more complex objects and con"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "5d9160548e52fc627c9360788b10a824c4e158fb0bd0def331ad25a795aab775",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_count": 219,
+            "char_end": 3635,
+            "chunk_index": 3,
+            "language_confidence": 0.9999986174447106,
+            "doc_id": "22",
+            "source_url": "https://simple.wikipedia.org/wiki/Addition",
+            "title": "Addition",
+            "language": "en",
+            "token_end": 783,
+            "char_start": 2601,
+            "token_start": 564
+          },
+          "cosine_distance": 0.3730122447013855,
+          "snippet": "house to Sally's house, is the same as the distance from Tom's house to Sally's house. That is, 300 m plus 120 m.\n\nHence Sally's house is 420 m to the east of Tom's house.\n\nProperties\n\nCommutativity\n\nAddition is commutative, meaning that one can change the order of the numbers in a sum, but still get the same result. For example:\nand\n\nAssociativity"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "7ef273946adba63ff2c6c90293f19c18f9f33a41ae006f9455a524b1d73cc774",
+          "metadata": {
+            "chunk_index": 0,
+            "char_end": 1078,
+            "source_url": "https://simple.wikipedia.org/wiki/Multiplication",
+            "title": "Multiplication",
+            "token_start": 0,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "char_start": 0,
+            "doc_id": "482",
+            "token_end": 220,
+            "token_count": 220,
+            "language_confidence": 0.9999981416922016
+          },
+          "cosine_distance": 0.3824723958969116,
+          "snippet": "Multiplication is the inverse of division, and has many uses, one of them being checking your division work.\nMultiplication is an arithmetic operation for finding the product of two numbers in mathematics. It is often represented by symbols such as and . Multiplication is the third operation in math, after addition which is the first, and subtracti"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "b314df856187447ec768b30c05dee68da276c38866dfec9970c983422f4a6188",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Arithmetic",
+            "char_start": 0,
+            "token_start": 0,
+            "token_count": 220,
+            "doc_id": "21",
+            "language_confidence": 0.999997337859516,
+            "token_end": 220,
+            "language": "en",
+            "char_end": 1162,
+            "title": "Arithmetic",
+            "source": "Simple English Wikipedia",
+            "chunk_index": 0
+          },
+          "cosine_distance": 0.3980964422225952,
+          "snippet": "In mathematics, arithmetic is the basic study of numbers. The four basic arithmetic operations are addition, subtraction, multiplication, and division, although other operations such as exponentiation and roots are also studied in arithmetic.\n\nOther arithmetic topics includes working with negative numbers, fractions, decimals and percentages.\n\nMost"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "da140df1f9c06660f887a6ab8faedec3f5a4c54118672e0687db170f0f64cedd",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_start": 752,
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Algebra",
+            "chunk_index": 4,
+            "title": "Algebra",
+            "doc_id": "45",
+            "language": "en",
+            "char_end": 4233,
+            "char_start": 3266,
+            "token_end": 972,
+            "language_confidence": 0.9999969942711509
+          },
+          "cosine_distance": 0.40889978408813477,
+          "snippet": ".\nTo check this, put 6 back into the original equation wherever was:\nThis gives , which is true. They each now have 18 candies.\n\nWith practice, algebra can be used when faced with a problem that is too hard to solve any other way. Problems such as building a freeway, designing a cell phone, or finding the cure for a disease all require algebra.\n\nWr"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 31.99819999281317,
+        "database_search": 7.242699997732416,
+        "total_retrieval": 39.240899990545586
+      },
+      "repeat": 1
+    },
+    {
+      "query": "What do archaeologists study?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "e586534e0247c550cf69e26c72b13aa3b2597d679f811916af8f50d30b99956f",
+          "metadata": {
+            "doc_id": "57",
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "title": "Archaeology",
+            "char_end": 2047,
+            "language": "en",
+            "token_end": 408,
+            "chunk_index": 1,
+            "char_start": 919,
+            "language_confidence": 0.9999972944532786,
+            "token_start": 188
+          },
+          "cosine_distance": 0.22864508628845215,
+          "snippet": "archaeological fieldwork involves digging, and is expensive and takes a long time.\n\nWhen things are found, or even when nothing is found, the results of the fieldwork are taken back to a base. Short term, the base is often on or near the site. Longer term, the results will usually go to a university or museum. Everything is written down on paper or"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "7640ad50152f0876a37ac0171a8629fcc5e334e61c1c3c5a794f2b08c5f07cbe",
+          "metadata": {
+            "char_start": 2864,
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.9999972944532786,
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "token_start": 564,
+            "doc_id": "57",
+            "token_count": 220,
+            "chunk_index": 3,
+            "title": "Archaeology",
+            "char_end": 4075,
+            "language": "en",
+            "token_end": 784
+          },
+          "cosine_distance": 0.30605149269104004,
+          "snippet": "deals with places, things, and issues from the past or present at or related to sites with written records or oral traditions. Or it can be defined as \"the archaeological investigation of any past culture that has developed a literate tradition.\" A prominent example of historical archaeology is the work done at Colonial Williamsburg.\n\nIndustrial ar"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "7a20fc20aa60888f99ebdc1934e2baf4c341c4659eabdcab13da36a0940a4955",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_end": 408,
+            "token_start": 188,
+            "language": "en",
+            "char_end": 2037,
+            "title": "Anthropology",
+            "doc_id": "2110",
+            "chunk_index": 1,
+            "language_confidence": 0.9999976613101952,
+            "char_start": 852,
+            "source_url": "https://simple.wikipedia.org/wiki/Anthropology",
+            "token_count": 220
+          },
+          "cosine_distance": 0.3268267512321472,
+          "snippet": "\" that divides anthropology into four big kinds:\nArchaeology - The study of how people lived in the past.\nBiological anthropology - The study of how people adapt to where they live and how bodies changed over time (evolution).\nLinguistic anthropology - The study of how people speak and the words they use.\nSociocultural anthropology - The study of h"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "d8f5034b5cacd1cf174199c009831f07e477626d4fc35e77e8a2d46bb321ad8c",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "char_end": 1081,
+            "language": "en",
+            "chunk_index": 0,
+            "char_start": 0,
+            "title": "Archaeology",
+            "token_end": 220,
+            "token_count": 220,
+            "language_confidence": 0.9999972944532786,
+            "doc_id": "57",
+            "source": "Simple English Wikipedia",
+            "token_start": 0
+          },
+          "cosine_distance": 0.3526812791824341,
+          "snippet": "Archaeology, or archeology, is the study of the human past. It looks at remains and objects left by the people who lived long ago. These remains may include old coins, tools, buildings, and inscriptions. Archaeologists, the people who study archaeology, use these remains to understand how people lived.\n\nFieldwork\n\nWhen archaeologists do fieldwork, "
+        },
+        {
+          "rank": 5,
+          "chunk_id": "7d1d79f4fe55302c3a14c970b64d33e26d698715a34bc28cc18b97071771e705",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/History",
+            "char_start": 0,
+            "title": "History",
+            "token_start": 0,
+            "doc_id": "324",
+            "char_end": 1157,
+            "token_end": 220,
+            "chunk_index": 0,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.9999987172423144,
+            "token_count": 220
+          },
+          "cosine_distance": 0.40308839082717896,
+          "snippet": "History is the study of past events. People know what happened in the past by looking at things from the past including sources (like books, newspapers, scripts and letters), buildings and artifacts (like pottery, tools, coins and human or animal remains.) Libraries, archives, and museums collect and keep these things for people to study history. A"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 22.980900001130067,
+        "database_search": 5.77530000009574,
+        "total_retrieval": 28.756200001225807
+      },
+      "repeat": 1
+    },
+    {
+      "query": "How did Alan Turing contribute to computing?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "4b04d33929d11bb9876a332c05e642d82aa7d1977ae02d442d24ee8a9e3764be",
+          "metadata": {
+            "token_end": 596,
+            "title": "Alan Turing",
+            "language": "en",
+            "char_end": 2785,
+            "token_start": 376,
+            "char_start": 1725,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "doc_id": "13",
+            "token_count": 220,
+            "language_confidence": 0.9999975933686452,
+            "chunk_index": 2
+          },
+          "cosine_distance": 0.38617467880249023,
+          "snippet": ", almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died before the law came into force, making it possible for living convicted gay men to seek pardons for offences now no longer on the statute book.\n\nTuring died in 1954, after being subjected by "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "b8e5daf9b24bf554cbec4c59e2fc8b81f8a350270c1000a42b6e28e5bab7f853",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "token_end": 408,
+            "doc_id": "13",
+            "token_start": 188,
+            "title": "Alan Turing",
+            "char_end": 1884,
+            "language_confidence": 0.9999975933686452,
+            "char_start": 768,
+            "token_count": 220,
+            "chunk_index": 1
+          },
+          "cosine_distance": 0.38890624046325684,
+          "snippet": ", North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at Alexandra School and College. On October 1st 1907 she married Julius Mathison Turing, who was Reverend John Robert Turing and Fanny Boyd, in Dublin. Alan Turing was born on June 23rd 1912. He would go on to be r"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "cb2f5780ef23cce723674bfc526625d8834b7567dcf3a7b8ac7b38aaa830cdc5",
+          "metadata": {
+            "doc_id": "112",
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.9999957613789175,
+            "title": "Computer",
+            "language": "en",
+            "char_end": 4112,
+            "token_end": 784,
+            "token_start": 564,
+            "source_url": "https://simple.wikipedia.org/wiki/Computer",
+            "chunk_index": 3,
+            "char_start": 2998,
+            "token_count": 220
+          },
+          "cosine_distance": 0.42957043647766113,
+          "snippet": "machine code) that the computer will understand and do what is needed.\n\nHistory of computers\n\nFirst computer\nIn 1837, Charles Babbage proposed the first general mechanical computer, the Analytical Engine. The Analytical Engine contained an Arithmetic Logic Unit, basic flow control, punched cards, and integrated memory. It is the first general-purpo"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "9fddd431b3bc3b9b72e0540495d82400b05718c6a58a092dc1c557da51ed298e",
+          "metadata": {
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "char_end": 907,
+            "chunk_index": 0,
+            "doc_id": "13",
+            "language": "en",
+            "token_start": 0,
+            "language_confidence": 0.9999975933686452,
+            "source": "Simple English Wikipedia",
+            "char_start": 0,
+            "token_end": 220,
+            "title": "Alan Turing"
+          },
+          "cosine_distance": 0.43733954429626465,
+          "snippet": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist. He was born in Maida Vale, London.\n\nEarly life and family\nAlan Mathison Turing was born in Maida Vale, [London] on 23 June 1912. His father was part of a family of merchants from Scotland. His mother, Ethel Sara"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "44e90a061bbf835bc79897b56fead43322551cef42035cdec3fb62e8a96e2b05",
+          "metadata": {
+            "chunk_index": 5,
+            "token_end": 1160,
+            "language": "en",
+            "language_confidence": 0.9999957613789175,
+            "token_count": 220,
+            "title": "Computer",
+            "token_start": 940,
+            "source_url": "https://simple.wikipedia.org/wiki/Computer",
+            "source": "Simple English Wikipedia",
+            "char_end": 5873,
+            "char_start": 4852,
+            "doc_id": "112"
+          },
+          "cosine_distance": 0.44268929958343506,
+          "snippet": "night throughout the year. Some count this daily adjustment as computer programming.\n\nOthers say the first computer was made by Charles Babbage. Ada Lovelace is considered to be the first programmer.\n\nThe computing era\nAt the end of the Middle Ages, people started thinking math and engineering were more important. In 1623, Wilhelm Schickard made a "
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 22.018200004822575,
+        "database_search": 5.609700005152263,
+        "total_retrieval": 27.627900009974837
+      },
+      "repeat": 2
+    },
+    {
+      "query": "What is an atom made of?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "dc73bf5e455e8c4e1acce9f83424a51f922430023e8c272ee3adb711278251df",
+          "metadata": {
+            "char_end": 1954,
+            "language": "en",
+            "token_end": 408,
+            "token_start": 188,
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "doc_id": "47",
+            "char_start": 871,
+            "title": "Atom",
+            "language_confidence": 0.999997608535479,
+            "chunk_index": 1,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom"
+          },
+          "cosine_distance": 0.32181453704833984,
+          "snippet": "middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of protons belong to the same chemical element. Examples of elements are carbon and gold. Atoms with the same number of protons, but different numbers of neutrons, are calle"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "906ccc3e37bad36a4aead966b33e1e46ecaa1071752cd70cff8c26010edc28f1",
+          "metadata": {
+            "title": "Atom",
+            "language_confidence": 0.999997608535479,
+            "token_start": 0,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "chunk_index": 0,
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "char_end": 1057,
+            "token_end": 220,
+            "char_start": 0,
+            "doc_id": "47"
+          },
+          "cosine_distance": 0.32796168327331543,
+          "snippet": "An atom is the basic unit of matter. All normal matter – everything that has mass – is made of atoms. This includes solids, liquids, and gases. The atom cannot be broken to parts by chemistry, so people once thought it was the smallest and simplest particle of matter. There are over 100 different kinds of atoms, called chemical elements. Each kind "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "60f10301cb6e23b69813880b0820fa1b654619f6fb43e40e4dea6572ceabac93",
+          "metadata": {
+            "token_end": 220,
+            "token_start": 0,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "language": "en",
+            "title": "Proton",
+            "source_url": "https://simple.wikipedia.org/wiki/Proton",
+            "language_confidence": 0.9999981299112684,
+            "char_start": 0,
+            "char_end": 872,
+            "chunk_index": 0,
+            "doc_id": "9526"
+          },
+          "cosine_distance": 0.39678215980529785,
+          "snippet": "A proton is part of an atom. They are found in the nucleus of an atom along with neutrons. The periodic table groups atoms according to how many protons they have. A single atom of hydrogen (the lightest kind of atom) is made up of an electron moving around a proton. Most of the mass of this atom is in the proton, which is almost 2000 times heavier"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "8aed412f2d8e596acf3c5318292ee74b28fda80f7b0baf38ec2e8a1bce0737db",
+          "metadata": {
+            "token_end": 596,
+            "char_end": 2838,
+            "doc_id": "47",
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "title": "Atom",
+            "char_start": 1799,
+            "chunk_index": 2,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "token_start": 376,
+            "language_confidence": 0.999997608535479
+          },
+          "cosine_distance": 0.40401721000671387,
+          "snippet": "This is what causes radioactivity. Atoms can also join to make larger atoms at very high temperatures, such as inside a star. These changes are studied in nuclear physics. Most atoms on Earth are not radioactive. They are rarely made, destroyed, or changed into another kind of atom.\n\nHistory\nThe word \"atom\" comes from the Greek (ἀτόμος) \"atomos\", w"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "b4d8b656ba5695a120c2e130e78045a9cbc8165e1a5852fd753551836c8b9f8c",
+          "metadata": {
+            "token_start": 1316,
+            "char_end": 7374,
+            "source": "Simple English Wikipedia",
+            "doc_id": "47",
+            "title": "Atom",
+            "chunk_index": 7,
+            "language_confidence": 0.999997608535479,
+            "token_end": 1536,
+            "token_count": 220,
+            "language": "en",
+            "char_start": 6324,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom"
+          },
+          "cosine_distance": 0.40576887130737305,
+          "snippet": "The Schrödinger equation says where an electron is likely to be. This area is called the electron's orbital.\n\nIn 1937, German chemist Otto Hahn became the first person to make nuclear fission in a laboratory. He discovered this by chance when shooting neutrons at a uranium atom, hoping to make a new isotope. However, instead of a new isotope, the u"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 27.06449999823235,
+        "database_search": 7.310899993171915,
+        "total_retrieval": 34.375399991404265
+      },
+      "repeat": 2
+    },
+    {
+      "query": "Why is August named after a Roman emperor?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "317ec4140f9bf31416c01c94a222da17bff442eebf482a08a7d54feef9acdc39",
+          "metadata": {
+            "token_end": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "token_start": 0,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.999997817305584,
+            "doc_id": "2",
+            "char_end": 1004,
+            "title": "August",
+            "token_count": 220,
+            "char_start": 0,
+            "chunk_index": 0
+          },
+          "cosine_distance": 0.27345210313796997,
+          "snippet": "August (Aug.) is the eighth month of the year in the Gregorian calendar, coming between July and September. It has 31 days. It is named after the Roman emperor Augustus Caesar.\n\nAugust does not begin on the same day of the week as any other month in common years, but begins on the same day of the week as February in leap years. August always ends o"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "4398c7b5892da76d7f2890ccdd32c1ef4e7bbddae061923fcdd0eb3b7440da0d",
+          "metadata": {
+            "char_end": 2722,
+            "title": "Augustus",
+            "token_start": 376,
+            "doc_id": "15583",
+            "chunk_index": 2,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Augustus",
+            "language_confidence": 0.9999982560705548,
+            "char_start": 1723,
+            "token_end": 596,
+            "language": "en",
+            "token_count": 220
+          },
+          "cosine_distance": 0.342398464679718,
+          "snippet": "30 BC. Lepidus was sidelined, blamed for a revolt in Sicily, and removed from government. He died peacefully in exile in Circeii in Italy in the year 13 BC.\n\nAfter winning the power struggle, Octavian was voted as Emperor by the Roman Senate in 31 BC. He took the name \"Augustus\" (which meant 'exalted'). He ruled until AD 14, when his stepson and so"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "71b7080aeb4cdc9a886ac81a70591b5f69a276f278745f45ee2be1d301a146c4",
+          "metadata": {
+            "token_start": 0,
+            "language_confidence": 0.9999976211542846,
+            "token_count": 220,
+            "doc_id": "5464",
+            "source_url": "https://simple.wikipedia.org/wiki/4",
+            "title": "4",
+            "language": "en",
+            "char_start": 0,
+            "chunk_index": 0,
+            "char_end": 993,
+            "source": "Simple English Wikipedia",
+            "token_end": 220
+          },
+          "cosine_distance": 0.3442739248275757,
+          "snippet": "The year 4 (IV) was a leap year which started on a Tuesday, according to the Julian calendar. According to the Gregorian calendar, it started on a Thursday. At the time, it was known as the Year of the Consulship of Catus and Saturninus. It was called the fourth year since the early medieval period, when the Anno Domini calendar era became the usua"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "76dd25f3ac3e048570e6a5b0fc0978fd6ff5531eac341af2c02fc182f0c42b09",
+          "metadata": {
+            "title": "8",
+            "chunk_index": 0,
+            "token_end": 220,
+            "language_confidence": 0.999997337896984,
+            "char_start": 0,
+            "doc_id": "5468",
+            "source": "Simple English Wikipedia",
+            "char_end": 909,
+            "token_start": 0,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/8",
+            "token_count": 220
+          },
+          "cosine_distance": 0.38108301162719727,
+          "snippet": "8 (VIII) is a leap year of the Julian calendar which started on a Sunday. According to the Gregorian calendar, it started on a Tuesday. It was the 8th year of the 1st century.\n\nEvents\n\nRoman Empire\nAugust 3 – Roman general Tiberius defeats Dalmatians on the river Bathinus.\nVipsania Julia is exiled. Lucius Aemilius Paullus and his family are disgrac"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "65ef3ef9470fe505e6a327592b5ca907f77c045726408ef8f9580720324dfdae",
+          "metadata": {
+            "language": "en",
+            "token_end": 408,
+            "title": "August",
+            "source": "Simple English Wikipedia",
+            "char_end": 1884,
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "char_start": 848,
+            "chunk_index": 1,
+            "language_confidence": 0.999997817305584,
+            "token_count": 220,
+            "doc_id": "2",
+            "token_start": 188
+          },
+          "cosine_distance": 0.3836885690689087,
+          "snippet": "disagree). In 153 BC January 1 was determined as the beginning of the year.\n\nAugust is named for Augustus Caesar who became Roman consul in this month. The month has 31 days because Julius Caesar added two days when he created the Julian calendar in 45 BC. August is after July and before September.\n\nAugust, in either hemisphere, is the seasonal equ"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 26.366399994003586,
+        "database_search": 5.663200005074032,
+        "total_retrieval": 32.02959999907762
+      },
+      "repeat": 2
+    },
+    {
+      "query": "How does aquaculture produce food?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "ecab29cec7c3ca4da78c52c1faa87c6ff9ac488ccecc5e207bcc6e1611dd0057",
+          "metadata": {
+            "title": "Aquaculture",
+            "char_end": 993,
+            "language": "en",
+            "token_start": 0,
+            "char_start": 0,
+            "chunk_index": 0,
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.999997013107133,
+            "doc_id": "30",
+            "token_end": 211,
+            "token_count": 211,
+            "source_url": "https://simple.wikipedia.org/wiki/Aquaculture"
+          },
+          "cosine_distance": 0.26852738857269287,
+          "snippet": "Aquaculture is the farming of fish, shrimp, abalones, algae, and other seafood. Aquaculture supplies fish, such as catfish, salmon, and trout. It was developed a few thousand years ago in China. Aquaculture supplies over 20% of all the seafood harvested.\n\nFish farming has been practiced, in some parts of the world, for thousands of years. Goldfish "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "c09c443d2df6f54a32ec24d4aa39d7b20a44b870adec7bb45dade1d75e04e701",
+          "metadata": {
+            "language_confidence": 0.999996859012014,
+            "token_count": 220,
+            "doc_id": "15276",
+            "char_end": 2001,
+            "chunk_index": 1,
+            "source_url": "https://simple.wikipedia.org/wiki/Tuna",
+            "title": "Tuna",
+            "token_end": 408,
+            "token_start": 188,
+            "char_start": 902,
+            "source": "Simple English Wikipedia",
+            "language": "en"
+          },
+          "cosine_distance": 0.44286513328552246,
+          "snippet": "and northwestern Pacific Oceans. Other populations seem to support fairly healthy fisheries (for example, the central and western Pacific skipjack tuna), but there is mounting evidence that overfishing threatens tuna fisheries worldwide.\n\nSome fishermen in Australia now grow Southern bluefin tuna in fish farms. Fish farms are areas of water with ne"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "f538a7519c17bcd2e9184cefe7e4a03e9aa2825f72f925160afffec7b687822e",
+          "metadata": {
+            "token_count": 140,
+            "source_url": "https://simple.wikipedia.org/wiki/Salmon",
+            "chunk_index": 1,
+            "char_start": 848,
+            "source": "Simple English Wikipedia",
+            "token_end": 328,
+            "char_end": 1510,
+            "token_start": 188,
+            "doc_id": "20095",
+            "language": "en",
+            "title": "Salmon",
+            "language_confidence": 0.9999964434233688
+          },
+          "cosine_distance": 0.47713369131088257,
+          "snippet": "xanthin. Wild salmon get it from the krill and shrimp they eat, while farmed salmon gets traces of it in kibble (compound feed). If they don't have the pigment, their flesh has a gray color.\n\nEating\nUsual ways to make food out of salmon are smoking, cold smoking and graving.\n\nMain species\n\nAtlantic salmon\nAustralian salmon\nChinook salmon\nChum salmo"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "a6f88612ab9e8aa9fac0225861d903d4d54503e77d1c9d38c12d49ae60d1ef90",
+          "metadata": {
+            "char_end": 6909,
+            "language": "en",
+            "token_start": 1316,
+            "chunk_index": 7,
+            "source": "Simple English Wikipedia",
+            "title": "Farming",
+            "language_confidence": 0.9999980747959352,
+            "doc_id": "19",
+            "source_url": "https://simple.wikipedia.org/wiki/Farming",
+            "token_end": 1357,
+            "token_count": 41,
+            "char_start": 6633
+          },
+          "cosine_distance": 0.49464738368988037,
+          "snippet": ".\n\nRelated pages\nAquaculture\nBee keeping\nAnimal husbandry\nFertilizers\nCrop rotation\nUrban farming\nBreeding\nFencing\nRanching\nPlantation\nCrop protection\nCultured meat\nGenetically modified food\n\nAgriculture by country\nAgriculture in Azerbaijan\nAgriculture in Pakistan\n\nReferences"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "4da6fcd8d24d8a63caa42a4d0d15330ef2bcdce1a8a24ff0c2f870ebc4581dd3",
+          "metadata": {
+            "language": "en",
+            "title": "Seafood",
+            "char_start": 0,
+            "chunk_index": 0,
+            "source_url": "https://simple.wikipedia.org/wiki/Seafood",
+            "doc_id": "12378",
+            "source": "Simple English Wikipedia",
+            "token_end": 46,
+            "token_start": 0,
+            "char_end": 242,
+            "token_count": 46,
+            "language_confidence": 0.9999961740495416
+          },
+          "cosine_distance": 0.5032860040664673,
+          "snippet": "Seafood is food made from fish or other sea animals such as shrimp and lobsters. The harvesting (collecting) of seafood is called fishing.\n\nSeafood is rich in protein and is usually thought as healthy food.\n\nRelated pages\nAquaculture\n\nSeafood"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 24.65910000319127,
+        "database_search": 5.803399995784275,
+        "total_retrieval": 30.462499998975545
+      },
+      "repeat": 2
+    },
+    {
+      "query": "What is the difference between astronomy and astrology?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "d965e9ec1386e2bb1f8599673a8690896e67685da922eb1a6fb347a0c7688ddd",
+          "metadata": {
+            "char_end": 1158,
+            "token_end": 220,
+            "language_confidence": 0.999995940059109,
+            "chunk_index": 0,
+            "char_start": 0,
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "language": "en",
+            "token_start": 0,
+            "doc_id": "48",
+            "source": "Simple English Wikipedia",
+            "title": "Astronomy"
+          },
+          "cosine_distance": 0.30682599544525146,
+          "snippet": "Astronomy is the scientific study of celestial bodies. That means stars, galaxies, planets, moons, asteroids, comets and nebulae are studied, as are supernovae explosions, gamma ray bursts, and cosmic microwave background radiation. Astronomy concerns the development, physics, chemistry, meteorology and movement of celestial bodies. The big questio"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "35e4244002e439e3cf444dabf2886417b1b97d48b9a9d1433ec45238ea767dd7",
+          "metadata": {
+            "language_confidence": 0.999995940059109,
+            "char_start": 11487,
+            "token_count": 220,
+            "char_end": 12663,
+            "title": "Astronomy",
+            "token_start": 2255,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "source": "Simple English Wikipedia",
+            "doc_id": "48",
+            "token_end": 2475,
+            "chunk_index": 12
+          },
+          "cosine_distance": 0.41371309757232666,
+          "snippet": "can help us understand how other stars work and are formed. Changes in the Sun can affect the weather and climate on Earth. A stream of charged particles called the Solar wind is constantly sent off from the Sun. The Solar wind hitting the Earth's magnetic field causes the northern lights.\n\nStellar Astronomy\n\nStellar Astronomy, sometimes generally "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "596a934c7ed33ed1cc89ad5fd482b4ed1cbe68b9a39d9130ff1c5b59e1c44e4c",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "char_start": 0,
+            "language": "en",
+            "doc_id": "9235",
+            "token_end": 220,
+            "title": "Astrophysics",
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Astrophysics",
+            "chunk_index": 0,
+            "token_start": 0,
+            "language_confidence": 0.9999969457385728,
+            "char_end": 1093
+          },
+          "cosine_distance": 0.41658520698547363,
+          "snippet": "Astrophysics is the study of how stars, planets and other things in the Universe work, and how we can learn about them. Astrophysicists use physics to explain what astronomers find and see.\n\nAstrophysics is also the study of how the Universe started and how it is changing with time. This part of astrophysics is called cosmology.\n\nHistory\n\nFor a lon"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "109dd8d18ef5a8710e71fdd36909ac3e8ff9ecdf3ac5adcf6840963dabe1d311",
+          "metadata": {
+            "language_confidence": 0.9999974918082414,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomer",
+            "doc_id": "4491",
+            "chunk_index": 0,
+            "token_start": 0,
+            "token_end": 64,
+            "title": "Astronomer",
+            "token_count": 64,
+            "char_end": 374,
+            "char_start": 0,
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.43529564142227173,
+          "snippet": "An astronomer is a scientist who studies astronomy. Observational astronomers work in observatories with telescopes to collect information from things in outer space such as planets, stars, or galaxies. Theoretical astronomers study the collected information, and use it to help us understand how the universe behaves.\n\nRelated pages\nList of Astronom"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "b7c970595bbcb6b1077ad1b3674aa2834f8351856b686274e147b7b939990547",
+          "metadata": {
+            "title": "Astrophysics",
+            "token_start": 188,
+            "source": "Simple English Wikipedia",
+            "chunk_index": 1,
+            "language_confidence": 0.9999969457385728,
+            "doc_id": "9235",
+            "token_end": 408,
+            "source_url": "https://simple.wikipedia.org/wiki/Astrophysics",
+            "token_count": 220,
+            "char_start": 933,
+            "char_end": 2068,
+            "language": "en"
+          },
+          "cosine_distance": 0.4530593156814575,
+          "snippet": "out how the planets moved, the science of astrophysics was born. Sir Isaac Newton realized that the same rules of mechanics that he had found on the surface of the Earth also could be used to predict how the planets moved. He said, \"As above, so below\". By this, he meant that we can study how things work on this planet to find out how things work i"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 24.471199998515658,
+        "database_search": 6.1590999976033345,
+        "total_retrieval": 30.630299996118993
+      },
+      "repeat": 2
+    },
+    {
+      "query": "Where is Afghanistan located?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "0a19c878c345c51fbdc7d453bae87f15cf61577d4bff0aa4da2ee2b67980335a",
+          "metadata": {
+            "char_end": 1075,
+            "token_count": 220,
+            "doc_id": "52",
+            "language_confidence": 0.9999968750555062,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "token_end": 220,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "title": "Afghanistan",
+            "chunk_index": 0,
+            "token_start": 0,
+            "char_start": 0
+          },
+          "cosine_distance": 0.3095492124557495,
+          "snippet": "Afghanistan, officially the Islamic Emirate of Afghanistan (Pashto/Dari: ), is a country in Central Asia. It borders with Pakistan in the south and east, Iran in the west, Turkmenistan, Uzbekistan and Tajikistan in the north, and China in the far northeast. Kabul is the country's capital city.\n\nAfghanistan is currently governed by the Taliban, afte"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "67932db60d49ec4041a03e0dd94d2ec87e9ccdc29b9064bd2cc0c78d150d5872",
+          "metadata": {
+            "char_end": 5464,
+            "language_confidence": 0.9999968750555062,
+            "title": "Afghanistan",
+            "doc_id": "52",
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "token_end": 1160,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "token_start": 940,
+            "char_start": 4341,
+            "language": "en",
+            "chunk_index": 5
+          },
+          "cosine_distance": 0.3492131233215332,
+          "snippet": "from place to place with their animals and belongings. Some people live in the high central mountains. Some live in the deserts in the south and southwest. Millions of people left Afghanistan to get away from the wars that happened in the late 20th and early 21st centuries. Most of them lived in neighboring Pakistan and Iran.\n\nHistory\nAfghanistan i"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "51ed67f1049a2a05d9e6b4d5d547049eaab7b1b8c19cf066b012f6a8e1d7ef65",
+          "metadata": {
+            "title": "Afghanistan",
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "token_end": 596,
+            "language_confidence": 0.9999968750555062,
+            "token_start": 376,
+            "char_start": 1808,
+            "chunk_index": 2,
+            "source": "Simple English Wikipedia",
+            "char_end": 2838,
+            "doc_id": "52",
+            "language": "en",
+            "token_count": 220
+          },
+          "cosine_distance": 0.3750185966491699,
+          "snippet": "continental climate with hot summers and cold winters. Having no water sometimes causes problems for farmers. Sandstorms happen a lot in the desert.\n\nPlants and animals\n\nSouthern Afghanistan has not many plants because it is dry. There are more plants where there is more water. Mountains have forests of pine and fir, cedar, oak, walnut, alder, and "
+        },
+        {
+          "rank": 4,
+          "chunk_id": "98a20f0f1f107e2650f03161105f4d645ce0efde112812958c41aa2ac943e773",
+          "metadata": {
+            "char_start": 3484,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "char_end": 4509,
+            "token_start": 752,
+            "language_confidence": 0.9999968750555062,
+            "chunk_index": 4,
+            "token_count": 220,
+            "title": "Afghanistan",
+            "token_end": 972,
+            "doc_id": "52",
+            "language": "en"
+          },
+          "cosine_distance": 0.39369672536849976,
+          "snippet": "i-Persian and Pashto are the official languages of Afghanistan. Many people speak both languages. Both are Indo-European languages from the Iranian languages sub-family. They are usually written with the Arabic alphabet. Uzbek and Turkmen are widely spoken in the north and Nuristani and Pashai are spoken in the east. Around 99% of all Afghans follo"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "268aca458954dcdcb5989a2e30baca2f629e5e8cbb9436a11b4bedf6f6dda01c",
+          "metadata": {
+            "token_count": 132,
+            "doc_id": "52",
+            "language": "en",
+            "token_start": 3760,
+            "token_end": 3892,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "char_start": 18097,
+            "language_confidence": 0.9999968750555062,
+            "char_end": 18844,
+            "chunk_index": 20,
+            "source": "Simple English Wikipedia",
+            "title": "Afghanistan"
+          },
+          "cosine_distance": 0.40964651107788086,
+          "snippet": "Afghanistan was held on October 20; \"The participants [... were] India, USA, Afghanistan, China, Pakistan, Iran and Central Asian\" countries, media said.\n\nDiplomatic missions that still represent the Islamic Republic of Afghanistan\nThe ambassador in Oslo, Norway does not recognize the Taliban-led government (as of 2021's fourth quarter).\n\nRelated p"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 25.013799997395836,
+        "database_search": 5.82050000957679,
+        "total_retrieval": 30.834300006972626
+      },
+      "repeat": 2
+    },
+    {
+      "query": "How does addition work in arithmetic?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "e26727db813fc5f4849926cabd1d62227342674a318d90e5310dad2bb89a955d",
+          "metadata": {
+            "char_start": 0,
+            "chunk_index": 0,
+            "language_confidence": 0.9999986174447106,
+            "title": "Addition",
+            "char_end": 1107,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "token_end": 220,
+            "token_start": 0,
+            "doc_id": "22",
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Addition"
+          },
+          "cosine_distance": 0.2781028747558594,
+          "snippet": "Not to be confused with building extension which are also called additions\n\nIn mathematics, addition, represented by the symbol , is an operation which combines two mathematical objects together into another mathematical object of the same type, called the sum. Addition can occur with simple objects such as numbers, and more complex objects and con"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "5d9160548e52fc627c9360788b10a824c4e158fb0bd0def331ad25a795aab775",
+          "metadata": {
+            "char_end": 3635,
+            "language_confidence": 0.9999986174447106,
+            "token_end": 783,
+            "char_start": 2601,
+            "token_count": 219,
+            "token_start": 564,
+            "title": "Addition",
+            "source": "Simple English Wikipedia",
+            "doc_id": "22",
+            "chunk_index": 3,
+            "source_url": "https://simple.wikipedia.org/wiki/Addition",
+            "language": "en"
+          },
+          "cosine_distance": 0.3730122447013855,
+          "snippet": "house to Sally's house, is the same as the distance from Tom's house to Sally's house. That is, 300 m plus 120 m.\n\nHence Sally's house is 420 m to the east of Tom's house.\n\nProperties\n\nCommutativity\n\nAddition is commutative, meaning that one can change the order of the numbers in a sum, but still get the same result. For example:\nand\n\nAssociativity"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "7ef273946adba63ff2c6c90293f19c18f9f33a41ae006f9455a524b1d73cc774",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Multiplication",
+            "language_confidence": 0.9999981416922016,
+            "char_end": 1078,
+            "token_start": 0,
+            "title": "Multiplication",
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "token_end": 220,
+            "char_start": 0,
+            "doc_id": "482",
+            "chunk_index": 0
+          },
+          "cosine_distance": 0.3824723958969116,
+          "snippet": "Multiplication is the inverse of division, and has many uses, one of them being checking your division work.\nMultiplication is an arithmetic operation for finding the product of two numbers in mathematics. It is often represented by symbols such as and . Multiplication is the third operation in math, after addition which is the first, and subtracti"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "b314df856187447ec768b30c05dee68da276c38866dfec9970c983422f4a6188",
+          "metadata": {
+            "language_confidence": 0.999997337859516,
+            "char_end": 1162,
+            "source_url": "https://simple.wikipedia.org/wiki/Arithmetic",
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "token_end": 220,
+            "char_start": 0,
+            "chunk_index": 0,
+            "title": "Arithmetic",
+            "token_start": 0,
+            "language": "en",
+            "doc_id": "21"
+          },
+          "cosine_distance": 0.3980964422225952,
+          "snippet": "In mathematics, arithmetic is the basic study of numbers. The four basic arithmetic operations are addition, subtraction, multiplication, and division, although other operations such as exponentiation and roots are also studied in arithmetic.\n\nOther arithmetic topics includes working with negative numbers, fractions, decimals and percentages.\n\nMost"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "da140df1f9c06660f887a6ab8faedec3f5a4c54118672e0687db170f0f64cedd",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Algebra",
+            "token_start": 752,
+            "char_end": 4233,
+            "language": "en",
+            "token_end": 972,
+            "token_count": 220,
+            "language_confidence": 0.9999969942711509,
+            "doc_id": "45",
+            "title": "Algebra",
+            "chunk_index": 4,
+            "char_start": 3266
+          },
+          "cosine_distance": 0.40889978408813477,
+          "snippet": ".\nTo check this, put 6 back into the original equation wherever was:\nThis gives , which is true. They each now have 18 candies.\n\nWith practice, algebra can be used when faced with a problem that is too hard to solve any other way. Problems such as building a freeway, designing a cell phone, or finding the cure for a disease all require algebra.\n\nWr"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 19.928199995774776,
+        "database_search": 5.221600004006177,
+        "total_retrieval": 25.149799999780953
+      },
+      "repeat": 2
+    },
+    {
+      "query": "What do archaeologists study?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "e586534e0247c550cf69e26c72b13aa3b2597d679f811916af8f50d30b99956f",
+          "metadata": {
+            "token_start": 188,
+            "token_count": 220,
+            "token_end": 408,
+            "title": "Archaeology",
+            "language": "en",
+            "char_start": 919,
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "chunk_index": 1,
+            "doc_id": "57",
+            "source": "Simple English Wikipedia",
+            "char_end": 2047,
+            "language_confidence": 0.9999972944532786
+          },
+          "cosine_distance": 0.22864508628845215,
+          "snippet": "archaeological fieldwork involves digging, and is expensive and takes a long time.\n\nWhen things are found, or even when nothing is found, the results of the fieldwork are taken back to a base. Short term, the base is often on or near the site. Longer term, the results will usually go to a university or museum. Everything is written down on paper or"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "7640ad50152f0876a37ac0171a8629fcc5e334e61c1c3c5a794f2b08c5f07cbe",
+          "metadata": {
+            "token_start": 564,
+            "title": "Archaeology",
+            "char_start": 2864,
+            "source": "Simple English Wikipedia",
+            "token_end": 784,
+            "chunk_index": 3,
+            "language_confidence": 0.9999972944532786,
+            "doc_id": "57",
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "token_count": 220,
+            "char_end": 4075
+          },
+          "cosine_distance": 0.30605149269104004,
+          "snippet": "deals with places, things, and issues from the past or present at or related to sites with written records or oral traditions. Or it can be defined as \"the archaeological investigation of any past culture that has developed a literate tradition.\" A prominent example of historical archaeology is the work done at Colonial Williamsburg.\n\nIndustrial ar"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "7a20fc20aa60888f99ebdc1934e2baf4c341c4659eabdcab13da36a0940a4955",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Anthropology",
+            "char_start": 852,
+            "language_confidence": 0.9999976613101952,
+            "title": "Anthropology",
+            "doc_id": "2110",
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "token_end": 408,
+            "token_start": 188,
+            "language": "en",
+            "char_end": 2037,
+            "chunk_index": 1
+          },
+          "cosine_distance": 0.3268267512321472,
+          "snippet": "\" that divides anthropology into four big kinds:\nArchaeology - The study of how people lived in the past.\nBiological anthropology - The study of how people adapt to where they live and how bodies changed over time (evolution).\nLinguistic anthropology - The study of how people speak and the words they use.\nSociocultural anthropology - The study of h"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "d8f5034b5cacd1cf174199c009831f07e477626d4fc35e77e8a2d46bb321ad8c",
+          "metadata": {
+            "token_end": 220,
+            "chunk_index": 0,
+            "title": "Archaeology",
+            "char_end": 1081,
+            "doc_id": "57",
+            "char_start": 0,
+            "language_confidence": 0.9999972944532786,
+            "source": "Simple English Wikipedia",
+            "token_start": 0,
+            "token_count": 220,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology"
+          },
+          "cosine_distance": 0.3526812791824341,
+          "snippet": "Archaeology, or archeology, is the study of the human past. It looks at remains and objects left by the people who lived long ago. These remains may include old coins, tools, buildings, and inscriptions. Archaeologists, the people who study archaeology, use these remains to understand how people lived.\n\nFieldwork\n\nWhen archaeologists do fieldwork, "
+        },
+        {
+          "rank": 5,
+          "chunk_id": "7d1d79f4fe55302c3a14c970b64d33e26d698715a34bc28cc18b97071771e705",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/History",
+            "title": "History",
+            "token_end": 220,
+            "token_start": 0,
+            "source": "Simple English Wikipedia",
+            "chunk_index": 0,
+            "doc_id": "324",
+            "char_start": 0,
+            "token_count": 220,
+            "language_confidence": 0.9999987172423144,
+            "language": "en",
+            "char_end": 1157
+          },
+          "cosine_distance": 0.40308839082717896,
+          "snippet": "History is the study of past events. People know what happened in the past by looking at things from the past including sources (like books, newspapers, scripts and letters), buildings and artifacts (like pottery, tools, coins and human or animal remains.) Libraries, archives, and museums collect and keep these things for people to study history. A"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 73.37070000357926,
+        "database_search": 5.898100003832951,
+        "total_retrieval": 79.26880000741221
+      },
+      "repeat": 2
+    },
+    {
+      "query": "How did Alan Turing contribute to computing?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "4b04d33929d11bb9876a332c05e642d82aa7d1977ae02d442d24ee8a9e3764be",
+          "metadata": {
+            "language_confidence": 0.9999975933686452,
+            "char_start": 1725,
+            "token_start": 376,
+            "doc_id": "13",
+            "char_end": 2785,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "title": "Alan Turing",
+            "chunk_index": 2,
+            "token_count": 220,
+            "language": "en",
+            "token_end": 596,
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.38617467880249023,
+          "snippet": ", almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died before the law came into force, making it possible for living convicted gay men to seek pardons for offences now no longer on the statute book.\n\nTuring died in 1954, after being subjected by "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "b8e5daf9b24bf554cbec4c59e2fc8b81f8a350270c1000a42b6e28e5bab7f853",
+          "metadata": {
+            "doc_id": "13",
+            "token_count": 220,
+            "title": "Alan Turing",
+            "token_start": 188,
+            "token_end": 408,
+            "language_confidence": 0.9999975933686452,
+            "chunk_index": 1,
+            "char_start": 768,
+            "char_end": 1884,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "source": "Simple English Wikipedia",
+            "language": "en"
+          },
+          "cosine_distance": 0.38890624046325684,
+          "snippet": ", North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at Alexandra School and College. On October 1st 1907 she married Julius Mathison Turing, who was Reverend John Robert Turing and Fanny Boyd, in Dublin. Alan Turing was born on June 23rd 1912. He would go on to be r"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "cb2f5780ef23cce723674bfc526625d8834b7567dcf3a7b8ac7b38aaa830cdc5",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "token_count": 220,
+            "title": "Computer",
+            "doc_id": "112",
+            "source_url": "https://simple.wikipedia.org/wiki/Computer",
+            "chunk_index": 3,
+            "token_end": 784,
+            "char_end": 4112,
+            "char_start": 2998,
+            "token_start": 564,
+            "language_confidence": 0.9999957613789175
+          },
+          "cosine_distance": 0.42957043647766113,
+          "snippet": "machine code) that the computer will understand and do what is needed.\n\nHistory of computers\n\nFirst computer\nIn 1837, Charles Babbage proposed the first general mechanical computer, the Analytical Engine. The Analytical Engine contained an Arithmetic Logic Unit, basic flow control, punched cards, and integrated memory. It is the first general-purpo"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "9fddd431b3bc3b9b72e0540495d82400b05718c6a58a092dc1c557da51ed298e",
+          "metadata": {
+            "token_count": 220,
+            "doc_id": "13",
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "title": "Alan Turing",
+            "language": "en",
+            "chunk_index": 0,
+            "char_start": 0,
+            "token_end": 220,
+            "token_start": 0,
+            "char_end": 907,
+            "language_confidence": 0.9999975933686452
+          },
+          "cosine_distance": 0.43733954429626465,
+          "snippet": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist. He was born in Maida Vale, London.\n\nEarly life and family\nAlan Mathison Turing was born in Maida Vale, [London] on 23 June 1912. His father was part of a family of merchants from Scotland. His mother, Ethel Sara"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "44e90a061bbf835bc79897b56fead43322551cef42035cdec3fb62e8a96e2b05",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Computer",
+            "language": "en",
+            "title": "Computer",
+            "char_end": 5873,
+            "token_start": 940,
+            "language_confidence": 0.9999957613789175,
+            "chunk_index": 5,
+            "token_count": 220,
+            "doc_id": "112",
+            "char_start": 4852,
+            "token_end": 1160,
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.44268929958343506,
+          "snippet": "night throughout the year. Some count this daily adjustment as computer programming.\n\nOthers say the first computer was made by Charles Babbage. Ada Lovelace is considered to be the first programmer.\n\nThe computing era\nAt the end of the Middle Ages, people started thinking math and engineering were more important. In 1623, Wilhelm Schickard made a "
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 23.786899997503497,
+        "database_search": 6.625499998335727,
+        "total_retrieval": 30.412399995839223
+      },
+      "repeat": 3
+    },
+    {
+      "query": "What is an atom made of?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "dc73bf5e455e8c4e1acce9f83424a51f922430023e8c272ee3adb711278251df",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "title": "Atom",
+            "char_start": 871,
+            "chunk_index": 1,
+            "char_end": 1954,
+            "doc_id": "47",
+            "language_confidence": 0.999997608535479,
+            "token_end": 408,
+            "token_start": 188
+          },
+          "cosine_distance": 0.32181453704833984,
+          "snippet": "middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of protons belong to the same chemical element. Examples of elements are carbon and gold. Atoms with the same number of protons, but different numbers of neutrons, are calle"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "906ccc3e37bad36a4aead966b33e1e46ecaa1071752cd70cff8c26010edc28f1",
+          "metadata": {
+            "token_start": 0,
+            "token_end": 220,
+            "title": "Atom",
+            "language": "en",
+            "language_confidence": 0.999997608535479,
+            "token_count": 220,
+            "char_end": 1057,
+            "doc_id": "47",
+            "chunk_index": 0,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "char_start": 0
+          },
+          "cosine_distance": 0.32796168327331543,
+          "snippet": "An atom is the basic unit of matter. All normal matter – everything that has mass – is made of atoms. This includes solids, liquids, and gases. The atom cannot be broken to parts by chemistry, so people once thought it was the smallest and simplest particle of matter. There are over 100 different kinds of atoms, called chemical elements. Each kind "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "60f10301cb6e23b69813880b0820fa1b654619f6fb43e40e4dea6572ceabac93",
+          "metadata": {
+            "chunk_index": 0,
+            "char_end": 872,
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Proton",
+            "language": "en",
+            "token_end": 220,
+            "char_start": 0,
+            "token_start": 0,
+            "language_confidence": 0.9999981299112684,
+            "doc_id": "9526",
+            "source": "Simple English Wikipedia",
+            "title": "Proton"
+          },
+          "cosine_distance": 0.39678215980529785,
+          "snippet": "A proton is part of an atom. They are found in the nucleus of an atom along with neutrons. The periodic table groups atoms according to how many protons they have. A single atom of hydrogen (the lightest kind of atom) is made up of an electron moving around a proton. Most of the mass of this atom is in the proton, which is almost 2000 times heavier"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "8aed412f2d8e596acf3c5318292ee74b28fda80f7b0baf38ec2e8a1bce0737db",
+          "metadata": {
+            "language": "en",
+            "doc_id": "47",
+            "language_confidence": 0.999997608535479,
+            "token_end": 596,
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "source": "Simple English Wikipedia",
+            "char_end": 2838,
+            "chunk_index": 2,
+            "char_start": 1799,
+            "token_start": 376,
+            "title": "Atom"
+          },
+          "cosine_distance": 0.40401721000671387,
+          "snippet": "This is what causes radioactivity. Atoms can also join to make larger atoms at very high temperatures, such as inside a star. These changes are studied in nuclear physics. Most atoms on Earth are not radioactive. They are rarely made, destroyed, or changed into another kind of atom.\n\nHistory\nThe word \"atom\" comes from the Greek (ἀτόμος) \"atomos\", w"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "b4d8b656ba5695a120c2e130e78045a9cbc8165e1a5852fd753551836c8b9f8c",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "token_start": 1316,
+            "language_confidence": 0.999997608535479,
+            "doc_id": "47",
+            "source": "Simple English Wikipedia",
+            "title": "Atom",
+            "char_end": 7374,
+            "token_end": 1536,
+            "token_count": 220,
+            "chunk_index": 7,
+            "char_start": 6324,
+            "language": "en"
+          },
+          "cosine_distance": 0.40576887130737305,
+          "snippet": "The Schrödinger equation says where an electron is likely to be. This area is called the electron's orbital.\n\nIn 1937, German chemist Otto Hahn became the first person to make nuclear fission in a laboratory. He discovered this by chance when shooting neutrons at a uranium atom, hoping to make a new isotope. However, instead of a new isotope, the u"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 21.37060000677593,
+        "database_search": 6.852799997432157,
+        "total_retrieval": 28.223400004208088
+      },
+      "repeat": 3
+    },
+    {
+      "query": "Why is August named after a Roman emperor?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "317ec4140f9bf31416c01c94a222da17bff442eebf482a08a7d54feef9acdc39",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "char_start": 0,
+            "language_confidence": 0.999997817305584,
+            "chunk_index": 0,
+            "char_end": 1004,
+            "token_count": 220,
+            "token_end": 220,
+            "token_start": 0,
+            "doc_id": "2",
+            "title": "August",
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "language": "en"
+          },
+          "cosine_distance": 0.27345210313796997,
+          "snippet": "August (Aug.) is the eighth month of the year in the Gregorian calendar, coming between July and September. It has 31 days. It is named after the Roman emperor Augustus Caesar.\n\nAugust does not begin on the same day of the week as any other month in common years, but begins on the same day of the week as February in leap years. August always ends o"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "4398c7b5892da76d7f2890ccdd32c1ef4e7bbddae061923fcdd0eb3b7440da0d",
+          "metadata": {
+            "token_end": 596,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Augustus",
+            "char_start": 1723,
+            "chunk_index": 2,
+            "token_count": 220,
+            "language": "en",
+            "language_confidence": 0.9999982560705548,
+            "token_start": 376,
+            "doc_id": "15583",
+            "title": "Augustus",
+            "char_end": 2722
+          },
+          "cosine_distance": 0.342398464679718,
+          "snippet": "30 BC. Lepidus was sidelined, blamed for a revolt in Sicily, and removed from government. He died peacefully in exile in Circeii in Italy in the year 13 BC.\n\nAfter winning the power struggle, Octavian was voted as Emperor by the Roman Senate in 31 BC. He took the name \"Augustus\" (which meant 'exalted'). He ruled until AD 14, when his stepson and so"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "71b7080aeb4cdc9a886ac81a70591b5f69a276f278745f45ee2be1d301a146c4",
+          "metadata": {
+            "token_count": 220,
+            "doc_id": "5464",
+            "token_start": 0,
+            "token_end": 220,
+            "chunk_index": 0,
+            "char_end": 993,
+            "title": "4",
+            "language_confidence": 0.9999976211542846,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/4",
+            "char_start": 0
+          },
+          "cosine_distance": 0.3442739248275757,
+          "snippet": "The year 4 (IV) was a leap year which started on a Tuesday, according to the Julian calendar. According to the Gregorian calendar, it started on a Thursday. At the time, it was known as the Year of the Consulship of Catus and Saturninus. It was called the fourth year since the early medieval period, when the Anno Domini calendar era became the usua"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "76dd25f3ac3e048570e6a5b0fc0978fd6ff5531eac341af2c02fc182f0c42b09",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "doc_id": "5468",
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/8",
+            "token_end": 220,
+            "title": "8",
+            "language_confidence": 0.999997337896984,
+            "token_start": 0,
+            "char_end": 909,
+            "char_start": 0,
+            "chunk_index": 0,
+            "token_count": 220
+          },
+          "cosine_distance": 0.38108301162719727,
+          "snippet": "8 (VIII) is a leap year of the Julian calendar which started on a Sunday. According to the Gregorian calendar, it started on a Tuesday. It was the 8th year of the 1st century.\n\nEvents\n\nRoman Empire\nAugust 3 – Roman general Tiberius defeats Dalmatians on the river Bathinus.\nVipsania Julia is exiled. Lucius Aemilius Paullus and his family are disgrac"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "65ef3ef9470fe505e6a327592b5ca907f77c045726408ef8f9580720324dfdae",
+          "metadata": {
+            "language_confidence": 0.999997817305584,
+            "char_start": 848,
+            "char_end": 1884,
+            "chunk_index": 1,
+            "token_start": 188,
+            "source": "Simple English Wikipedia",
+            "doc_id": "2",
+            "token_end": 408,
+            "language": "en",
+            "title": "August",
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "token_count": 220
+          },
+          "cosine_distance": 0.3836885690689087,
+          "snippet": "disagree). In 153 BC January 1 was determined as the beginning of the year.\n\nAugust is named for Augustus Caesar who became Roman consul in this month. The month has 31 days because Julius Caesar added two days when he created the Julian calendar in 45 BC. August is after July and before September.\n\nAugust, in either hemisphere, is the seasonal equ"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 27.83649999764748,
+        "database_search": 5.969600009848364,
+        "total_retrieval": 33.80610000749584
+      },
+      "repeat": 3
+    },
+    {
+      "query": "How does aquaculture produce food?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "ecab29cec7c3ca4da78c52c1faa87c6ff9ac488ccecc5e207bcc6e1611dd0057",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "chunk_index": 0,
+            "char_end": 993,
+            "char_start": 0,
+            "token_start": 0,
+            "doc_id": "30",
+            "token_count": 211,
+            "source_url": "https://simple.wikipedia.org/wiki/Aquaculture",
+            "language_confidence": 0.999997013107133,
+            "token_end": 211,
+            "language": "en",
+            "title": "Aquaculture"
+          },
+          "cosine_distance": 0.26852738857269287,
+          "snippet": "Aquaculture is the farming of fish, shrimp, abalones, algae, and other seafood. Aquaculture supplies fish, such as catfish, salmon, and trout. It was developed a few thousand years ago in China. Aquaculture supplies over 20% of all the seafood harvested.\n\nFish farming has been practiced, in some parts of the world, for thousands of years. Goldfish "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "c09c443d2df6f54a32ec24d4aa39d7b20a44b870adec7bb45dade1d75e04e701",
+          "metadata": {
+            "char_end": 2001,
+            "source": "Simple English Wikipedia",
+            "title": "Tuna",
+            "chunk_index": 1,
+            "token_end": 408,
+            "token_count": 220,
+            "char_start": 902,
+            "doc_id": "15276",
+            "language": "en",
+            "language_confidence": 0.999996859012014,
+            "token_start": 188,
+            "source_url": "https://simple.wikipedia.org/wiki/Tuna"
+          },
+          "cosine_distance": 0.44286513328552246,
+          "snippet": "and northwestern Pacific Oceans. Other populations seem to support fairly healthy fisheries (for example, the central and western Pacific skipjack tuna), but there is mounting evidence that overfishing threatens tuna fisheries worldwide.\n\nSome fishermen in Australia now grow Southern bluefin tuna in fish farms. Fish farms are areas of water with ne"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "f538a7519c17bcd2e9184cefe7e4a03e9aa2825f72f925160afffec7b687822e",
+          "metadata": {
+            "language_confidence": 0.9999964434233688,
+            "chunk_index": 1,
+            "token_end": 328,
+            "source": "Simple English Wikipedia",
+            "char_end": 1510,
+            "char_start": 848,
+            "doc_id": "20095",
+            "source_url": "https://simple.wikipedia.org/wiki/Salmon",
+            "language": "en",
+            "title": "Salmon",
+            "token_count": 140,
+            "token_start": 188
+          },
+          "cosine_distance": 0.47713369131088257,
+          "snippet": "xanthin. Wild salmon get it from the krill and shrimp they eat, while farmed salmon gets traces of it in kibble (compound feed). If they don't have the pigment, their flesh has a gray color.\n\nEating\nUsual ways to make food out of salmon are smoking, cold smoking and graving.\n\nMain species\n\nAtlantic salmon\nAustralian salmon\nChinook salmon\nChum salmo"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "a6f88612ab9e8aa9fac0225861d903d4d54503e77d1c9d38c12d49ae60d1ef90",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_count": 41,
+            "chunk_index": 7,
+            "source_url": "https://simple.wikipedia.org/wiki/Farming",
+            "char_end": 6909,
+            "title": "Farming",
+            "char_start": 6633,
+            "token_end": 1357,
+            "language_confidence": 0.9999980747959352,
+            "language": "en",
+            "token_start": 1316,
+            "doc_id": "19"
+          },
+          "cosine_distance": 0.49464738368988037,
+          "snippet": ".\n\nRelated pages\nAquaculture\nBee keeping\nAnimal husbandry\nFertilizers\nCrop rotation\nUrban farming\nBreeding\nFencing\nRanching\nPlantation\nCrop protection\nCultured meat\nGenetically modified food\n\nAgriculture by country\nAgriculture in Azerbaijan\nAgriculture in Pakistan\n\nReferences"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "4da6fcd8d24d8a63caa42a4d0d15330ef2bcdce1a8a24ff0c2f870ebc4581dd3",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "char_end": 242,
+            "char_start": 0,
+            "token_end": 46,
+            "language_confidence": 0.9999961740495416,
+            "chunk_index": 0,
+            "language": "en",
+            "token_start": 0,
+            "token_count": 46,
+            "doc_id": "12378",
+            "source_url": "https://simple.wikipedia.org/wiki/Seafood",
+            "title": "Seafood"
+          },
+          "cosine_distance": 0.5032860040664673,
+          "snippet": "Seafood is food made from fish or other sea animals such as shrimp and lobsters. The harvesting (collecting) of seafood is called fishing.\n\nSeafood is rich in protein and is usually thought as healthy food.\n\nRelated pages\nAquaculture\n\nSeafood"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 26.25699999043718,
+        "database_search": 5.79450000077486,
+        "total_retrieval": 32.05149999121204
+      },
+      "repeat": 3
+    },
+    {
+      "query": "What is the difference between astronomy and astrology?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "d965e9ec1386e2bb1f8599673a8690896e67685da922eb1a6fb347a0c7688ddd",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "title": "Astronomy",
+            "chunk_index": 0,
+            "char_end": 1158,
+            "source": "Simple English Wikipedia",
+            "doc_id": "48",
+            "language_confidence": 0.999995940059109,
+            "token_end": 220,
+            "language": "en",
+            "token_count": 220,
+            "char_start": 0,
+            "token_start": 0
+          },
+          "cosine_distance": 0.30682599544525146,
+          "snippet": "Astronomy is the scientific study of celestial bodies. That means stars, galaxies, planets, moons, asteroids, comets and nebulae are studied, as are supernovae explosions, gamma ray bursts, and cosmic microwave background radiation. Astronomy concerns the development, physics, chemistry, meteorology and movement of celestial bodies. The big questio"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "35e4244002e439e3cf444dabf2886417b1b97d48b9a9d1433ec45238ea767dd7",
+          "metadata": {
+            "doc_id": "48",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "title": "Astronomy",
+            "char_end": 12663,
+            "token_end": 2475,
+            "chunk_index": 12,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "token_count": 220,
+            "token_start": 2255,
+            "language_confidence": 0.999995940059109,
+            "char_start": 11487
+          },
+          "cosine_distance": 0.41371309757232666,
+          "snippet": "can help us understand how other stars work and are formed. Changes in the Sun can affect the weather and climate on Earth. A stream of charged particles called the Solar wind is constantly sent off from the Sun. The Solar wind hitting the Earth's magnetic field causes the northern lights.\n\nStellar Astronomy\n\nStellar Astronomy, sometimes generally "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "596a934c7ed33ed1cc89ad5fd482b4ed1cbe68b9a39d9130ff1c5b59e1c44e4c",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Astrophysics",
+            "token_end": 220,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "title": "Astrophysics",
+            "token_count": 220,
+            "chunk_index": 0,
+            "doc_id": "9235",
+            "char_end": 1093,
+            "token_start": 0,
+            "language_confidence": 0.9999969457385728,
+            "char_start": 0
+          },
+          "cosine_distance": 0.41658520698547363,
+          "snippet": "Astrophysics is the study of how stars, planets and other things in the Universe work, and how we can learn about them. Astrophysicists use physics to explain what astronomers find and see.\n\nAstrophysics is also the study of how the Universe started and how it is changing with time. This part of astrophysics is called cosmology.\n\nHistory\n\nFor a lon"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "109dd8d18ef5a8710e71fdd36909ac3e8ff9ecdf3ac5adcf6840963dabe1d311",
+          "metadata": {
+            "token_start": 0,
+            "doc_id": "4491",
+            "char_start": 0,
+            "char_end": 374,
+            "token_end": 64,
+            "title": "Astronomer",
+            "source": "Simple English Wikipedia",
+            "token_count": 64,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomer",
+            "language": "en",
+            "chunk_index": 0,
+            "language_confidence": 0.9999974918082414
+          },
+          "cosine_distance": 0.43529564142227173,
+          "snippet": "An astronomer is a scientist who studies astronomy. Observational astronomers work in observatories with telescopes to collect information from things in outer space such as planets, stars, or galaxies. Theoretical astronomers study the collected information, and use it to help us understand how the universe behaves.\n\nRelated pages\nList of Astronom"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "b7c970595bbcb6b1077ad1b3674aa2834f8351856b686274e147b7b939990547",
+          "metadata": {
+            "doc_id": "9235",
+            "token_start": 188,
+            "language_confidence": 0.9999969457385728,
+            "token_end": 408,
+            "chunk_index": 1,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Astrophysics",
+            "title": "Astrophysics",
+            "language": "en",
+            "char_start": 933,
+            "char_end": 2068,
+            "token_count": 220
+          },
+          "cosine_distance": 0.4530593156814575,
+          "snippet": "out how the planets moved, the science of astrophysics was born. Sir Isaac Newton realized that the same rules of mechanics that he had found on the surface of the Earth also could be used to predict how the planets moved. He said, \"As above, so below\". By this, he meant that we can study how things work on this planet to find out how things work i"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 24.201299995183945,
+        "database_search": 6.9457000063266605,
+        "total_retrieval": 31.147000001510605
+      },
+      "repeat": 3
+    },
+    {
+      "query": "Where is Afghanistan located?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "0a19c878c345c51fbdc7d453bae87f15cf61577d4bff0aa4da2ee2b67980335a",
+          "metadata": {
+            "language_confidence": 0.9999968750555062,
+            "char_end": 1075,
+            "language": "en",
+            "doc_id": "52",
+            "token_end": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "char_start": 0,
+            "chunk_index": 0,
+            "token_start": 0,
+            "title": "Afghanistan"
+          },
+          "cosine_distance": 0.3095492124557495,
+          "snippet": "Afghanistan, officially the Islamic Emirate of Afghanistan (Pashto/Dari: ), is a country in Central Asia. It borders with Pakistan in the south and east, Iran in the west, Turkmenistan, Uzbekistan and Tajikistan in the north, and China in the far northeast. Kabul is the country's capital city.\n\nAfghanistan is currently governed by the Taliban, afte"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "67932db60d49ec4041a03e0dd94d2ec87e9ccdc29b9064bd2cc0c78d150d5872",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "language_confidence": 0.9999968750555062,
+            "token_count": 220,
+            "token_end": 1160,
+            "language": "en",
+            "doc_id": "52",
+            "chunk_index": 5,
+            "char_end": 5464,
+            "title": "Afghanistan",
+            "token_start": 940,
+            "source": "Simple English Wikipedia",
+            "char_start": 4341
+          },
+          "cosine_distance": 0.3492131233215332,
+          "snippet": "from place to place with their animals and belongings. Some people live in the high central mountains. Some live in the deserts in the south and southwest. Millions of people left Afghanistan to get away from the wars that happened in the late 20th and early 21st centuries. Most of them lived in neighboring Pakistan and Iran.\n\nHistory\nAfghanistan i"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "51ed67f1049a2a05d9e6b4d5d547049eaab7b1b8c19cf066b012f6a8e1d7ef65",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "token_count": 220,
+            "token_end": 596,
+            "language_confidence": 0.9999968750555062,
+            "token_start": 376,
+            "doc_id": "52",
+            "source": "Simple English Wikipedia",
+            "title": "Afghanistan",
+            "chunk_index": 2,
+            "char_end": 2838,
+            "language": "en",
+            "char_start": 1808
+          },
+          "cosine_distance": 0.3750185966491699,
+          "snippet": "continental climate with hot summers and cold winters. Having no water sometimes causes problems for farmers. Sandstorms happen a lot in the desert.\n\nPlants and animals\n\nSouthern Afghanistan has not many plants because it is dry. There are more plants where there is more water. Mountains have forests of pine and fir, cedar, oak, walnut, alder, and "
+        },
+        {
+          "rank": 4,
+          "chunk_id": "98a20f0f1f107e2650f03161105f4d645ce0efde112812958c41aa2ac943e773",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_end": 972,
+            "chunk_index": 4,
+            "language": "en",
+            "title": "Afghanistan",
+            "language_confidence": 0.9999968750555062,
+            "doc_id": "52",
+            "char_end": 4509,
+            "token_count": 220,
+            "token_start": 752,
+            "char_start": 3484,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan"
+          },
+          "cosine_distance": 0.39369672536849976,
+          "snippet": "i-Persian and Pashto are the official languages of Afghanistan. Many people speak both languages. Both are Indo-European languages from the Iranian languages sub-family. They are usually written with the Arabic alphabet. Uzbek and Turkmen are widely spoken in the north and Nuristani and Pashai are spoken in the east. Around 99% of all Afghans follo"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "268aca458954dcdcb5989a2e30baca2f629e5e8cbb9436a11b4bedf6f6dda01c",
+          "metadata": {
+            "doc_id": "52",
+            "title": "Afghanistan",
+            "char_start": 18097,
+            "token_count": 132,
+            "source": "Simple English Wikipedia",
+            "chunk_index": 20,
+            "language_confidence": 0.9999968750555062,
+            "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+            "token_end": 3892,
+            "char_end": 18844,
+            "language": "en",
+            "token_start": 3760
+          },
+          "cosine_distance": 0.40964651107788086,
+          "snippet": "Afghanistan was held on October 20; \"The participants [... were] India, USA, Afghanistan, China, Pakistan, Iran and Central Asian\" countries, media said.\n\nDiplomatic missions that still represent the Islamic Republic of Afghanistan\nThe ambassador in Oslo, Norway does not recognize the Taliban-led government (as of 2021's fourth quarter).\n\nRelated p"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 26.384800003143027,
+        "database_search": 7.667600002605468,
+        "total_retrieval": 34.052400005748495
+      },
+      "repeat": 3
+    },
+    {
+      "query": "How does addition work in arithmetic?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "e26727db813fc5f4849926cabd1d62227342674a318d90e5310dad2bb89a955d",
+          "metadata": {
+            "token_end": 220,
+            "token_start": 0,
+            "source_url": "https://simple.wikipedia.org/wiki/Addition",
+            "source": "Simple English Wikipedia",
+            "chunk_index": 0,
+            "title": "Addition",
+            "language": "en",
+            "char_end": 1107,
+            "token_count": 220,
+            "doc_id": "22",
+            "char_start": 0,
+            "language_confidence": 0.9999986174447106
+          },
+          "cosine_distance": 0.2781028747558594,
+          "snippet": "Not to be confused with building extension which are also called additions\n\nIn mathematics, addition, represented by the symbol , is an operation which combines two mathematical objects together into another mathematical object of the same type, called the sum. Addition can occur with simple objects such as numbers, and more complex objects and con"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "5d9160548e52fc627c9360788b10a824c4e158fb0bd0def331ad25a795aab775",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.9999986174447106,
+            "doc_id": "22",
+            "token_start": 564,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Addition",
+            "title": "Addition",
+            "char_start": 2601,
+            "chunk_index": 3,
+            "token_end": 783,
+            "token_count": 219,
+            "char_end": 3635
+          },
+          "cosine_distance": 0.3730122447013855,
+          "snippet": "house to Sally's house, is the same as the distance from Tom's house to Sally's house. That is, 300 m plus 120 m.\n\nHence Sally's house is 420 m to the east of Tom's house.\n\nProperties\n\nCommutativity\n\nAddition is commutative, meaning that one can change the order of the numbers in a sum, but still get the same result. For example:\nand\n\nAssociativity"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "7ef273946adba63ff2c6c90293f19c18f9f33a41ae006f9455a524b1d73cc774",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Multiplication",
+            "char_start": 0,
+            "doc_id": "482",
+            "chunk_index": 0,
+            "language_confidence": 0.9999981416922016,
+            "char_end": 1078,
+            "token_end": 220,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "token_start": 0,
+            "title": "Multiplication",
+            "token_count": 220
+          },
+          "cosine_distance": 0.3824723958969116,
+          "snippet": "Multiplication is the inverse of division, and has many uses, one of them being checking your division work.\nMultiplication is an arithmetic operation for finding the product of two numbers in mathematics. It is often represented by symbols such as and . Multiplication is the third operation in math, after addition which is the first, and subtracti"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "b314df856187447ec768b30c05dee68da276c38866dfec9970c983422f4a6188",
+          "metadata": {
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/Arithmetic",
+            "source": "Simple English Wikipedia",
+            "char_start": 0,
+            "language_confidence": 0.999997337859516,
+            "language": "en",
+            "token_start": 0,
+            "doc_id": "21",
+            "title": "Arithmetic",
+            "chunk_index": 0,
+            "token_end": 220,
+            "char_end": 1162
+          },
+          "cosine_distance": 0.3980964422225952,
+          "snippet": "In mathematics, arithmetic is the basic study of numbers. The four basic arithmetic operations are addition, subtraction, multiplication, and division, although other operations such as exponentiation and roots are also studied in arithmetic.\n\nOther arithmetic topics includes working with negative numbers, fractions, decimals and percentages.\n\nMost"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "da140df1f9c06660f887a6ab8faedec3f5a4c54118672e0687db170f0f64cedd",
+          "metadata": {
+            "language_confidence": 0.9999969942711509,
+            "char_end": 4233,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Algebra",
+            "chunk_index": 4,
+            "char_start": 3266,
+            "language": "en",
+            "title": "Algebra",
+            "token_end": 972,
+            "token_start": 752,
+            "doc_id": "45",
+            "token_count": 220
+          },
+          "cosine_distance": 0.40889978408813477,
+          "snippet": ".\nTo check this, put 6 back into the original equation wherever was:\nThis gives , which is true. They each now have 18 candies.\n\nWith practice, algebra can be used when faced with a problem that is too hard to solve any other way. Problems such as building a freeway, designing a cell phone, or finding the cure for a disease all require algebra.\n\nWr"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 30.497800005832687,
+        "database_search": 6.481899996288121,
+        "total_retrieval": 36.97970000212081
+      },
+      "repeat": 3
+    },
+    {
+      "query": "What do archaeologists study?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "e586534e0247c550cf69e26c72b13aa3b2597d679f811916af8f50d30b99956f",
+          "metadata": {
+            "chunk_index": 1,
+            "token_end": 408,
+            "doc_id": "57",
+            "char_end": 2047,
+            "title": "Archaeology",
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "language_confidence": 0.9999972944532786,
+            "language": "en",
+            "token_start": 188,
+            "char_start": 919
+          },
+          "cosine_distance": 0.22864508628845215,
+          "snippet": "archaeological fieldwork involves digging, and is expensive and takes a long time.\n\nWhen things are found, or even when nothing is found, the results of the fieldwork are taken back to a base. Short term, the base is often on or near the site. Longer term, the results will usually go to a university or museum. Everything is written down on paper or"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "7640ad50152f0876a37ac0171a8629fcc5e334e61c1c3c5a794f2b08c5f07cbe",
+          "metadata": {
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "token_end": 784,
+            "chunk_index": 3,
+            "char_end": 4075,
+            "char_start": 2864,
+            "language_confidence": 0.9999972944532786,
+            "token_start": 564,
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "doc_id": "57",
+            "title": "Archaeology"
+          },
+          "cosine_distance": 0.30605149269104004,
+          "snippet": "deals with places, things, and issues from the past or present at or related to sites with written records or oral traditions. Or it can be defined as \"the archaeological investigation of any past culture that has developed a literate tradition.\" A prominent example of historical archaeology is the work done at Colonial Williamsburg.\n\nIndustrial ar"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "7a20fc20aa60888f99ebdc1934e2baf4c341c4659eabdcab13da36a0940a4955",
+          "metadata": {
+            "token_start": 188,
+            "token_end": 408,
+            "language_confidence": 0.9999976613101952,
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "char_end": 2037,
+            "chunk_index": 1,
+            "char_start": 852,
+            "source_url": "https://simple.wikipedia.org/wiki/Anthropology",
+            "doc_id": "2110",
+            "title": "Anthropology",
+            "language": "en"
+          },
+          "cosine_distance": 0.3268267512321472,
+          "snippet": "\" that divides anthropology into four big kinds:\nArchaeology - The study of how people lived in the past.\nBiological anthropology - The study of how people adapt to where they live and how bodies changed over time (evolution).\nLinguistic anthropology - The study of how people speak and the words they use.\nSociocultural anthropology - The study of h"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "d8f5034b5cacd1cf174199c009831f07e477626d4fc35e77e8a2d46bb321ad8c",
+          "metadata": {
+            "language_confidence": 0.9999972944532786,
+            "chunk_index": 0,
+            "title": "Archaeology",
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Archaeology",
+            "token_end": 220,
+            "token_start": 0,
+            "doc_id": "57",
+            "source": "Simple English Wikipedia",
+            "char_end": 1081,
+            "char_start": 0,
+            "token_count": 220
+          },
+          "cosine_distance": 0.3526812791824341,
+          "snippet": "Archaeology, or archeology, is the study of the human past. It looks at remains and objects left by the people who lived long ago. These remains may include old coins, tools, buildings, and inscriptions. Archaeologists, the people who study archaeology, use these remains to understand how people lived.\n\nFieldwork\n\nWhen archaeologists do fieldwork, "
+        },
+        {
+          "rank": 5,
+          "chunk_id": "7d1d79f4fe55302c3a14c970b64d33e26d698715a34bc28cc18b97071771e705",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_start": 0,
+            "title": "History",
+            "chunk_index": 0,
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/History",
+            "char_end": 1157,
+            "token_count": 220,
+            "token_end": 220,
+            "doc_id": "324",
+            "language_confidence": 0.9999987172423144,
+            "char_start": 0
+          },
+          "cosine_distance": 0.40308839082717896,
+          "snippet": "History is the study of past events. People know what happened in the past by looking at things from the past including sources (like books, newspapers, scripts and letters), buildings and artifacts (like pottery, tools, coins and human or animal remains.) Libraries, archives, and museums collect and keep these things for people to study history. A"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 123.9274999970803,
+        "database_search": 8.151400004862808,
+        "total_retrieval": 132.0789000019431
+      },
+      "repeat": 3
+    }
+  ],
+  "recorded_at_utc": "2026-10-16T16:15:22.993075+00:00"
+}

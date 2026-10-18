@@ -1,0 +1,961 @@
+{
+  "encoder": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "normalized": true,
+    "max_seq_length": 256,
+    "device": "cpu",
+    "batch_size": 32,
+    "threads": 4,
+    "model_load_seconds": 2.125748499999645
+  },
+  "collection": "wikipedia_sample_v1",
+  "collection_signature": {
+    "chunk_size": 220,
+    "chunks": 191,
+    "corpus_sha256": "658e2f9c99be4257a57bd620753300b7ba05af80126029e0a3af9d2224a3a05b",
+    "documents": 25,
+    "encoder": {
+      "dimension": 384,
+      "max_seq_length": 256,
+      "model": "sentence-transformers/all-MiniLM-L6-v2",
+      "normalized": true,
+      "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41"
+    },
+    "overlap": 32,
+    "strategy": "token-window-v1"
+  },
+  "stored_chunks": 191,
+  "query_count": 8,
+  "repeats": 1,
+  "measured_searches": 8,
+  "warmup_searches": 8,
+  "warmup_seconds": 0.5799340999997185,
+  "summary_ms": {
+    "query_embedding": {
+      "mean": 46.93046250002908,
+      "median": 49.77845000007619,
+      "p95": 57.43480000001
+    },
+    "database_search": {
+      "mean": 5.877049999924111,
+      "median": 5.579899999929694,
+      "p95": 7.137799999782146
+    },
+    "total_retrieval": {
+      "mean": 52.80751249995319,
+      "median": 55.46974999992926,
+      "p95": 62.91109999983746
+    }
+  },
+  "measurement": "perf_counter; encoding includes token validation and numpy conversion; database search includes Chroma query and result deserialization; total is their sum. Excludes process/import/model/client startup, count/compatibility checks, warm-up, hit formatting, console and report I/O. p95 uses nearest rank.",
+  "relevance": "Unlabelled exploratory queries; no precision or recall claimed.",
+  "results": [
+    {
+      "query": "How did Alan Turing contribute to computing?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "4b04d33929d11bb9876a332c05e642d82aa7d1977ae02d442d24ee8a9e3764be",
+          "metadata": {
+            "title": "Alan Turing",
+            "token_end": 596,
+            "language_confidence": 0.9999975933686452,
+            "char_start": 1725,
+            "char_end": 2785,
+            "chunk_index": 2,
+            "token_count": 220,
+            "language": "en",
+            "doc_id": "13",
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "token_start": 376,
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.38617467880249023,
+          "snippet": ", almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died before the law came into force, making it possible for living convicted gay men to seek pardons for offences now no longer on the statute book.\n\nTuring died in 1954, after being subjected by "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "b8e5daf9b24bf554cbec4c59e2fc8b81f8a350270c1000a42b6e28e5bab7f853",
+          "metadata": {
+            "language": "en",
+            "chunk_index": 1,
+            "token_start": 188,
+            "source": "Simple English Wikipedia",
+            "char_end": 1884,
+            "char_start": 768,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "language_confidence": 0.9999975933686452,
+            "token_count": 220,
+            "title": "Alan Turing",
+            "doc_id": "13",
+            "token_end": 408
+          },
+          "cosine_distance": 0.38890624046325684,
+          "snippet": ", North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at Alexandra School and College. On October 1st 1907 she married Julius Mathison Turing, who was Reverend John Robert Turing and Fanny Boyd, in Dublin. Alan Turing was born on June 23rd 1912. He would go on to be r"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "9fddd431b3bc3b9b72e0540495d82400b05718c6a58a092dc1c557da51ed298e",
+          "metadata": {
+            "language_confidence": 0.9999975933686452,
+            "chunk_index": 0,
+            "doc_id": "13",
+            "title": "Alan Turing",
+            "token_start": 0,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "token_end": 220,
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "char_end": 907,
+            "char_start": 0,
+            "language": "en"
+          },
+          "cosine_distance": 0.43733954429626465,
+          "snippet": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist. He was born in Maida Vale, London.\n\nEarly life and family\nAlan Mathison Turing was born in Maida Vale, [London] on 23 June 1912. His father was part of a family of merchants from Scotland. His mother, Ethel Sara"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "8419eccc4f10e0c55317cf69b1b98be55ff543e01e58f1fbb449f54652ff8b19",
+          "metadata": {
+            "token_end": 784,
+            "doc_id": "13",
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "char_end": 3655,
+            "title": "Alan Turing",
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "char_start": 2638,
+            "chunk_index": 3,
+            "token_count": 220,
+            "token_start": 564,
+            "language_confidence": 0.9999975933686452
+          },
+          "cosine_distance": 0.47938108444213867,
+          "snippet": ".\n\nDuring World War II, Turing worked with others to break German ciphers (secret messages). He worked for the Government Code and Cypher School (GC&CS) at Bletchley Park, Britain's codebreaking centre that produced Ultra intelligence.\nUsing cryptanalysis, he helped to break the codes of the Enigma machine. After that, he worked on other German cod"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "0a80a835bc2d5929d271099ed64b87fe7a0be2e2142124c8c05afabd80d5f455",
+          "metadata": {
+            "language": "en",
+            "token_count": 133,
+            "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+            "token_end": 1073,
+            "char_end": 5096,
+            "chunk_index": 5,
+            "source": "Simple English Wikipedia",
+            "char_start": 4368,
+            "title": "Alan Turing",
+            "language_confidence": 0.9999975933686452,
+            "doc_id": "13",
+            "token_start": 940
+          },
+          "cosine_distance": 0.4885427951812744,
+          "snippet": "be very wrong. It is against medical ethics and international laws of human rights. In August 2009, a petition asking the British Government to apologise to Turing for punishing him for being a homosexual was started. The petition received thousands of signatures. Prime Minister Gordon Brown acknowledged the petition. He called Turing's treatment \""
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 35.7107999998334,
+        "database_search": 7.137799999782146,
+        "total_retrieval": 42.848599999615544
+      },
+      "repeat": 1
+    },
+    {
+      "query": "What is an atom made of?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "dc73bf5e455e8c4e1acce9f83424a51f922430023e8c272ee3adb711278251df",
+          "metadata": {
+            "token_end": 408,
+            "chunk_index": 1,
+            "char_end": 1954,
+            "language": "en",
+            "doc_id": "47",
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.999997608535479,
+            "token_start": 188,
+            "token_count": 220,
+            "title": "Atom",
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "char_start": 871
+          },
+          "cosine_distance": 0.32181453704833984,
+          "snippet": "middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of protons belong to the same chemical element. Examples of elements are carbon and gold. Atoms with the same number of protons, but different numbers of neutrons, are calle"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "906ccc3e37bad36a4aead966b33e1e46ecaa1071752cd70cff8c26010edc28f1",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "token_count": 220,
+            "language_confidence": 0.999997608535479,
+            "token_end": 220,
+            "char_start": 0,
+            "chunk_index": 0,
+            "token_start": 0,
+            "title": "Atom",
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "char_end": 1057,
+            "doc_id": "47"
+          },
+          "cosine_distance": 0.32796168327331543,
+          "snippet": "An atom is the basic unit of matter. All normal matter – everything that has mass – is made of atoms. This includes solids, liquids, and gases. The atom cannot be broken to parts by chemistry, so people once thought it was the smallest and simplest particle of matter. There are over 100 different kinds of atoms, called chemical elements. Each kind "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "8aed412f2d8e596acf3c5318292ee74b28fda80f7b0baf38ec2e8a1bce0737db",
+          "metadata": {
+            "char_end": 2838,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "language": "en",
+            "chunk_index": 2,
+            "token_end": 596,
+            "token_start": 376,
+            "doc_id": "47",
+            "token_count": 220,
+            "title": "Atom",
+            "char_start": 1799,
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.999997608535479
+          },
+          "cosine_distance": 0.40401721000671387,
+          "snippet": "This is what causes radioactivity. Atoms can also join to make larger atoms at very high temperatures, such as inside a star. These changes are studied in nuclear physics. Most atoms on Earth are not radioactive. They are rarely made, destroyed, or changed into another kind of atom.\n\nHistory\nThe word \"atom\" comes from the Greek (ἀτόμος) \"atomos\", w"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "b4d8b656ba5695a120c2e130e78045a9cbc8165e1a5852fd753551836c8b9f8c",
+          "metadata": {
+            "char_start": 6324,
+            "char_end": 7374,
+            "token_end": 1536,
+            "token_count": 220,
+            "token_start": 1316,
+            "language": "en",
+            "chunk_index": 7,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "doc_id": "47",
+            "language_confidence": 0.999997608535479,
+            "source": "Simple English Wikipedia",
+            "title": "Atom"
+          },
+          "cosine_distance": 0.40576887130737305,
+          "snippet": "The Schrödinger equation says where an electron is likely to be. This area is called the electron's orbital.\n\nIn 1937, German chemist Otto Hahn became the first person to make nuclear fission in a laboratory. He discovered this by chance when shooting neutrons at a uranium atom, hoping to make a new isotope. However, instead of a new isotope, the u"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "8d99f857f734fc76953d3992230993cecd841f6c8b8ab1b3dfa946c1233de575",
+          "metadata": {
+            "token_start": 4700,
+            "language_confidence": 0.999997608535479,
+            "title": "Atom",
+            "token_end": 4804,
+            "source": "Simple English Wikipedia",
+            "language": "en",
+            "char_start": 22027,
+            "doc_id": "47",
+            "char_end": 22606,
+            "source_url": "https://simple.wikipedia.org/wiki/Atom",
+            "chunk_index": 25,
+            "token_count": 104
+          },
+          "cosine_distance": 0.4124453663825989,
+          "snippet": "00089 seconds. Even larger atoms may be created in the future.\n\nRelated pages\nAtomic physics, for more detail about the physics of atoms\nAtomic theory, for more detail about the history\nExotic atom, an atom with different parts instead of protons, neutrons, and electrons\nQuantum mechanics, the study of small particles and how they interact with ene"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 49.614999999903375,
+        "database_search": 5.683500000031927,
+        "total_retrieval": 55.2984999999353
+      },
+      "repeat": 1
+    },
+    {
+      "query": "Why is August named after a Roman emperor?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "317ec4140f9bf31416c01c94a222da17bff442eebf482a08a7d54feef9acdc39",
+          "metadata": {
+            "language_confidence": 0.999997817305584,
+            "char_end": 1004,
+            "chunk_index": 0,
+            "token_count": 220,
+            "char_start": 0,
+            "token_end": 220,
+            "source": "Simple English Wikipedia",
+            "token_start": 0,
+            "language": "en",
+            "doc_id": "2",
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "title": "August"
+          },
+          "cosine_distance": 0.27345210313796997,
+          "snippet": "August (Aug.) is the eighth month of the year in the Gregorian calendar, coming between July and September. It has 31 days. It is named after the Roman emperor Augustus Caesar.\n\nAugust does not begin on the same day of the week as any other month in common years, but begins on the same day of the week as February in leap years. August always ends o"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "65ef3ef9470fe505e6a327592b5ca907f77c045726408ef8f9580720324dfdae",
+          "metadata": {
+            "token_start": 188,
+            "char_start": 848,
+            "char_end": 1884,
+            "language_confidence": 0.999997817305584,
+            "title": "August",
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "token_count": 220,
+            "doc_id": "2",
+            "token_end": 408,
+            "chunk_index": 1
+          },
+          "cosine_distance": 0.3836885690689087,
+          "snippet": "disagree). In 153 BC January 1 was determined as the beginning of the year.\n\nAugust is named for Augustus Caesar who became Roman consul in this month. The month has 31 days because Julius Caesar added two days when he created the Julian calendar in 45 BC. August is after July and before September.\n\nAugust, in either hemisphere, is the seasonal equ"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "10b6d8bedad91c2150473985414a07a997a26b891d7f2b3b7006842cb514bb4a",
+          "metadata": {
+            "title": "August",
+            "token_count": 220,
+            "language": "en",
+            "language_confidence": 0.999997817305584,
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "source": "Simple English Wikipedia",
+            "token_start": 1692,
+            "chunk_index": 9,
+            "char_start": 8259,
+            "char_end": 9251,
+            "doc_id": "2",
+            "token_end": 1912
+          },
+          "cosine_distance": 0.4775000214576721,
+          "snippet": "Jr. makes his \"I Have a Dream\" speech for Civil Rights in the United States.\nAugust 29 2005: Hurricane Katrina wreaks devastation in Alabama, Mississippi and Louisiana. New Orleans is flooded.\nAugust 31 1957: Malaysia, then the Federation of Malaya, becomes independent.\nAugust 31 1962: Trinidad and Tobago becomes independent.\nAugust 31 1991: Kyrgyz"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "b7ee94383ba3c8c77bbc8de16fa72ef53970cf107bd5b7ae1fc0c8916f4e7c4e",
+          "metadata": {
+            "char_end": 9352,
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "chunk_index": 10,
+            "token_count": 52,
+            "language": "en",
+            "token_end": 1932,
+            "doc_id": "2",
+            "token_start": 1880,
+            "language_confidence": 0.999997817305584,
+            "char_start": 9124,
+            "title": "August"
+          },
+          "cosine_distance": 0.5042465329170227,
+          "snippet": "August 21) and Virgo (August 22 - September 21).\nAugust is the second of two months beginning with 'A', the other being April, with both April 21 and August 21 falling either side of the Northern summer solstice.\n\nReferences\n\n08"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "2f866b6dea7bebe607fb1ce9d8103c95fa25eca8be4fbcc75e580cebcc77a2cc",
+          "metadata": {
+            "token_end": 596,
+            "chunk_index": 2,
+            "language": "en",
+            "doc_id": "1",
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/April",
+            "language_confidence": 0.999996458620427,
+            "token_start": 376,
+            "char_start": 1762,
+            "source": "Simple English Wikipedia",
+            "title": "April",
+            "char_end": 2799
+          },
+          "cosine_distance": 0.5732235908508301,
+          "snippet": "in the Northern Hemisphere and an autumn/fall month in the Southern Hemisphere. In each hemisphere, it is the seasonal equivalent of October in the other.\n\nIt is unclear as to where April got its name. A common theory is that it comes from the Latin word \"aperire\", meaning \"to open\", referring to flowers opening in spring. Another theory is that th"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 40.21740000007412,
+        "database_search": 6.088999999974476,
+        "total_retrieval": 46.3064000000486
+      },
+      "repeat": 1
+    },
+    {
+      "query": "How does aquaculture produce food?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "ecab29cec7c3ca4da78c52c1faa87c6ff9ac488ccecc5e207bcc6e1611dd0057",
+          "metadata": {
+            "title": "Aquaculture",
+            "language_confidence": 0.999997013107133,
+            "language": "en",
+            "token_end": 211,
+            "token_start": 0,
+            "source": "Simple English Wikipedia",
+            "char_start": 0,
+            "doc_id": "30",
+            "chunk_index": 0,
+            "token_count": 211,
+            "source_url": "https://simple.wikipedia.org/wiki/Aquaculture",
+            "char_end": 993
+          },
+          "cosine_distance": 0.26852738857269287,
+          "snippet": "Aquaculture is the farming of fish, shrimp, abalones, algae, and other seafood. Aquaculture supplies fish, such as catfish, salmon, and trout. It was developed a few thousand years ago in China. Aquaculture supplies over 20% of all the seafood harvested.\n\nFish farming has been practiced, in some parts of the world, for thousands of years. Goldfish "
+        },
+        {
+          "rank": 2,
+          "chunk_id": "a6f88612ab9e8aa9fac0225861d903d4d54503e77d1c9d38c12d49ae60d1ef90",
+          "metadata": {
+            "char_start": 6633,
+            "source_url": "https://simple.wikipedia.org/wiki/Farming",
+            "token_end": 1357,
+            "token_count": 41,
+            "language": "en",
+            "title": "Farming",
+            "doc_id": "19",
+            "chunk_index": 7,
+            "char_end": 6909,
+            "language_confidence": 0.9999980747959352,
+            "source": "Simple English Wikipedia",
+            "token_start": 1316
+          },
+          "cosine_distance": 0.49464738368988037,
+          "snippet": ".\n\nRelated pages\nAquaculture\nBee keeping\nAnimal husbandry\nFertilizers\nCrop rotation\nUrban farming\nBreeding\nFencing\nRanching\nPlantation\nCrop protection\nCultured meat\nGenetically modified food\n\nAgriculture by country\nAgriculture in Azerbaijan\nAgriculture in Pakistan\n\nReferences"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "54522e96e55a99a481af2f40305ef7224efe16efe1bd9a349893365cd197893a",
+          "metadata": {
+            "char_end": 5892,
+            "title": "Farming",
+            "chunk_index": 5,
+            "language_confidence": 0.9999980747959352,
+            "doc_id": "19",
+            "token_end": 1160,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "token_start": 940,
+            "source_url": "https://simple.wikipedia.org/wiki/Farming",
+            "char_start": 4704,
+            "token_count": 220
+          },
+          "cosine_distance": 0.5349287986755371,
+          "snippet": "rtilizers.\nOrganic farming is using only natural products such as compost and green manure.\nIntegrated farming is using local resources, and trying to use the waste from one process as a resource in another process.\n\nAgricultural policy means the goals and methods of agricultural production. Common goals of policy include the quality, amount, and s"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "84aa6f2f5c53ebe0b5b7eea26abb40d3a67c461d7a9054e38b30d110d4cca3ce",
+          "metadata": {
+            "source_url": "https://simple.wikipedia.org/wiki/Farming",
+            "chunk_index": 4,
+            "language": "en",
+            "char_end": 4863,
+            "language_confidence": 0.9999980747959352,
+            "char_start": 3768,
+            "token_end": 972,
+            "token_count": 220,
+            "doc_id": "19",
+            "token_start": 752,
+            "title": "Farming",
+            "source": "Simple English Wikipedia"
+          },
+          "cosine_distance": 0.5490888357162476,
+          "snippet": "meat for people to eat, that is livestock production. Non-meat animals, such as milk cows and egg-producing chickens, are kept for their produce. \"Produce\" here means their eggs and milk, which are sold by the farm, usually in markets. Large animals need grassland of some kind for grazing. What they need depends on the animals. Goats eat a much wid"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "f0c1cb33613fbcc2798801a8a9bb28217a5c6846f82e16a0deb90d5bf3013e1c",
+          "metadata": {
+            "token_start": 564,
+            "language": "en",
+            "token_end": 784,
+            "title": "Farming",
+            "language_confidence": 0.9999980747959352,
+            "source_url": "https://simple.wikipedia.org/wiki/Farming",
+            "token_count": 220,
+            "chunk_index": 3,
+            "source": "Simple English Wikipedia",
+            "doc_id": "19",
+            "char_end": 3914,
+            "char_start": 2810
+          },
+          "cosine_distance": 0.5542114973068237,
+          "snippet": "soil or the water. They can also create bugs and weeds that are more resistant to the chemicals, causing outbreaks of these pests. The soil can be damaged by erosion (blowing or washing away), salt builddup, or loss of structure. Irrigation (adding water from rivers) can pollute water and lower the water table. These problems have all got solutions"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 51.33350000005521,
+        "database_search": 5.447999999887543,
+        "total_retrieval": 56.78149999994275
+      },
+      "repeat": 1
+    },
+    {
+      "query": "What is the difference between astronomy and astrology?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "d965e9ec1386e2bb1f8599673a8690896e67685da922eb1a6fb347a0c7688ddd",
+          "metadata": {
+            "chunk_index": 0,
+            "char_end": 1158,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "doc_id": "48",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "language_confidence": 0.999995940059109,
+            "title": "Astronomy",
+            "token_start": 0,
+            "char_start": 0,
+            "token_end": 220,
+            "language": "en"
+          },
+          "cosine_distance": 0.30682599544525146,
+          "snippet": "Astronomy is the scientific study of celestial bodies. That means stars, galaxies, planets, moons, asteroids, comets and nebulae are studied, as are supernovae explosions, gamma ray bursts, and cosmic microwave background radiation. Astronomy concerns the development, physics, chemistry, meteorology and movement of celestial bodies. The big questio"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "35e4244002e439e3cf444dabf2886417b1b97d48b9a9d1433ec45238ea767dd7",
+          "metadata": {
+            "language_confidence": 0.999995940059109,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "token_start": 2255,
+            "doc_id": "48",
+            "char_end": 12663,
+            "title": "Astronomy",
+            "source": "Simple English Wikipedia",
+            "token_end": 2475,
+            "language": "en",
+            "token_count": 220,
+            "chunk_index": 12,
+            "char_start": 11487
+          },
+          "cosine_distance": 0.41371309757232666,
+          "snippet": "can help us understand how other stars work and are formed. Changes in the Sun can affect the weather and climate on Earth. A stream of charged particles called the Solar wind is constantly sent off from the Sun. The Solar wind hitting the Earth's magnetic field causes the northern lights.\n\nStellar Astronomy\n\nStellar Astronomy, sometimes generally "
+        },
+        {
+          "rank": 3,
+          "chunk_id": "facd3b31f9021d62f3f7338aeadcab5dabae5ff10e408e6f8f061b531a21c467",
+          "metadata": {
+            "token_end": 408,
+            "source": "Simple English Wikipedia",
+            "char_end": 2127,
+            "chunk_index": 1,
+            "token_start": 188,
+            "title": "Astronomy",
+            "token_count": 220,
+            "char_start": 962,
+            "language_confidence": 0.999995940059109,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "language": "en",
+            "doc_id": "48"
+          },
+          "cosine_distance": 0.4820137023925781,
+          "snippet": "al and theoretical astronomy. Observational astronomy uses telescopes and cameras to observe or look at stars, galaxies and other astronomical objects. Theoretical astronomy explains what we see. It predicts what might happen. Observations show whether the predictions work. The main work of astronomy is to explain puzzling features of the universe."
+        },
+        {
+          "rank": 4,
+          "chunk_id": "e4837e497c9e20ee6db805ea20ad4c70c190233b9ba46e3721a00794015b19b2",
+          "metadata": {
+            "language": "en",
+            "doc_id": "48",
+            "char_start": 1974,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "language_confidence": 0.999995940059109,
+            "char_end": 2940,
+            "title": "Astronomy",
+            "chunk_index": 2,
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "token_end": 596,
+            "token_start": 376
+          },
+          "cosine_distance": 0.5070039629936218,
+          "snippet": "the time of year. Early civilisations such as the Maya people and the Ancient Egyptians built simple observatories and drew maps of the stars positions. They also began to think about the place of Earth in the universe. For a long time people thought Earth was the center of the universe, and that the planets, the stars and the sun went around it. T"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "7521a3bf9c7822d2a897c21dc61b5b6cc22622101804a886fad00f167ebad521",
+          "metadata": {
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.999995940059109,
+            "char_start": 2796,
+            "doc_id": "48",
+            "language": "en",
+            "token_start": 564,
+            "char_end": 3873,
+            "title": "Astronomy",
+            "token_end": 783,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "chunk_index": 3
+          },
+          "cosine_distance": 0.5641601085662842,
+          "snippet": "liocentrism. Only a few people thought it was right. The rest continued to believe in the geocentric model. Most of the names of constellations and stars come from Greeks of that time.\n\nArabic astronomers made many advancements during the Middle Ages including improved star maps and ways to estimate the size of the Earth. They also learned from the"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 57.43480000001,
+        "database_search": 5.476299999827461,
+        "total_retrieval": 62.91109999983746
+      },
+      "repeat": 1
+    },
+    {
+      "query": "Where is Afghanistan located?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "87e8f2c1f7568149b64cf84e9b877c5e44ba32022276d8392702e3d493a4ce9a",
+          "metadata": {
+            "char_end": 10264,
+            "token_end": 2288,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "language_confidence": 0.999996458620427,
+            "chunk_index": 11,
+            "char_start": 9286,
+            "doc_id": "1",
+            "source_url": "https://simple.wikipedia.org/wiki/April",
+            "language": "en",
+            "title": "April",
+            "token_start": 2068
+          },
+          "cosine_distance": 0.7963109612464905,
+          "snippet": "- Robert Peary claims to have been first at the North Pole on this date.\nApril 7, 1994 - The Rwandan Genocide begins.\nApril 9, 1865 - American Civil War: Confederate forces under Robert E. Lee surrender to Union forces.\nApril 9, 1940 - World War II: Denmark and Norway are invaded by Nazi Germany.\nApril 9, 1989 - April 9 tragedy: In Tbilisi, Georgia"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "2671529141e8c61f278648c1f33e601cf922e32b0d0a1ec5be4db25d7a062936",
+          "metadata": {
+            "language": "en",
+            "char_start": 7582,
+            "token_end": 1912,
+            "title": "April",
+            "token_start": 1692,
+            "source": "Simple English Wikipedia",
+            "char_end": 8586,
+            "source_url": "https://simple.wikipedia.org/wiki/April",
+            "chunk_index": 9,
+            "doc_id": "1",
+            "token_count": 220,
+            "language_confidence": 0.999996458620427
+          },
+          "cosine_distance": 0.8004291653633118,
+          "snippet": "Southeast Australia, and New Zealand\nChile\nMarathon Events in the following cities:\nBelgrade, Serbia\nBoston, Massachusetts, United States\nBrighton, United Kingdom\nEnschede, Netherlands\nLondon, United Kingdom (held in October from 2020 to 2022 because of COVID-19)\nMadrid, Spain\nParis, France\nRotterdam, Netherlands\nUtrecht, Netherlands\nZurich, Switze"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "502cae4a4e1b1ff65d8429241f2360c894d4186f7a9d03eeb6395bcc22391640",
+          "metadata": {
+            "char_start": 1999,
+            "source_url": "https://simple.wikipedia.org/wiki/Native%20American",
+            "doc_id": "37",
+            "chunk_index": 2,
+            "language_confidence": 0.9999980747094392,
+            "source": "Simple English Wikipedia",
+            "title": "Native American",
+            "token_end": 596,
+            "char_end": 3144,
+            "token_count": 220,
+            "language": "en",
+            "token_start": 376
+          },
+          "cosine_distance": 0.8036667108535767,
+          "snippet": "Americas sometime after 16,500 years before the present (BP). This would have occurred as the American glaciers blocking the way southward melted, but before the bridge was covered by the sea about 11,000 years BP.\n\nBefore European colonization, Beringia was inhabited by the Yupik peoples on both sides of the straits. This culture remains in the re"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "0c3ab99003c5dcc36401d57728f39ac1c77ee248ca004ac17df6cfae73b74b0d",
+          "metadata": {
+            "token_start": 1316,
+            "language_confidence": 0.999997817305584,
+            "doc_id": "2",
+            "token_count": 220,
+            "source": "Simple English Wikipedia",
+            "chunk_index": 7,
+            "language": "en",
+            "title": "August",
+            "token_end": 1536,
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "char_start": 6472,
+            "char_end": 7536
+          },
+          "cosine_distance": 0.8116400241851807,
+          "snippet": ".\nAugust 13 1960: The Central African Republic becomes independent.\nAugust 13 1961: Building of the Berlin Wall begins.\nAugust 14 1945: Japan announces its surrender at the end of World War II.\nAugust 14/15 1947: India is partitioned at independence from the UK, as the new mainly Islamic state of Pakistan is created.\nAugust 15 1960: The Republic of"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "38283aea35adb482032d1d86d4d1c68594654d6ba8af27eadf902de2f81b1088",
+          "metadata": {
+            "chunk_index": 5,
+            "token_start": 940,
+            "token_count": 220,
+            "source_url": "https://simple.wikipedia.org/wiki/August",
+            "title": "August",
+            "char_end": 5683,
+            "token_end": 1160,
+            "source": "Simple English Wikipedia",
+            "language_confidence": 0.999997817305584,
+            "language": "en",
+            "doc_id": "2",
+            "char_start": 4584
+          },
+          "cosine_distance": 0.81304931640625,
+          "snippet": "Day (Kyrgyzstan)\nAugust 31 Independence Day (Malaysia)\nAugust 31 Independence Day (Trinidad and Tobago)\n\nMoveable and Monthlong events\n\nEdinburgh Festival, including the Military Tattoo at Edinburgh Castle, takes place through most of August and beginning of September.\nUK Bank Holidays: First Monday in Scotland, last Monday in England and Wales\nNat"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 49.94190000024901,
+        "database_search": 7.111899999927118,
+        "total_retrieval": 57.053800000176125
+      },
+      "repeat": 1
+    },
+    {
+      "query": "How does addition work in arithmetic?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "e26727db813fc5f4849926cabd1d62227342674a318d90e5310dad2bb89a955d",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "doc_id": "22",
+            "token_start": 0,
+            "chunk_index": 0,
+            "char_start": 0,
+            "source_url": "https://simple.wikipedia.org/wiki/Addition",
+            "language": "en",
+            "token_count": 220,
+            "token_end": 220,
+            "language_confidence": 0.9999986174447106,
+            "title": "Addition",
+            "char_end": 1107
+          },
+          "cosine_distance": 0.2781028747558594,
+          "snippet": "Not to be confused with building extension which are also called additions\n\nIn mathematics, addition, represented by the symbol , is an operation which combines two mathematical objects together into another mathematical object of the same type, called the sum. Addition can occur with simple objects such as numbers, and more complex objects and con"
+        },
+        {
+          "rank": 2,
+          "chunk_id": "5d9160548e52fc627c9360788b10a824c4e158fb0bd0def331ad25a795aab775",
+          "metadata": {
+            "char_end": 3635,
+            "token_end": 783,
+            "source_url": "https://simple.wikipedia.org/wiki/Addition",
+            "token_start": 564,
+            "doc_id": "22",
+            "token_count": 219,
+            "source": "Simple English Wikipedia",
+            "title": "Addition",
+            "language": "en",
+            "chunk_index": 3,
+            "language_confidence": 0.9999986174447106,
+            "char_start": 2601
+          },
+          "cosine_distance": 0.3730122447013855,
+          "snippet": "house to Sally's house, is the same as the distance from Tom's house to Sally's house. That is, 300 m plus 120 m.\n\nHence Sally's house is 420 m to the east of Tom's house.\n\nProperties\n\nCommutativity\n\nAddition is commutative, meaning that one can change the order of the numbers in a sum, but still get the same result. For example:\nand\n\nAssociativity"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "b314df856187447ec768b30c05dee68da276c38866dfec9970c983422f4a6188",
+          "metadata": {
+            "char_end": 1162,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "title": "Arithmetic",
+            "language": "en",
+            "token_start": 0,
+            "doc_id": "21",
+            "token_end": 220,
+            "language_confidence": 0.999997337859516,
+            "char_start": 0,
+            "source_url": "https://simple.wikipedia.org/wiki/Arithmetic",
+            "chunk_index": 0
+          },
+          "cosine_distance": 0.3980964422225952,
+          "snippet": "In mathematics, arithmetic is the basic study of numbers. The four basic arithmetic operations are addition, subtraction, multiplication, and division, although other operations such as exponentiation and roots are also studied in arithmetic.\n\nOther arithmetic topics includes working with negative numbers, fractions, decimals and percentages.\n\nMost"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "da140df1f9c06660f887a6ab8faedec3f5a4c54118672e0687db170f0f64cedd",
+          "metadata": {
+            "doc_id": "45",
+            "char_start": 3266,
+            "title": "Algebra",
+            "token_start": 752,
+            "chunk_index": 4,
+            "language": "en",
+            "source": "Simple English Wikipedia",
+            "source_url": "https://simple.wikipedia.org/wiki/Algebra",
+            "token_end": 972,
+            "char_end": 4233,
+            "language_confidence": 0.9999969942711509,
+            "token_count": 220
+          },
+          "cosine_distance": 0.40889978408813477,
+          "snippet": ".\nTo check this, put 6 back into the original equation wherever was:\nThis gives , which is true. They each now have 18 candies.\n\nWith practice, algebra can be used when faced with a problem that is too hard to solve any other way. Problems such as building a freeway, designing a cell phone, or finding the cure for a disease all require algebra.\n\nWr"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "421e1d1fbd690a3cbc1157f8b13ac69a2b3303235c1ead8119a80c9735102229",
+          "metadata": {
+            "doc_id": "45",
+            "char_start": 8302,
+            "title": "Algebra",
+            "source_url": "https://simple.wikipedia.org/wiki/Algebra",
+            "char_end": 9346,
+            "token_start": 1880,
+            "language_confidence": 0.9999969942711509,
+            "source": "Simple English Wikipedia",
+            "token_count": 220,
+            "language": "en",
+            "chunk_index": 10,
+            "token_end": 2100
+          },
+          "cosine_distance": 0.44553595781326294,
+          "snippet": "for division, e.g. .\n\nDistributive property\nThe distributive property states that the multiplication of a term by another term can be distributed. For instance: . (Do not confuse this with the associative properties! For instance: .)\n\nAdditive identity\nIdentity refers to the property of a number that it is equal to itself. In other words, there exi"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 50.245100000211096,
+        "database_search": 5.395899999712128,
+        "total_retrieval": 55.640999999923224
+      },
+      "repeat": 1
+    },
+    {
+      "query": "What do archaeologists study?",
+      "requested_top_k": 5,
+      "returned": 5,
+      "hits": [
+        {
+          "rank": 1,
+          "chunk_id": "facd3b31f9021d62f3f7338aeadcab5dabae5ff10e408e6f8f061b531a21c467",
+          "metadata": {
+            "token_count": 220,
+            "title": "Astronomy",
+            "doc_id": "48",
+            "source": "Simple English Wikipedia",
+            "char_start": 962,
+            "language_confidence": 0.999995940059109,
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "token_start": 188,
+            "char_end": 2127,
+            "chunk_index": 1,
+            "language": "en",
+            "token_end": 408
+          },
+          "cosine_distance": 0.5876196026802063,
+          "snippet": "al and theoretical astronomy. Observational astronomy uses telescopes and cameras to observe or look at stars, galaxies and other astronomical objects. Theoretical astronomy explains what we see. It predicts what might happen. Observations show whether the predictions work. The main work of astronomy is to explain puzzling features of the universe."
+        },
+        {
+          "rank": 2,
+          "chunk_id": "d965e9ec1386e2bb1f8599673a8690896e67685da922eb1a6fb347a0c7688ddd",
+          "metadata": {
+            "language_confidence": 0.999995940059109,
+            "token_start": 0,
+            "doc_id": "48",
+            "char_start": 0,
+            "char_end": 1158,
+            "title": "Astronomy",
+            "language": "en",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "token_end": 220,
+            "source": "Simple English Wikipedia",
+            "chunk_index": 0,
+            "token_count": 220
+          },
+          "cosine_distance": 0.6467882990837097,
+          "snippet": "Astronomy is the scientific study of celestial bodies. That means stars, galaxies, planets, moons, asteroids, comets and nebulae are studied, as are supernovae explosions, gamma ray bursts, and cosmic microwave background radiation. Astronomy concerns the development, physics, chemistry, meteorology and movement of celestial bodies. The big questio"
+        },
+        {
+          "rank": 3,
+          "chunk_id": "394a785c78591dd91693d8150730721597ad159381f946fc4ab3642f91fa5324",
+          "metadata": {
+            "doc_id": "48",
+            "source": "Simple English Wikipedia",
+            "token_start": 1879,
+            "token_count": 220,
+            "language_confidence": 0.999995940059109,
+            "char_end": 10784,
+            "token_end": 2099,
+            "language": "en",
+            "chunk_index": 10,
+            "char_start": 9652,
+            "title": "Astronomy",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy"
+          },
+          "cosine_distance": 0.6830009818077087,
+          "snippet": "place making it brighter and more visible than the background, until it can be seen.\n\nTelescopes at most observatories (and satellite instruments) can normally track a source as it moves across the heavens, making the star appear still to the telescope and allowing longer exposures. Also, images can be taken on different nights so exposures span ho"
+        },
+        {
+          "rank": 4,
+          "chunk_id": "06c4efabfa4cfbd9a7997c79a91337c56b19eda3693107d8241d3af4caffcc08",
+          "metadata": {
+            "language": "en",
+            "token_start": 2443,
+            "token_end": 2663,
+            "title": "Astronomy",
+            "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+            "char_start": 12499,
+            "token_count": 220,
+            "doc_id": "48",
+            "source": "Simple English Wikipedia",
+            "char_end": 13694,
+            "chunk_index": 13,
+            "language_confidence": 0.999995940059109
+          },
+          "cosine_distance": 0.6928492784500122,
+          "snippet": "galaxies. Studying distant galaxies is a good way of learning about our own galaxy, as the gases and stars in our own galaxy make it difficult to observe. Galactic astronomers try to understand the structure of galaxies and how they are formed by using different types of telescopes and computer simulations.\n\nGravitational wave astronomy\nGravitation"
+        },
+        {
+          "rank": 5,
+          "chunk_id": "e9744cebcf69c97f9bc5c42ae36a34b32a327bae508a18f84c3030e8c757986b",
+          "metadata": {
+            "source": "Simple English Wikipedia",
+            "token_end": 784,
+            "token_start": 564,
+            "token_count": 220,
+            "doc_id": "6",
+            "language_confidence": 0.999997195706067,
+            "source_url": "https://simple.wikipedia.org/wiki/Art",
+            "char_end": 3918,
+            "title": "Art",
+            "char_start": 2768,
+            "chunk_index": 3,
+            "language": "en"
+          },
+          "cosine_distance": 0.7030192613601685,
+          "snippet": "Egypt, India, China, Greece, Rome and Persia had works and styles of art. In the Middle Ages, most of the art in Europe showed people from the Bible in paintings, stained-glass windows, and mosaic tile floors and walls.\n\nIslamic art includes geometric patterns, Islamic calligraphy, and architecture. In India and Tibet, painted sculptures, dance, an"
+        }
+      ],
+      "timing_ms": {
+        "query_embedding": 40.94519999989643,
+        "database_search": 4.674000000250089,
+        "total_retrieval": 45.61920000014652
+      },
+      "repeat": 1
+    }
+  ],
+  "recorded_at_utc": "2026-10-15T17:06:19.488232+00:00"
+}

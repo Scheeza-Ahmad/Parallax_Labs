@@ -1,0 +1,85 @@
+{
+  "query": "What is an atom made of?",
+  "requested_top_k": 3,
+  "returned": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "dc73bf5e455e8c4e1acce9f83424a51f922430023e8c272ee3adb711278251df",
+      "text": "middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of protons belong to the same chemical element. Examples of elements are carbon and gold. Atoms with the same number of protons, but different numbers of neutrons, are called isotopes. Usually an atom has the same number of electrons as protons. If an atom has more or less electrons than protons, it is called an ion, and has an electric charge.\n\nAtoms can join by chemical bonds. Many things are made of more than one kind of atom. These are chemical compounds or mixtures. A group of atoms connected by chemical bonds is called a molecule. For example, a water molecule is made of two hydrogen atoms and one oxygen atom. The forming or breaking of bonds is a chemical reaction.\n\nAtoms split if the forces inside are too weak to hold them together. This is what causes radioactivity. Atoms can also join to make larger atoms at very high temperatures, such as inside a star. These changes are studied in ",
+      "metadata": {
+        "chunk_index": 1,
+        "doc_id": "47",
+        "source": "Simple English Wikipedia",
+        "token_start": 188,
+        "language_confidence": 0.999997608535479,
+        "language": "en",
+        "token_count": 220,
+        "title": "Atom",
+        "token_end": 408,
+        "char_start": 871,
+        "char_end": 1954,
+        "source_url": "https://simple.wikipedia.org/wiki/Atom"
+      },
+      "cosine_distance": 0.32181453704833984
+    },
+    {
+      "rank": 2,
+      "chunk_id": "906ccc3e37bad36a4aead966b33e1e46ecaa1071752cd70cff8c26010edc28f1",
+      "text": "An atom is the basic unit of matter. All normal matter – everything that has mass – is made of atoms. This includes solids, liquids, and gases. The atom cannot be broken to parts by chemistry, so people once thought it was the smallest and simplest particle of matter. There are over 100 different kinds of atoms, called chemical elements. Each kind has the same basic structure, but a different number of parts.\n\nAtoms are very small, but their exact size depends on the type. Atoms are from 0.1 to 0.5 nanometers across. One nanometer is about 100,000 times smaller than the width of a human hair. This makes one atom impossible to see without special tools. Scientists learn how they work by doing experiments.\n\nAtoms are made of three kinds of subatomic particles. These are protons, neutrons, and electrons. Protons and neutrons have much more mass. They are in the middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of proton",
+      "metadata": {
+        "token_end": 220,
+        "char_start": 0,
+        "token_count": 220,
+        "chunk_index": 0,
+        "language": "en",
+        "doc_id": "47",
+        "token_start": 0,
+        "language_confidence": 0.999997608535479,
+        "title": "Atom",
+        "char_end": 1057,
+        "source_url": "https://simple.wikipedia.org/wiki/Atom",
+        "source": "Simple English Wikipedia"
+      },
+      "cosine_distance": 0.32796168327331543
+    },
+    {
+      "rank": 3,
+      "chunk_id": "60f10301cb6e23b69813880b0820fa1b654619f6fb43e40e4dea6572ceabac93",
+      "text": "A proton is part of an atom. They are found in the nucleus of an atom along with neutrons. The periodic table groups atoms according to how many protons they have. A single atom of hydrogen (the lightest kind of atom) is made up of an electron moving around a proton. Most of the mass of this atom is in the proton, which is almost 2000 times heavier than the electron. Protons and neutrons make up the nucleus of every other kind of atom. In any one element, the number of protons is always the same. An atom's atomic number is equal to the number of protons in that atom.\n\nProtons are made of quarks. A proton is believed to be made up of 3 quarks, two up quarks and one down quark. One down quark has a charge of -1/3, and two up quarks have a charge of +2/3 each. This adds to a charge of +1. A proton has a very small mass. The mass of the proton is about one atomic ",
+      "metadata": {
+        "doc_id": "9526",
+        "source_url": "https://simple.wikipedia.org/wiki/Proton",
+        "char_end": 872,
+        "title": "Proton",
+        "token_count": 220,
+        "token_start": 0,
+        "chunk_index": 0,
+        "char_start": 0,
+        "language": "en",
+        "token_end": 220,
+        "source": "Simple English Wikipedia",
+        "language_confidence": 0.9999981299112684
+      },
+      "cosine_distance": 0.39678215980529785
+    }
+  ],
+  "timing_ms": {
+    "query_embedding": 89.48020000389079,
+    "database_search": 8.077899998170324,
+    "total_retrieval": 97.55810000206111
+  },
+  "encoder": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "normalized": true,
+    "max_seq_length": 256,
+    "device": "cpu",
+    "batch_size": 32,
+    "threads": 4,
+    "model_load_seconds": 1.4063134000025457
+  },
+  "stored_chunks": 31984,
+  "recorded_at_utc": "2026-10-18T06:57:26.998391+00:00"
+}

@@ -1,8 +1,15 @@
 # Parallax Labs — Source-grounded RAG Assistant
 
 Scheeza Ahmad's internship project. Week 1 implements environment verification,
-real document acquisition and conservative preprocessing. Retrieval, generation,
-NLP analysis and FastAPI are future scope, not implemented features.
+real document acquisition and conservative preprocessing. The retrieval week adds
+token-window chunking, sentence-transformer embeddings, persistent ChromaDB and
+latency benchmarking. Generation, NLP analysis and FastAPI remain future scope.
+
+**Latest verified status (2026-10-16):** the entire 6,954-document clean corpus is
+indexed as 31,984 chunks in local ChromaDB. Retrieval benchmarking on the reopened
+full database completed: 24 searches, mean 37.45 ms, median 30.99 ms, p95 79.27 ms.
+51 tests pass. The earlier mandatory CUDA requirement remains unresolved.
+See the retrieval-week sections below for commands, evidence and timing limitations.
 
 ## Week 1 progress — 2026-10-11
 
@@ -155,13 +162,15 @@ script rather than committing it.
 Wikipedia is mostly neutral encyclopedic writing, so later sentiment analysis may
 have limited usefulness and must be interpreted cautiously. This historical,
 ordered English sample cannot support claims about all Wikipedia or current facts.
-No embedding model or spaCy language model is downloaded in Week 1; required base
-imports are tested. Later work must follow the official roadmap when supplied.
+Week 1 tested base imports without downloading language models. The retrieval
+week now uses the pinned MiniLM model described below. No spaCy language model
+is needed for the implemented cleaning or retrieval pipeline.
 
 Deferred next step: verify an approved CUDA-capable environment (or obtain mentor
 clarification), install a compatible CUDA-enabled PyTorch build there, and rerun
 `scripts/verify_env.py` until the real tensor operation passes. CPU preprocessing and
-its tests are already verified; no later-week features have been implemented.
+its tests are already verified. Retrieval-week work is described below; the user
+authorized proceeding while the earlier CUDA requirement remains unresolved.
 
 One repository is used for the entire internship:
 [Scheeza-Ahmad/Parallax_Labs](https://github.com/Scheeza-Ahmad/Parallax_Labs).
@@ -171,3 +180,246 @@ an updated README. For this submission, disclose the outstanding CUDA check.
 Installation references: [Sentence Transformers](https://www.sbert.net/docs/installation.html),
 [spaCy](https://spacy.io/usage.html), [Chroma](https://docs.trychroma.com/docs/overview/getting-started),
 [pandas](https://pandas.pydata.org/docs/getting_started/install.html).
+
+
+## Retrieval week — 2026-10-15
+
+Scope: chunk the existing cleaned corpus, embed it, populate persistent ChromaDB,
+search it and measure retrieval latency. No answer-generation API, frontend or
+cloud deployment is included. The same repository and existing venv are reused.
+
+### Architecture and chunking
+
+`data/processed/clean_corpus.jsonl` → `src/chunking.py` →
+`src/embeddings.py` → `src/vector_store.py` → ranked source chunks.
+`scripts/retrieval.py` exposes ingestion, search and benchmarking commands.
+
+The strategy is overlapping model-token windows, not recursive splitting.
+Defaults: **220 content tokens, 32-token overlap**, with the pinned model's fast
+WordPiece tokenizer. Special tokens are excluded from those settings; the model
+limit is 256 including special tokens. Every source slice is retokenized and
+checked before encoding; oversized queries fail instead of silently truncating.
+The window shrinks if retokenization would exceed its budget. Pathological inputs
+that cannot advance within the overlap budget fail explicitly.
+
+Original Unicode, case, punctuation and whitespace remain in stored text: chunks
+are slices of the source string, never decoded token IDs. Tokenizer normalization
+still applies internally when computing embeddings. Boundaries may cut sentences
+or words; overlap supplies nearby context but does not guarantee whole sentences.
+Python character offsets (`char_start`, `char_end`) are half-open, and token
+positions refer to the original full-document tokenization. Chunk index is zero
+based. IDs are SHA256 of source metadata, exact slice, settings and strategy
+version. All source fields are retained alongside positions and token counts.
+
+### Model and environment
+
+[all-MiniLM-L6-v2](https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2)
+is a compact English sentence/paragraph encoder suitable for this CPU baseline.
+It produces 384-dimensional vectors. Revision is pinned to
+`1110a243fdf4706b3f48f1d95db1a4f5529b4d41`; model license is Apache-2.0.
+Documents and queries use the same encoder, normalized float32 embeddings and
+cosine distance. Lower distance means closer vectors; it is **not a confidence
+probability**. This is a baseline choice, not a measured model-quality comparison.
+
+CPU is explicit (`--device cpu`, default), with batch size 32 and four PyTorch
+threads. Use `--batch-size`, `--threads` and `--device` to configure execution.
+CUDA selection fails if unavailable. The Week 1 CUDA requirement remains blocked.
+Model loading/download time is separate from encoding time; loading excludes
+Python imports. Encoding timing includes token-limit validation and conversion
+of vectors to NumPy. GPU-to-CPU conversion, if used, completes before timing ends.
+Ingestion timing fields cover only the current invocation and its newly encoded
+chunks. Skipped vectors contribute no encoding time. A process interrupted before
+its final report may leave valid database batches without a saved timing report;
+resume timings must not be presented as total initial indexing time.
+
+No package upgrades were needed. The existing pinned `requirements.txt` remains
+valid: all 124 pins match installed distribution versions (see
+`reports/dependencies_retrieval.json`). NumPy (already pinned at 2.4.6) is now
+an explicit direct dependency in
+`requirements.in`. Verified stack: Python 3.11.9, sentence-transformers 6.1.0,
+transformers 5.19.0, ChromaDB 1.5.9, PyTorch 2.14.1+cpu. `pip check` passes.
+
+API references checked: [SentenceTransformer](https://www.sbert.net/docs/package_reference/sentence_transformer/model.html)
+and [Chroma collection configuration](https://docs.trychroma.com/docs/collections/configure).
+The installed Chroma version emits a legacy embedding-function configuration
+DeprecationWarning during tests. Explicit vectors are used throughout; no Chroma
+embedding model is downloaded or used.
+
+### Exact commands (PowerShell, repository root)
+
+First installation uses the existing setup commands above. First model use needs
+internet access; the public model is cached in ignored `.cache/huggingface/hub`.
+No API key or paid service is required. Omit `--offline` for the first model download,
+then use it to avoid network requests once the pinned snapshot is cached.
+
+```powershell
+# Unit tests (including real local Chroma storage tests; no downloads)
+.\.venv\Scripts\python.exe -m pytest -q
+
+# Small real sample; use a separate collection from the full corpus
+.\.venv\Scripts\python.exe scripts/retrieval.py ingest --limit 25 --collection wikipedia_sample_v1 --report reports/index_sample.json
+
+# Full corpus, explicit CPU development mode
+.\.venv\Scripts\python.exe scripts/retrieval.py ingest --device cpu --offline --report reports/index_full.json
+
+# A separate process reopens persistent storage and searches it
+.\.venv\Scripts\python.exe scripts/retrieval.py search --query "How did Alan Turing contribute to computing?" --top-k 5 --offline --report reports/search_restart.json
+
+# Eight corpus-related queries, one warm-up per query, then three repeats
+.\.venv\Scripts\python.exe scripts/retrieval.py benchmark --offline --queries benchmark_queries.json --repeats 3 --top-k 5 --report reports/retrieval_benchmark.json
+
+# Verify identical ingestion skips records without increasing the stored count
+.\.venv\Scripts\python.exe scripts/retrieval.py ingest --offline --report reports/index_rerun.json
+```
+
+Use `--input`, `--db`, `--collection`, `--chunk-size`, `--overlap`, and
+`--write-batch` to change ingestion settings. Relative paths resolve from the
+current directory. Default storage is `vector_store/`, collection
+`wikipedia_minilm_v1`. Cleaned data, database and model cache are Git-ignored.
+Reports are small JSON files suitable for Git. Report paths may be overwritten on
+rerun; choose a new `--report` path to retain a previous measurement.
+
+### Storage safety, recovery and edge cases
+
+Collections record model/revision/dimension/normalization/input limit, complete
+selected-corpus fingerprint, chunk configuration and expected counts. Different
+settings, changed source records or another model are rejected before ingestion
+writes. To rebuild, choose a **new collection name**, for example:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/retrieval.py ingest --collection wikipedia_minilm_v2 --chunk-size 200 --overlap 24 --offline --report reports/index_v2.json
+.\.venv\Scripts\python.exe scripts/retrieval.py search --collection wikipedia_minilm_v2 --query "What is an atom?" --offline
+```
+
+Old collections are preserved; there is no automatic deletion, replacement or
+migration. Changing only batch size/device does not require a new collection.
+Use matching `--model` and `--revision` on all commands if selecting another model;
+verify its language, tokenizer and input constraints before adopting it.
+
+Ingestion validates the selected corpus and all chunks before creating a
+collection. Empty documents/corpora, duplicate source IDs, missing source fields,
+nested/null/nonfinite metadata, invalid token settings and bad vector shapes fail
+clearly. Existing chunk IDs are checked against text/metadata and skipped, not
+upserted. Float metadata allows a relative tolerance of 1e-14 solely for Chroma
+serialization round-off; source text and string IDs require exact equality.
+All expected IDs/text/metadata are read back and the count is checked before the
+collection is marked ready. Interrupted batches retain partial data: rerun the
+same command to resume. Search refuses a collection still marked building.
+Use one ingestion writer per collection; concurrent mutations are not supported.
+
+Blank queries, nonpositive top-k, missing/empty/incomplete collections and
+incompatible query encoders fail explicitly. Top-k larger than the collection is
+clamped to available records. Results contain rank, chunk ID, source metadata,
+text and labelled cosine distance. Multiple chunks may belong to the same article.
+
+### Benchmark interpretation
+
+`benchmark_queries.json` contains eight exploratory English queries based on
+actual corpus subjects. They are not relevance labels. No precision, recall or
+hallucination score is claimed. Reports retain per-query/repeat timings, top-five
+350-character snippets, source URLs/IDs and distances for manual review. Wikipedia
+attribution and the Week 1 dataset license also apply to these snippets.
+
+Model/client startup is excluded from repeated retrieval timing. Each query has
+one unmeasured warm-up search before three measured repeats in fixed query order.
+`perf_counter` measures query encoding, Chroma query/result deserialization and
+their sum; validation/count checks, result formatting, printing and report writes
+are outside these boundaries. Mean, median and nearest-rank p95 summarize the 24
+measured searches. These are warm local single-process timings, not cold-start,
+concurrent API performance or a production SLA. OS load/cache effects can change
+results; use the JSON evidence rather than treating one measurement as a guarantee.
+
+
+### Verified retrieval results — 2026-10-16
+
+| Check | Actual result |
+| --- | --- |
+| Existing clean corpus | 6,954 unique, nonempty English documents |
+| Real development sample | 25 documents, 191 chunks; encoding 21.152 s, model loading 1.837 s |
+| Full populated database | 31,984 chunks; every expected ID/text/metadata read back successfully |
+| Recovery | 28,672 persisted chunks skipped; remaining 3,312 encoded without duplicates |
+| Resume encoding | 201.261 s; 16.456 newly encoded chunks/s; CPU, batch 32, four threads |
+| Resume model loading / chunking / DB writes | 1.427 s / 46.642 s / 16.694 s |
+| Tests | 51 passed, 0 failed; pytest 17.11 s (2026-10-15), including Week 1 regression tests |
+| Dependencies | All 124 pinned versions match installed packages; pip check passes |
+| Full-database benchmark | New process reopened 31,984 chunks; 8 queries × 3 repeats = 24 measurements |
+| Full identical rerun | 31,984 existing chunks skipped, 0 encoded, count unchanged; read-back passed |
+| Separate search process | Returned five ranked results; first source Alan Turing; stored count 31,984 |
+| Benchmark startup exclusions | Model loading 0.939 s; 8 warm-up searches took 1.006 s |
+
+| Warm retrieval phase | Mean (ms) | Median (ms) | p95 (ms) |
+| --- | ---: | ---: | ---: |
+| Query embedding | 31.187 | 24.844 | 73.371 |
+| Database search | 6.267 | 5.942 | 7.668 |
+| Total retrieval | 37.454 | 30.991 | 79.269 |
+
+The initial full indexing process was interrupted after 28,672 chunks were
+persisted, before its final report was written. The successful resume is recorded
+in `reports/index_full_resume.json`. Its 201.261 seconds measure only the last
+3,312 chunks: **total original full-corpus encoding time is unavailable**. No
+estimate is substituted. All 31,984 stored chunks are nevertheless validated.
+
+Evidence files:
+- `reports/index_sample.json`: fresh real sample encoding and read-back.
+- `reports/index_sample_resume.json`: recovery/idempotence check of the initial sample.
+- `reports/search_sample_restart.json`: separate-process sample search.
+- `reports/benchmark_sample.json`: benchmark command smoke test on 191 chunks,
+  performed while full indexing was running; do not use it as the full benchmark.
+- `reports/index_full_resume.json`: completed full corpus and measured resume work.
+- `reports/index_rerun.json`: full identical ingestion, no new vectors or duplicates.
+- `reports/search_restart.json`: standalone full-database search after process restart.
+- `reports/retrieval_benchmark.json`: full-database per-query/repeat timings,
+  retrieved snippets, source IDs/URLs, distances and summary statistics.
+- `reports/retrieval_tests.json` and `reports/retrieval_tests.xml`: test evidence.
+- `reports/dependencies_retrieval.json`: installed-version/lock comparison.
+
+Manual inspection of the first repeat returned Alan Turing, Atom, August,
+Aquaculture, Astronomy, Afghanistan, Addition and Archaeology as the first source
+articles for their respective queries. This is an illustrative relevance check,
+not labelled precision/recall. No ground-truth evaluation dataset exists yet.
+
+### Files and submission checklist
+
+Created: `src/chunking.py`, `src/embeddings.py`, `src/vector_store.py`,
+`scripts/retrieval.py`, `tests/test_chunking.py`, `tests/test_retrieval.py`,
+`benchmark_queries.json`, and the retrieval reports listed above.
+Updated: `README.md`, `AGENTS.md`, `requirements.in`. The existing pinned
+`requirements.txt` required no version changes. Week 1 source/data are preserved.
+
+- [x] Implement and test configurable chunking and metadata preservation.
+- [x] Encode and validate the complete available clean corpus in persistent Chroma.
+- [x] Reopen the database in another process and benchmark actual retrieval.
+- [x] Update README with runnable commands, measured results and limitations.
+- [x] Confirm data, vector storage and model caches are Git-ignored.
+- [ ] Review and commit the new source, tests, README and small reports to the same repository.
+- [ ] Verify the repository is public, push the new commit and verify it on GitHub.
+- [ ] Submit the same repository URL and disclose the unresolved Week 1 CUDA requirement.
+
+The repository was verified public through the GitHub API on 2026-10-18.
+The verified submission package is being published to the existing origin:
+https://github.com/Scheeza-Ahmad/Parallax_Labs.git. Do not add ignored data or caches
+to Git to make the submission look complete; reviewers should reproduce them.
+
+
+### Submission demonstration - 2026-10-18
+
+Reran all 51 tests: **51 passed in 42.88 seconds**, with 14 non-failing Chroma
+configuration deprecation warnings. `pip check` passed and all required imports
+passed. The environment verifier still exits 1 because CUDA is unavailable; this
+is explicitly an unresolved Week 1 requirement, not a passing GPU check.
+
+The full ingestion command read back all **31,984 chunks from 6,954 documents**,
+skipped all existing vectors and generated **zero duplicates/new vectors**.
+A new search process queried "What is an atom made of?" and returned three chunks:
+Atom, Atom, Proton (cosine distances 0.3218, 0.3280, 0.3968, rounded).
+These are retrieved sources, not an LLM-generated answer or confidence probabilities.
+
+A separate benchmark after ingestion completed measured 8 queries x 3 repeats:
+mean total retrieval **32.853 ms**, median **26.692 ms**, p95 **66.413 ms**.
+Model loading (0.893 s) and eight warm-up searches (0.823 s) were excluded.
+Previous dated reports are preserved; latency naturally varies between runs.
+
+Fresh evidence: `reports/submission_tests.xml`, `reports/submission_verification.json`,
+`reports/submission_ingestion.json`, `reports/submission_search.json`, and
+`reports/submission_benchmark.json`. The public submission repository is
+[Scheeza-Ahmad/Parallax_Labs](https://github.com/Scheeza-Ahmad/Parallax_Labs).

@@ -1,0 +1,85 @@
+{
+  "query": "How did Alan Turing contribute to computing?",
+  "requested_top_k": 3,
+  "returned": 3,
+  "hits": [
+    {
+      "rank": 1,
+      "chunk_id": "4b04d33929d11bb9876a332c05e642d82aa7d1977ae02d442d24ee8a9e3764be",
+      "text": ", almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died before the law came into force, making it possible for living convicted gay men to seek pardons for offences now no longer on the statute book.\n\nTuring died in 1954, after being subjected by a British court to chemical castration. He is known to have ended his life at the age of 41 years, by eating an apple laced with cyanide.\n\nCareer\nTuring was one of the people who worked on the first computers. He created the theoretical Turing machine in 1936. The machine was imaginary, but it included the idea of a computer program.\n\nTuring was interested in artificial intelligence. He proposed the Turing test, to say when a machine could be called \"intelligent\". A computer could be said to \"think\" if a human talking with it could not tell it was a machine.\n\nDuring World War II, Turing worked with others to break German ciphers (secret messages). He worked for the Government Code and Cypher School (G",
+      "metadata": {
+        "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+        "source": "Simple English Wikipedia",
+        "title": "Alan Turing",
+        "token_start": 376,
+        "doc_id": "13",
+        "char_start": 1725,
+        "language": "en",
+        "language_confidence": 0.9999975933686452,
+        "char_end": 2785,
+        "chunk_index": 2,
+        "token_end": 596,
+        "token_count": 220
+      },
+      "cosine_distance": 0.38617467880249023
+    },
+    {
+      "rank": 2,
+      "chunk_id": "b8e5daf9b24bf554cbec4c59e2fc8b81f8a350270c1000a42b6e28e5bab7f853",
+      "text": ", North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at Alexandra School and College. On October 1st 1907 she married Julius Mathison Turing, who was Reverend John Robert Turing and Fanny Boyd, in Dublin. Alan Turing was born on June 23rd 1912. He would go on to be regarded as one of the greatest figures of the twentieth century.\n\nAlan was a brilliant mathematician and cryptographer. He became the founder of modern-day computer science and artificial intelligence. He designed a machine at Bletchley Park to break secret Enigma encrypted messages used by the Nazi German war machine to protect sensitive commercial, diplomatic and military communications during World War 2. This made the single biggest contribution to the Allied victory in the war against Nazi Germany. It possibly saved the lives of an estimated 2 million people, and shortened World War II.\n\nIn 2013, almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died ",
+      "metadata": {
+        "language_confidence": 0.9999975933686452,
+        "source": "Simple English Wikipedia",
+        "title": "Alan Turing",
+        "chunk_index": 1,
+        "char_end": 1884,
+        "token_count": 220,
+        "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+        "language": "en",
+        "doc_id": "13",
+        "char_start": 768,
+        "token_start": 188,
+        "token_end": 408
+      },
+      "cosine_distance": 0.38890624046325684
+    },
+    {
+      "rank": 3,
+      "chunk_id": "9fddd431b3bc3b9b72e0540495d82400b05718c6a58a092dc1c557da51ed298e",
+      "text": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist. He was born in Maida Vale, London.\n\nEarly life and family\nAlan Mathison Turing was born in Maida Vale, [London] on 23 June 1912. His father was part of a family of merchants from Scotland. His mother, Ethel Sara, was the daughter of an engineer.\n\nEducation\nTuring went to St. Michael's, a school at 20 Charles Road, St Leonards-on-sea, when he was five years old.\n\"This is only a foretaste of what is to come, and only the shadow of what is going to be.” – Alan Turing.\n\nThe Stoney family were once prominent landlords in North Tipperary. His mother Ethel Sara Stoney (1881–1976) was daughter of Edward Waller Stoney (Borrisokane, North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at ",
+      "metadata": {
+        "source": "Simple English Wikipedia",
+        "language": "en",
+        "token_end": 220,
+        "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+        "title": "Alan Turing",
+        "token_start": 0,
+        "doc_id": "13",
+        "language_confidence": 0.9999975933686452,
+        "char_start": 0,
+        "chunk_index": 0,
+        "token_count": 220,
+        "char_end": 907
+      },
+      "cosine_distance": 0.43733954429626465
+    }
+  ],
+  "timing_ms": {
+    "query_embedding": 43.462100000397186,
+    "database_search": 5.544699999973091,
+    "total_retrieval": 49.006800000370276
+  },
+  "encoder": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "normalized": true,
+    "max_seq_length": 256,
+    "device": "cpu",
+    "batch_size": 32,
+    "threads": 4,
+    "model_load_seconds": 2.4213818000002902
+  },
+  "stored_chunks": 191,
+  "recorded_at_utc": "2026-10-15T16:59:01.994379+00:00"
+}

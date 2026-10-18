@@ -1,0 +1,16 @@
+{
+  "date": "2026-10-18",
+  "command": ".venv/Scripts/python.exe -m pytest -q --junitxml=reports/submission_tests.xml",
+  "tests": 51,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suite_seconds": 42.846,
+  "pytest_reported_seconds": 42.88,
+  "warnings": "14 Chroma legacy embedding-function config deprecation warnings",
+  "pip_check": "No broken requirements found",
+  "environment_verifier_exit": 1,
+  "cuda_status": "BLOCKED; unavailable, CPU runtime, zero CUDA devices",
+  "repository_public": true,
+  "repository_url": "https://github.com/Scheeza-Ahmad/Parallax_Labs"
+}

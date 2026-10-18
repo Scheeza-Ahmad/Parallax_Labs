@@ -1,0 +1,10 @@
+{
+  "date": "2026-10-15",
+  "command": ".venv/Scripts/python.exe -m pytest -q --junitxml=reports/retrieval_tests.xml",
+  "tests": 51,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suite_seconds": 17.083,
+  "scope": "Week 1 regression plus chunking, Chroma storage, retrieval validation and benchmark-summary tests. Unit encoder vectors are synthetic; real model smoke evidence is in index_sample.json and search_sample_restart.json."
+}

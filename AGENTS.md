@@ -6,9 +6,9 @@ This is Scheeza Ahmad's Parallax Labs internship project. Scheeza and Codex will
 
 Source of requirements: three internship portal screenshots supplied by Scheeza: Week 1 tasks, overall project brief, and tech-stack/submission rules. This file transcribes and organizes those requirements. Later official roadmap details may refine them; do not invent missing weekly requirements or deadlines.
 
-Current handoff status: planning/context file prepared. No project repository, dependency installation, GPU check, dataset download, implementation, tests, GitHub push, or deployment has been verified in this handoff. Inspect the actual workspace before assuming anything exists.
+Current status (2026-10-15): existing Git repository and Python 3.11.9 venv inspected. Week 1 cleaned JSONL contains 6,954 unique, nonempty records. Required imports and pip check pass; CUDA remains unavailable. Preserve Week 1 code and data. See README and reports for executed retrieval results.
 
-Immediate objective: implement and verify WEEK 1. Keep the architecture extensible for the complete project, but do not implement all future phases before Week 1 is complete.
+Immediate objective: implement the user-supplied next-week tasks: tested text chunking, sentence-transformer embeddings, persistent ChromaDB ingestion, semantic search and retrieval latency benchmarking. The user explicitly authorized this scope on 2026-10-15 despite the unresolved Week 1 CUDA requirement. Do not implement LLM answer generation, a frontend or deployment.
 
 ## Overall project: source-grounded RAG AI assistant
 
@@ -22,7 +22,7 @@ Build an end-to-end Retrieval-Augmented Generation system with the following cap
 6. Serve the system through a production-ready API; the roadmap names FastAPI, with comprehensive documentation.
 7. Address the learning outcomes: data cleaning and exploratory data analysis (EDA), chunking and embedding strategies, vector database management, prompt engineering, LLM integration, RAG evaluation (precision, recall, hallucination detection), NLP analysis, and API performance benchmarking.
 
-These are overall goals, not all Week 1 deliverables. Detailed requirements and dates for later weeks have not been supplied. No specific frontend design, model, provider, evaluation threshold, deployment platform, or final project name has been confirmed.
+These are overall goals, not all Week 1 deliverables. Retrieval-week requirements were supplied by the user on 2026-10-15; later generation/API requirements and weekly dates remain unspecified. The retrieval baseline now uses pinned all-MiniLM-L6-v2. No frontend design, LLM provider, evaluation threshold, deployment platform or final project name has been confirmed.
 
 ## Mandatory internship submission rules
 
@@ -32,7 +32,7 @@ These are overall goals, not all Week 1 deliverables. Detailed requirements and 
 - Submit the same repository link each week.
 - The portal explicitly says submissions without an updated README will be rejected.
 - AGENTS.md is Codex context; it does not replace README.md.
-- Repository URL and remote configuration are currently unknown. Inspect existing configuration before creating or changing anything. Never invent a GitHub URL or claim a push happened when it did not.
+- Verified origin: https://github.com/Scheeza-Ahmad/Parallax_Labs.git. Reuse this repository. Never claim a push happened without verifying it.
 
 ## Tech-stack policy
 
@@ -69,7 +69,7 @@ These details make the work reproducible; they are implementation choices rather
 - Use a small real sample for development, then run the pipeline on the full dataset. Sample-only success does not satisfy the 5,000+ document requirement.
 - A document means a source record, such as an article or paper abstract. Do not count words or artificially split records into chunks to reach 5,000 documents.
 - Choose a source with accessible, permitted downloads and useful text. Record source URL, dataset revision/snapshot if available, acquisition date, license/attribution, and selection method. Preserve provenance for later RAG citations.
-- Dataset source and target language are not yet selected. English is a possible default, to be explicitly documented. Prefer a corpus whose content supports meaningful retrieval and explain limitations of sentiment analysis on neutral academic text.
+- Selected source: Simple English Wikipedia, immutable 20231101.simple snapshot; target language: English. Preserve article IDs/URLs and document the limits of sentiment analysis on neutral encyclopedic text.
 - Preserve raw data. Keep cleaned output separate and avoid overwriting raw files.
 - Suggested record fields: doc_id, title when available, text, source, source_url, and language. Preserve original source IDs where available; do not fabricate missing metadata.
 - Use separate cleaning functions plus a composable clean_text/pipeline function. Preserve useful punctuation, case, and paragraph boundaries unless there is a documented reason to change them. Do not add stemming, stop-word removal, or aggressive lowercasing by default.
@@ -133,19 +133,60 @@ Maintain a weekly progress section as later work is added. Describe only impleme
 
 ## Definition of Week 1 completion
 
-- [ ] One existing or initialized Git repository identified for the whole internship.
-- [ ] Isolated Python environment and reproducible pinned requirements prepared.
-- [ ] .gitignore excludes datasets, environment files, credentials, and caches.
-- [ ] scripts/verify_env.py runs; required imports pass and CUDA/GPU requirement is satisfied, or its unresolved status is explicitly recorded.
-- [ ] 5,000+ real source documents acquired with provenance; raw files retained outside Git.
-- [ ] All four required cleaning operations implemented in modular functions.
-- [ ] Meaningful unit tests run and pass.
-- [ ] Full preprocessing run completed and clean output validated with actual counts.
-- [ ] README updated with runnable instructions, source details, results, and limitations.
+- [x] One existing or initialized Git repository identified for the whole internship.
+- [x] Isolated Python environment and reproducible pinned requirements prepared.
+- [x] .gitignore excludes datasets, environment files, credentials, and caches.
+- [ ] CUDA/GPU requirement: verifier runs and imports pass, but CUDA is unavailable; this is still a failing mandatory requirement.
+- [x] 5,000+ real source documents acquired with provenance; raw files retained outside Git.
+- [x] All four required cleaning operations implemented in modular functions.
+- [x] Meaningful unit tests run and pass.
+- [x] Full preprocessing run completed and clean output validated with actual counts.
+- [x] README updated with runnable instructions, source details, results, and limitations.
 - [ ] Same-repository commits pushed and repository link ready for weekly submission when authorized/access is available.
 
 An unresolved mandatory check means the task remains partially complete; a checklist entry documenting a blocker is not a passing requirement.
 
 ## First action when implementation starts
 
-Read this file, inspect the workspace and environment, then summarize the exact Week 1 plan in Roman Urdu. Start with repository/environment setup and GPU/import verification. Continue through dataset acquisition, modular preprocessing, tests, validation, and README. Do not invent later-week milestones or build unrequested future features before finishing this foundation.
+Read this file and README, inspect existing code, environment and actual cleaned data, then explain the current requested scope in Roman Urdu. Reuse the established environment and corpus. Verify sample ingestion before full indexing, rerun tests, check persistence in a new process, benchmark real queries, and update README with evidence. Keep the mandatory CUDA blocker explicit.
+
+
+## Retrieval-week verified progress — 2026-10-16
+
+- Implemented `src/chunking.py`, `src/embeddings.py`, `src/vector_store.py`, and
+  `scripts/retrieval.py`; commands are ingest, search and benchmark.
+- Chunks use 220 content tokens with 32-token overlap; source text/metadata,
+  character offsets and stable SHA256 IDs are retained. No silent truncation.
+- Model: sentence-transformers/all-MiniLM-L6-v2, revision
+  `1110a243fdf4706b3f48f1d95db1a4f5529b4d41`, 384 dimensions, normalized vectors,
+  CPU, batch 32, four threads. Chroma uses persistent cosine-distance storage.
+- All 51 tests passed on 2026-10-15; all 124 installed dependency pins matched.
+- Real 25-document sample: 191 chunks; external-process search and resume passed.
+- Full corpus now complete: 6,954 documents, 31,984 chunks, all expected chunk
+  IDs/text/metadata read back successfully (`reports/index_full_resume.json`).
+- An interrupted initial full run retained 28,672 chunks. Resume safely skipped
+  them and encoded the remaining 3,312 in 201.26142 seconds (16.456 chunks/s).
+  Initial interrupted-run total encoding time was not saved; do not infer it.
+- CUDA remains blocked. LLM generation, frontend and deployment remain out of scope.
+- Do not claim a new GitHub commit/push or public visibility verification without
+  actually checking it. See README for final benchmark evidence and submission steps.
+
+- Full-database benchmark completed in a new process: 8 queries, 3 repeats,
+  24 measurements; mean total 37.45395 ms, median 30.99065 ms, p95 79.2688 ms.
+  Evidence: `reports/retrieval_benchmark.json`. No precision/recall claimed.
+- Full identical rerun passed: 31,984 skipped, 0 encoded, count unchanged, all
+  chunks read back (`reports/index_rerun.json`). Standalone search after restart
+  returned five results with Alan Turing ranked first (`reports/search_restart.json`).
+- Remaining work: review/commit/push retrieval-week changes and verify public
+  repository visibility for submission; resolve or clarify the earlier CUDA blocker.
+
+
+## Submission verification - 2026-10-18
+
+- Reran 51 tests: all passed in 42.88 seconds; pip check and required imports pass.
+- Full ingestion/read-back rerun: 31,984 chunks, all skipped, no new vectors.
+- Real query "What is an atom made of?" returned Atom/Atom/Proton source chunks.
+- Fresh benchmark: 24 measured searches; mean 32.853 ms, median 26.692 ms,
+  p95 66.413 ms. Evidence files use the `reports/submission_` prefix.
+- GitHub API verified that the existing repository is public; remote main matched
+  the Week 1 base before publication. CUDA remains unavailable (verifier exit 1).
