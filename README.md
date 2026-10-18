@@ -391,12 +391,14 @@ Updated: `README.md`, `AGENTS.md`, `requirements.in`. The existing pinned
 - [x] Reopen the database in another process and benchmark actual retrieval.
 - [x] Update README with runnable commands, measured results and limitations.
 - [x] Confirm data, vector storage and model caches are Git-ignored.
-- [ ] Review and commit the new source, tests, README and small reports to the same repository.
-- [ ] Verify the repository is public, push the new commit and verify it on GitHub.
+- [x] Reviewed and committed source, tests, README and small reports to the same repository.
+- [x] Verified public visibility, pushed the Week 2 commit and verified the updated README on GitHub.
 - [ ] Submit the same repository URL and disclose the unresolved Week 1 CUDA requirement.
 
 The repository was verified public through the GitHub API on 2026-10-18.
-The verified submission package is being published to the existing origin:
+Week 2 implementation commit `0e385766b4b95e19fd4e4bb07a68fd52bc47fdf1` was
+pushed and its updated README verified through the GitHub API on 2026-10-18.
+The submission repository remains:
 https://github.com/Scheeza-Ahmad/Parallax_Labs.git. Do not add ignored data or caches
 to Git to make the submission look complete; reviewers should reproduce them.
 

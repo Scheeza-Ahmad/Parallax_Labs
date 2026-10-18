@@ -142,7 +142,7 @@ Maintain a weekly progress section as later work is added. Describe only impleme
 - [x] Meaningful unit tests run and pass.
 - [x] Full preprocessing run completed and clean output validated with actual counts.
 - [x] README updated with runnable instructions, source details, results, and limitations.
-- [ ] Same-repository commits pushed and repository link ready for weekly submission when authorized/access is available.
+- [x] Same-repository Week 2 implementation commit pushed; public repository and updated README verified on 2026-10-18.
 
 An unresolved mandatory check means the task remains partially complete; a checklist entry documenting a blocker is not a passing requirement.
 
@@ -177,8 +177,8 @@ Read this file and README, inspect existing code, environment and actual cleaned
 - Full identical rerun passed: 31,984 skipped, 0 encoded, count unchanged, all
   chunks read back (`reports/index_rerun.json`). Standalone search after restart
   returned five results with Alan Turing ranked first (`reports/search_restart.json`).
-- Remaining work: review/commit/push retrieval-week changes and verify public
-  repository visibility for submission; resolve or clarify the earlier CUDA blocker.
+- Publication completed on 2026-10-18. Remaining: user portal submission and
+  resolution or mentor clarification of the earlier CUDA blocker.
 
 
 ## Submission verification - 2026-10-18
@@ -190,3 +190,7 @@ Read this file and README, inspect existing code, environment and actual cleaned
   p95 66.413 ms. Evidence files use the `reports/submission_` prefix.
 - GitHub API verified that the existing repository is public; remote main matched
   the Week 1 base before publication. CUDA remains unavailable (verifier exit 1).
+
+- Published implementation commit `0e385766b4b95e19fd4e4bb07a68fd52bc47fdf1`;
+  GitHub main and the updated README were independently verified through the API.
+  Submit https://github.com/Scheeza-Ahmad/Parallax_Labs and disclose the CUDA blocker.
