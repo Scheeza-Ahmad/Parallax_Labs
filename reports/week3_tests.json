@@ -1,0 +1,9 @@
+{
+  "date": "2026-10-18",
+  "tests": 100,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suite_seconds": 6.501,
+  "scope": "Week 1/2 regressions plus offline Groq HTTP fixtures, retry/error handling, context packing, grounding and abstention. No live generation results implied."
+}

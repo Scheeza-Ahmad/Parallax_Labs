@@ -8,7 +8,7 @@ Source of requirements: three internship portal screenshots supplied by Scheeza:
 
 Current status (2026-10-15): existing Git repository and Python 3.11.9 venv inspected. Week 1 cleaned JSONL contains 6,954 unique, nonempty records. Required imports and pip check pass; CUDA remains unavailable. Preserve Week 1 code and data. See README and reports for executed retrieval results.
 
-Immediate objective: implement the user-supplied next-week tasks: tested text chunking, sentence-transformer embeddings, persistent ChromaDB ingestion, semantic search and retrieval latency benchmarking. The user explicitly authorized this scope on 2026-10-15 despite the unresolved Week 1 CUDA requirement. Do not implement LLM answer generation, a frontend or deployment.
+Immediate objective: implement the Week 3 screenshot supplied on 2026-10-18: LLM API integration, system prompts and context injection, robust API errors, hallucination checks, out-of-domain handling, and end-to-end latency logs. The user selected Groq. Preserve Week 1/2 code and the full vector database. Frontend and deployment remain out of scope. CUDA remains unresolved.
 
 ## Overall project: source-grounded RAG AI assistant
 
@@ -167,7 +167,7 @@ Read this file and README, inspect existing code, environment and actual cleaned
 - An interrupted initial full run retained 28,672 chunks. Resume safely skipped
   them and encoded the remaining 3,312 in 201.26142 seconds (16.456 chunks/s).
   Initial interrupted-run total encoding time was not saved; do not infer it.
-- CUDA remains blocked. LLM generation, frontend and deployment remain out of scope.
+- CUDA remains blocked. LLM generation is now authorized for Week 3; frontend and deployment remain out of scope.
 - Do not claim a new GitHub commit/push or public visibility verification without
   actually checking it. See README for final benchmark evidence and submission steps.
 
@@ -194,3 +194,43 @@ Read this file and README, inspect existing code, environment and actual cleaned
 - Published implementation commit `0e385766b4b95e19fd4e4bb07a68fd52bc47fdf1`;
   GitHub main and the updated README were independently verified through the API.
   Submit https://github.com/Scheeza-Ahmad/Parallax_Labs and disclose the CUDA blocker.
+
+
+## Week 3 requirements and implementation - 2026-10-18
+
+The supplied portal screenshot is titled "LLM Integration & Prompt Engineering"
+and displays Oct 19-Oct 25; do not infer submission status or changed deadlines.
+Required: LLM API over retrieved chunks, system prompt/context injection, handling
+rate limits/timeouts/token limits, hallucination checks, off-topic abstention,
+and measured retrieval-plus-generation latency. User selected Groq.
+
+- Added `src/llm.py`, `src/rag.py`, `scripts/rag.py`, `.env.example`,
+  `rag_queries.json`, and HTTP/grounding tests. Existing dependency lock unchanged;
+  httpx and python-dotenv were already installed and pinned.
+- Current tests: 100 passed; HTTP/LLM fixtures are offline tests, not live evidence.
+- Groq documentation checked for active model discovery, JSON mode, context limits
+  and rate limits. Default candidate is `openai/gpt-oss-20b`; each live run verifies
+  the ID and context window through authenticated /models before sending prompts.
+- Generated answers require exact quote/source-ID validation plus a separate LLM
+  relevance/entailment check. These are fallible safeguards, never a guarantee of
+  truth or zero hallucinations. No quality percentages without labelled evaluation.
+- No secrets in logs/Git/chat. Load local `.env` without printing it. Do not make
+  paid calls without authorization. User has a Groq account/key, but local key and
+  Free-plan confirmation were still pending when this implementation was prepared.
+- Do not claim Week 3 is fully verified until real authenticated generation,
+  citations, abstention and end-to-end latency have been executed and inspected.
+
+## Week 3 live verification - 2026-10-24
+
+- User confirmed configured key and Free plan. Moved credential from example to
+  ignored `.env`; restored `.env.example` to a blank key placeholder.
+- 100 tests passed in 9.03 seconds using workspace-local test temporary files;
+  pip check passed. Evidence: `reports/week3_tests_20261024.xml`.
+- Real five-query benchmark passed: two cited answers with exact quotations and
+  LLM verification, two off-topic abstentions and one live-price abstention.
+- Active model `openai/gpt-oss-20b` verified through authenticated discovery,
+  context window 131072. Actual answer end-to-end times: 2452.854 and 1891.465 ms;
+  successful-answer mean 2172.160 ms. No quality percentage claimed.
+- Evidence: `reports/week3_live_20261024.json`; README updated. Week 3 changes
+  are local; do not claim publication without committing/pushing and verification.
+- CUDA remains unresolved; frontend and deployment remain out of scope.

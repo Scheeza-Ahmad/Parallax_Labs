@@ -7,3 +7,5 @@ langdetect
 pyarrow
 pytest
 numpy
+httpx
+python-dotenv

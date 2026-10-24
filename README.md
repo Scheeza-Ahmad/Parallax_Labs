@@ -3,7 +3,8 @@
 Scheeza Ahmad's internship project. Week 1 implements environment verification,
 real document acquisition and conservative preprocessing. The retrieval week adds
 token-window chunking, sentence-transformer embeddings, persistent ChromaDB and
-latency benchmarking. Generation, NLP analysis and FastAPI remain future scope.
+latency benchmarking. Week 3 adds Groq generation with evidence checks (live
+verification pending credentials). NLP analysis and FastAPI remain future scope.
 
 **Latest verified status (2026-10-16):** the entire 6,954-document clean corpus is
 indexed as 31,984 chunks in local ChromaDB. Retrieval benchmarking on the reopened
@@ -425,3 +426,227 @@ Fresh evidence: `reports/submission_tests.xml`, `reports/submission_verification
 `reports/submission_ingestion.json`, `reports/submission_search.json`, and
 `reports/submission_benchmark.json`. The public submission repository is
 [Scheeza-Ahmad/Parallax_Labs](https://github.com/Scheeza-Ahmad/Parallax_Labs).
+
+
+## Week 3 - LLM integration and prompt engineering
+
+Screenshot scope: Oct 19-Oct 25, "LLM Integration & Prompt Engineering". The user
+requested implementation on 2026-10-18 and selected Groq. Frontend, API serving
+and deployment are not part of this screenshot. Week 1 CUDA remains unresolved.
+
+**Current status (2026-10-24): implemented, offline-tested and live-tested on the
+user-confirmed Groq Free plan.** See the live results below. The initial
+offline run had 100 tests pass in 6.53 seconds, including Week 1/2 regressions.
+`reports/week3_tests.json` and `.xml` record this run. Real retrieval from the
+31,984-chunk persistent database also passed the Week 3 dry-run. No API key was
+configured at inspection time, and no Groq generation latency or answer-quality
+result is claimed. This weekly deliverable remains partially complete until the
+live checks below pass.
+
+The initial key-related limitations in the preceding historical inspection were
+resolved on 2026-10-24; the live evidence below supersedes that pending status.
+
+### Flow and safeguards
+
+`scripts/rag.py` -> existing Week 2 retrieval -> relevance gate -> budgeted source
+context -> Groq draft -> exact evidence validation -> Groq evidence/relevance
+review -> cited answer or explicit abstention.
+
+- `src/llm.py`: authenticated Groq HTTP client. Credentials come from local `.env`
+  or environment; environment values take precedence. API keys and raw provider
+  error bodies are never printed or put in reports. Only the fixed HTTPS Groq
+  endpoint is used, redirects are disabled, and no provider/model fallback occurs.
+- `src/rag.py`: factual questions against the historical 2023-11-01 Wikipedia
+  corpus. The system prompt identifies sources and question as untrusted data,
+  requires source-only claims and exact supporting quotes, and instructs the
+  model to abstain on unsupported or off-topic requests. Source text is encoded
+  inside JSON in a separate user message; it is not inserted into the system role.
+- Each released claim must have a known S1/S2 source ID and a contiguous exact
+  quote (12-500 characters). The application attaches citations and original
+  document/chunk IDs and article URLs. Unknown citations, fabricated quotes,
+  invalid JSON/schema and incomplete/truncated responses withhold the answer.
+- A second LLM call checks every claim's support by its quote and whether the
+  claims answer the question. Every boolean must be true; uncertain, malformed or
+  failed verification withholds the draft. Raw failed drafts are not returned.
+- A quote match alone does not prove the claim is true. The same-model verifier
+  can also make mistakes; these are hallucination-resistance safeguards, not a
+  proof, zero-hallucination guarantee or independent factual audit. Wikipedia may
+  itself be wrong or outdated. Human inspection is still required.
+- Narrow English rules reject clear personal-password requests, creative writing
+  and live stock/weather/news requests. Other questions use retrieval relevance
+  and the LLM checks. The rules are intentionally not a universal intent classifier.
+- Retrieval keeps chunks with cosine distance <= 0.55. This is an explicit,
+  provisional heuristic, not a calibrated confidence score. Change with
+  `--max-distance` only after evaluation; false rejection/acceptance is possible.
+  No eligible chunks returns `insufficient_context` without generation.
+
+### Model discovery, token budgets and API failures
+
+Default candidate: `openai/gpt-oss-20b`. Groq's official model/JSON-mode docs were
+checked on 2026-10-18; do not assume an old model ID remains active. Before each
+live answer/benchmark process, authenticated `/models` must confirm the exact ID
+and its context window. Missing/deprecated/inaccessible models fail with an
+instruction to rerun `models`. No automatic paid upgrade is attempted. Groq's
+Free-plan availability and account limits must be checked in the user's console;
+model existence alone does not establish billing status.
+
+Existing pins already include httpx 0.28.1 and python-dotenv 1.2.4; these are now
+explicit in `requirements.in`. No package upgrades were needed, and `pip check`
+passes. Week 2 embedding model/configuration are unchanged.
+
+Defaults: 8,192 context-budget tokens, 1,024 completion tokens, 256-token reserve.
+Prompts use a conservative UTF-8-byte count plus 128 per message and 128 framing
+allowance, NOT the provider's exact tokenization. Whole source chunks are packed
+until the budget is full; no source slice is silently truncated. The configured
+budget is capped by the live model context window. Verification prompts undergo
+the same check. A local budget failure or provider context rejection returns an
+explicit error rather than an unsupported answer. The embedding query limit still
+applies; oversized questions must be shortened. GPT-OSS uses low reasoning effort;
+completion limits include reasoning, so an exhausted budget causes withholding.
+
+API behavior: maximum three attempts (configurable 1-5), 20-second HTTP operation
+timeout (configurable up to 60), exponential waits of 1/2 seconds by default.
+429 and 500/502/503/504 plus network timeouts/transport failures are retried.
+Numeric or HTTP-date Retry-After is honored when <=10 seconds; longer waits exit
+with a retry-later error instead of retrying too early. Authentication, permissions,
+404, malformed requests and oversized requests are not retried. No raw API error
+body is logged. Timeout retries can duplicate provider work if a response was lost;
+use a Free-plan account or explicitly approve any paid usage before live testing.
+
+### Setup and exact commands
+
+1. In Groq Console, confirm the account plan/limits and create a local API key.
+2. Copy `.env.example` to `.env` only if `.env` does not already exist, then edit
+   `.env` locally. Set `GROQ_API_KEY` to the real key. Never paste it into chat,
+   commit it or put it directly into a terminal command/history.
+3. Run these commands from the repository root. `--offline` applies only to the
+   cached embedding model; a live Groq request still needs internet access.
+
+```powershell
+# Offline tests: no API key, network or paid calls required
+.\.venv\Scripts\python.exe -m pytest -q
+
+# Actual local retrieval and prompt packing; explicitly NOT a generated answer
+.\.venv\Scripts\python.exe scripts/rag.py ask --query "What is an atom made of?" --offline --dry-run
+.\.venv\Scripts\python.exe scripts/rag.py benchmark --offline --dry-run --report data/rag_runs/preview.json
+
+# Requires configured key: check live IDs first (does not generate text)
+.\.venv\Scripts\python.exe scripts/rag.py models
+
+# Real source-grounded answer plus evidence verification
+.\.venv\Scripts\python.exe scripts/rag.py ask --query "What is an atom made of?" --offline
+
+# Two factual and three out-of-scope/unsupported queries, one pass by default
+.\.venv\Scripts\python.exe scripts/rag.py benchmark --offline --repeats 1 --report data/rag_runs/live-benchmark.json
+```
+
+Override model with `--model` or `GROQ_MODEL`. Other controls: `--top-k`,
+`--max-distance`, `--context-tokens`, `--output-tokens`, `--db`, `--collection`,
+`--queries`, `--repeats` and `--report`. `.env.example` documents environment knobs.
+Keep reports containing private questions in ignored `data/rag_runs/` (the default).
+Only reviewed, non-sensitive demonstration reports belong in Git. User questions
+and the packed Wikipedia excerpts are transmitted to Groq for generation; the
+verification request contains the question, proposed claims and evidence quotes.
+
+### Latency, tests and current evidence
+
+Each query records retrieval, generation, verification and end-to-end milliseconds.
+End-to-end includes prompt packing, validation and API retries/waits. Model discovery,
+embedding/database startup and report/console I/O are excluded and reported separately.
+No LLM warm-up requests are hidden. All statuses are retained; successful answers
+have a separate mean/median/nearest-rank p95 summary so fast refusals do not inflate
+apparent answer performance. Authentication/model discovery failures exit before
+query timing begins. First-query cache effects can affect the timings.
+
+Offline tests cover bounded retries, rate limits, timeouts, credential redaction,
+model mismatch, malformed responses, incomplete output, budgets, source metadata,
+fabricated citations/quotes, false claims despite matching quotes, relevance
+rejection, off-topic rules, dry-run labeling and failure timings. Stub LLM responses
+and MockTransport fixtures are test inputs, not evidence of actual API quality.
+
+Actual dry-run (`reports/week3_dry_run.json`):
+- Atom and Alan Turing queries retrieved real sources and packed prompts; status
+  `preview_only`, no answer and zero API attempts.
+- Personal password and poem requests: `off_topic` without retrieval/generation.
+- Current Apple stock price: `insufficient_context` because the corpus is historical.
+- Database reopened with 31,984 chunks. Live answer latency remains unmeasured.
+
+Official references: [models](https://console.groq.com/docs/models),
+[JSON output](https://console.groq.com/docs/structured-outputs),
+[API parameters](https://console.groq.com/docs/api-reference),
+[rate limits](https://console.groq.com/docs/rate-limits),
+[error codes](https://console.groq.com/docs/errors).
+
+Week 3 completion checklist:
+- [x] Implement generation, prompts/context, error handling and grounding checks.
+- [x] Run offline unit tests and actual local retrieval/prompt integration.
+- [x] Preserve Week 1/2 and document setup, caveats and latency boundaries.
+- [x] Configure local Groq key and confirm Free-plan use or authorize paid usage.
+- [x] Verify authenticated active model and run real generation/verification.
+- [x] Inspect citations/abstentions and record actual end-to-end live latency.
+- [ ] Update verified results and publish this week's changes to the same repository.
+
+### Reverification - 2026-10-24
+
+The same Week 3 deliverables were reconfirmed from the supplied screenshot.
+All **100 tests passed in 9.03 seconds**, with 14 Chroma deprecation warnings;
+`pip check` also passed. The first run hit a Windows sandbox temporary-directory
+rename permission error (99 passed, one failed). Rerunning with a workspace-local,
+Git-ignored temporary directory passed without changing preprocessing code:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest -q --basetemp=data/test_tmp_20261024 --junitxml=reports/week3_tests_20261024.xml
+.\.venv\Scripts\python.exe scripts/rag.py benchmark --offline --dry-run --report reports/week3_dry_run_20261024.json
+```
+
+The real database reopened with 31,984 chunks. Atom and Alan Turing queries
+returned `preview_only`; password and poem queries returned `off_topic`; the
+live Apple stock-price query returned `insufficient_context`. All five recorded
+zero API attempts. This validates retrieval/prompt integration and local scope
+rules, not live generation or LLM latency. No local Groq key was configured.
+Authenticated generation, citation inspection and live end-to-end measurements
+remain pending; do not submit this as fully verified Week 3 work yet.
+
+If Groq key creation reports "We couldn't verify this request", complete its
+browser verification in an updated browser, temporarily disable interfering
+ad/privacy extensions or VPN, and retry with another browser or network.
+If it persists, use the console's Contact support option. See
+[Cloudflare verification troubleshooting](https://developers.cloudflare.com/turnstile/troubleshooting/client-side-errors/).
+Keep the resulting key only in local `.env`; confirm the account plan before
+live tests. No paid API usage has been authorized.
+
+### Live verification - 2026-10-24
+
+After the preceding dry-run, the user configured a key and confirmed Free-plan
+use. Credentials were moved from `.env.example` into Git-ignored `.env`, and the
+example was restored to an empty placeholder. Authenticated Groq model discovery
+verified `openai/gpt-oss-20b`, context window 131,072. An initial connection failure
+was followed by successful authenticated discovery and this benchmark:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/rag.py benchmark --offline --repeats 1 --report reports/week3_live_20261024.json
+```
+
+| Query | Actual outcome | End-to-end |
+| --- | --- | ---: |
+| What is an atom made of? | Answered, exact quote and verifier approved, citation S2 | 2,452.854 ms |
+| How did Alan Turing contribute to computing? | Answered, three supported claims, citations S1/S2 | 1,891.465 ms |
+| Personal email password | off_topic; no API attempts | 0.029 ms |
+| Romantic poem | off_topic; no API attempts | 0.009 ms |
+| Apple stock price right now | insufficient_context; no API attempts | 0.299 ms |
+
+The two successful answers averaged **2,172.160 ms** including retrieval,
+generation and separate evidence verification; each used two completion requests.
+The atom answer was: "An atom is made of protons, neutrons, and electrons. [S2]".
+Manual inspection matched its quotation to the returned Atom source. The Turing
+answer quoted the 1936 theoretical machine, Turing test and wartime Enigma work;
+the claims' quotations and stored source IDs were inspected. All four claims
+across the two answers passed exact-quote validation and LLM verification.
+
+Evidence: `reports/week3_live_20261024.json`, containing full source text,
+source URLs, supporting quotes and phase timings. This small demonstration is
+not a labelled quality evaluation or a zero-hallucination guarantee. Error paths
+are verified with offline HTTP fixtures, not deliberately induced live failures.
+Week 3 implementation and live checks are complete; publication of these local
+changes to the existing repository remains pending. The earlier CUDA blocker
+remains unresolved.

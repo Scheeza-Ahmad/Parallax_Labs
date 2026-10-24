@@ -1,0 +1,215 @@
+{
+  "recorded_at_utc": "2026-10-24T16:13:51.560005+00:00",
+  "mode": "dry_run",
+  "model": "openai/gpt-oss-20b",
+  "live_model_metadata": null,
+  "model_discovery_seconds": 8.00006091594696e-07,
+  "embedding_and_database_startup_seconds": 53.70753540005535,
+  "encoder": {
+    "model": "sentence-transformers/all-MiniLM-L6-v2",
+    "revision": "1110a243fdf4706b3f48f1d95db1a4f5529b4d41",
+    "dimension": 384,
+    "normalized": true,
+    "max_seq_length": 256,
+    "device": "cpu",
+    "batch_size": 32,
+    "threads": 4,
+    "model_load_seconds": 1.4817509000422433
+  },
+  "collection": "wikipedia_minilm_v1",
+  "stored_chunks": 31984,
+  "query_count": 5,
+  "repeats": 1,
+  "measurement": "No generation warm-up. End-to-end includes retrieval, prompt packing, generation, verification and retry waits; excludes model discovery/startup and report/console I/O. All outcomes retained; successful answers summarized separately. Dry-run is not generation evidence.",
+  "summary_all_ms": {
+    "mean": 197.62426000088453,
+    "median": 0.5490999901667237,
+    "p95": 923.8414999563247
+  },
+  "summary_answered_ms": null,
+  "results": [
+    {
+      "question": "What is an atom made of?",
+      "status": "preview_only",
+      "answer": null,
+      "sources": [
+        {
+          "source_id": "S1",
+          "text": "middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of protons belong to the same chemical element. Examples of elements are carbon and gold. Atoms with the same number of protons, but different numbers of neutrons, are called isotopes. Usually an atom has the same number of electrons as protons. If an atom has more or less electrons than protons, it is called an ion, and has an electric charge.\n\nAtoms can join by chemical bonds. Many things are made of more than one kind of atom. These are chemical compounds or mixtures. A group of atoms connected by chemical bonds is called a molecule. For example, a water molecule is made of two hydrogen atoms and one oxygen atom. The forming or breaking of bonds is a chemical reaction.\n\nAtoms split if the forces inside are too weak to hold them together. This is what causes radioactivity. Atoms can also join to make larger atoms at very high temperatures, such as inside a star. These changes are studied in ",
+          "chunk_id": "dc73bf5e455e8c4e1acce9f83424a51f922430023e8c272ee3adb711278251df",
+          "doc_id": "47",
+          "title": "Atom",
+          "source_url": "https://simple.wikipedia.org/wiki/Atom"
+        },
+        {
+          "source_id": "S2",
+          "text": "An atom is the basic unit of matter. All normal matter – everything that has mass – is made of atoms. This includes solids, liquids, and gases. The atom cannot be broken to parts by chemistry, so people once thought it was the smallest and simplest particle of matter. There are over 100 different kinds of atoms, called chemical elements. Each kind has the same basic structure, but a different number of parts.\n\nAtoms are very small, but their exact size depends on the type. Atoms are from 0.1 to 0.5 nanometers across. One nanometer is about 100,000 times smaller than the width of a human hair. This makes one atom impossible to see without special tools. Scientists learn how they work by doing experiments.\n\nAtoms are made of three kinds of subatomic particles. These are protons, neutrons, and electrons. Protons and neutrons have much more mass. They are in the middle of the atom, the nucleus. Lightweight electrons move quickly around them. The electromagnetic force holds the nucleus and electrons together.\n\nAtoms with the same number of proton",
+          "chunk_id": "906ccc3e37bad36a4aead966b33e1e46ecaa1071752cd70cff8c26010edc28f1",
+          "doc_id": "47",
+          "title": "Atom",
+          "source_url": "https://simple.wikipedia.org/wiki/Atom"
+        },
+        {
+          "source_id": "S3",
+          "text": "A proton is part of an atom. They are found in the nucleus of an atom along with neutrons. The periodic table groups atoms according to how many protons they have. A single atom of hydrogen (the lightest kind of atom) is made up of an electron moving around a proton. Most of the mass of this atom is in the proton, which is almost 2000 times heavier than the electron. Protons and neutrons make up the nucleus of every other kind of atom. In any one element, the number of protons is always the same. An atom's atomic number is equal to the number of protons in that atom.\n\nProtons are made of quarks. A proton is believed to be made up of 3 quarks, two up quarks and one down quark. One down quark has a charge of -1/3, and two up quarks have a charge of +2/3 each. This adds to a charge of +1. A proton has a very small mass. The mass of the proton is about one atomic ",
+          "chunk_id": "60f10301cb6e23b69813880b0820fa1b654619f6fb43e40e4dea6572ceabac93",
+          "doc_id": "9526",
+          "title": "Proton",
+          "source_url": "https://simple.wikipedia.org/wiki/Proton"
+        },
+        {
+          "source_id": "S4",
+          "text": "This is what causes radioactivity. Atoms can also join to make larger atoms at very high temperatures, such as inside a star. These changes are studied in nuclear physics. Most atoms on Earth are not radioactive. They are rarely made, destroyed, or changed into another kind of atom.\n\nHistory\nThe word \"atom\" comes from the Greek (ἀτόμος) \"atomos\", which means indivisible or uncuttable. One of the first people to use the word \"atom\" is the Greek philosopher Democritus, around 400 BC. He thought that everything was made of particles called atoms, which could not be divided into smaller pieces. Some Hindu, Jain, and Buddhist philosophers also had ideas like this. Atomic theory was a mostly philosophical subject, with not much scientific investigation or study, until the early 1800s.\n\nIn 1777 French chemist Antoine Lavoisier defined the term element as we now use it. He said that an element was any substance that could not be broken down into other substances by the methods of chemistry. Any substance which could be broken down ",
+          "chunk_id": "8aed412f2d8e596acf3c5318292ee74b28fda80f7b0baf38ec2e8a1bce0737db",
+          "doc_id": "47",
+          "title": "Atom",
+          "source_url": "https://simple.wikipedia.org/wiki/Atom"
+        }
+      ],
+      "mode": "dry_run",
+      "max_cosine_distance": 0.55,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "retrieved_chunks": 5,
+      "eligible_chunks": 5,
+      "prompt_token_upper_estimate": 6439,
+      "reason": "Real retrieval and prompt packing only; no LLM call or answer.",
+      "timing": {
+        "retrieval_ms": 922.86689998582,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 923.8414999563247
+      },
+      "api_attempts": 0,
+      "repeat": 1
+    },
+    {
+      "question": "How did Alan Turing contribute to computing?",
+      "status": "preview_only",
+      "answer": null,
+      "sources": [
+        {
+          "source_id": "S1",
+          "text": ", almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died before the law came into force, making it possible for living convicted gay men to seek pardons for offences now no longer on the statute book.\n\nTuring died in 1954, after being subjected by a British court to chemical castration. He is known to have ended his life at the age of 41 years, by eating an apple laced with cyanide.\n\nCareer\nTuring was one of the people who worked on the first computers. He created the theoretical Turing machine in 1936. The machine was imaginary, but it included the idea of a computer program.\n\nTuring was interested in artificial intelligence. He proposed the Turing test, to say when a machine could be called \"intelligent\". A computer could be said to \"think\" if a human talking with it could not tell it was a machine.\n\nDuring World War II, Turing worked with others to break German ciphers (secret messages). He worked for the Government Code and Cypher School (G",
+          "chunk_id": "4b04d33929d11bb9876a332c05e642d82aa7d1977ae02d442d24ee8a9e3764be",
+          "doc_id": "13",
+          "title": "Alan Turing",
+          "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing"
+        },
+        {
+          "source_id": "S2",
+          "text": ", North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at Alexandra School and College. On October 1st 1907 she married Julius Mathison Turing, who was Reverend John Robert Turing and Fanny Boyd, in Dublin. Alan Turing was born on June 23rd 1912. He would go on to be regarded as one of the greatest figures of the twentieth century.\n\nAlan was a brilliant mathematician and cryptographer. He became the founder of modern-day computer science and artificial intelligence. He designed a machine at Bletchley Park to break secret Enigma encrypted messages used by the Nazi German war machine to protect sensitive commercial, diplomatic and military communications during World War 2. This made the single biggest contribution to the Allied victory in the war against Nazi Germany. It possibly saved the lives of an estimated 2 million people, and shortened World War II.\n\nIn 2013, almost 60 years later, Turing received a posthumous Royal Pardon from Queen Elizabeth II. Today, the “Turing law” grants an automatic pardon to men who died ",
+          "chunk_id": "b8e5daf9b24bf554cbec4c59e2fc8b81f8a350270c1000a42b6e28e5bab7f853",
+          "doc_id": "13",
+          "title": "Alan Turing",
+          "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing"
+        },
+        {
+          "source_id": "S3",
+          "text": "machine code) that the computer will understand and do what is needed.\n\nHistory of computers\n\nFirst computer\nIn 1837, Charles Babbage proposed the first general mechanical computer, the Analytical Engine. The Analytical Engine contained an Arithmetic Logic Unit, basic flow control, punched cards, and integrated memory. It is the first general-purpose computer concept that could be used for many things and not only one particular computation. However, this computer was never built while Charles Babbage was alive, because he didn't have enough money. In 1910, Henry Babbage, Charles Babbage's youngest son, was able to complete a portion of this machine and perform basic calculations.\nBefore the computer era there were machines that could do the same thing over and over again, like a music box. But some people wanted to be able to tell their machine to do different things. For example, they wanted to tell the music box to play different music every time. This part of computer history is called the \"history of programmable machines\" which in simple words means \"the history of machines that I can order ",
+          "chunk_id": "cb2f5780ef23cce723674bfc526625d8834b7567dcf3a7b8ac7b38aaa830cdc5",
+          "doc_id": "112",
+          "title": "Computer",
+          "source_url": "https://simple.wikipedia.org/wiki/Computer"
+        },
+        {
+          "source_id": "S4",
+          "text": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist. He was born in Maida Vale, London.\n\nEarly life and family\nAlan Mathison Turing was born in Maida Vale, [London] on 23 June 1912. His father was part of a family of merchants from Scotland. His mother, Ethel Sara, was the daughter of an engineer.\n\nEducation\nTuring went to St. Michael's, a school at 20 Charles Road, St Leonards-on-sea, when he was five years old.\n\"This is only a foretaste of what is to come, and only the shadow of what is going to be.” – Alan Turing.\n\nThe Stoney family were once prominent landlords in North Tipperary. His mother Ethel Sara Stoney (1881–1976) was daughter of Edward Waller Stoney (Borrisokane, North Tipperary) and Sarah Crawford (Cartron Abbey, Co. Longford), who were Protestant Anglo-Irish gentry. She was educated in Dublin at ",
+          "chunk_id": "9fddd431b3bc3b9b72e0540495d82400b05718c6a58a092dc1c557da51ed298e",
+          "doc_id": "13",
+          "title": "Alan Turing",
+          "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing"
+        }
+      ],
+      "mode": "dry_run",
+      "max_cosine_distance": 0.55,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "retrieved_chunks": 5,
+      "eligible_chunks": 5,
+      "prompt_token_upper_estimate": 6672,
+      "reason": "Real retrieval and prompt packing only; no LLM call or answer.",
+      "timing": {
+        "retrieval_ms": 62.79029999859631,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 63.66460002027452
+      },
+      "api_attempts": 0,
+      "repeat": 1
+    },
+    {
+      "question": "What is the password for my personal email account?",
+      "status": "off_topic",
+      "answer": null,
+      "sources": [],
+      "mode": "dry_run",
+      "max_cosine_distance": 0.55,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "reason": "The corpus cannot access personal accounts or credentials.",
+      "retrieved_chunks": 0,
+      "eligible_chunks": 0,
+      "timing": {
+        "retrieval_ms": 0.0,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 0.05040003452450037
+      },
+      "api_attempts": 0,
+      "repeat": 1
+    },
+    {
+      "question": "Write a romantic poem about my pet unicorn.",
+      "status": "off_topic",
+      "answer": null,
+      "sources": [],
+      "mode": "dry_run",
+      "max_cosine_distance": 0.55,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "reason": "Creative or programming tasks are outside factual corpus Q&A.",
+      "retrieved_chunks": 0,
+      "eligible_chunks": 0,
+      "timing": {
+        "retrieval_ms": 0.0,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 0.015700003132224083
+      },
+      "api_attempts": 0,
+      "repeat": 1
+    },
+    {
+      "question": "What is the exact stock price of Apple right now?",
+      "status": "insufficient_context",
+      "answer": null,
+      "sources": [],
+      "mode": "dry_run",
+      "max_cosine_distance": 0.55,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "reason": "A 2023 historical corpus cannot verify live information.",
+      "retrieved_chunks": 0,
+      "eligible_chunks": 0,
+      "timing": {
+        "retrieval_ms": 0.0,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 0.5490999901667237
+      },
+      "api_attempts": 0,
+      "repeat": 1
+    }
+  ]
+}
