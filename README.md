@@ -584,7 +584,7 @@ Week 3 completion checklist:
 - [x] Configure local Groq key and confirm Free-plan use or authorize paid usage.
 - [x] Verify authenticated active model and run real generation/verification.
 - [x] Inspect citations/abstentions and record actual end-to-end live latency.
-- [ ] Update verified results and publish this week's changes to the same repository.
+- [x] Update verified results and publish this week's changes to the same repository.
 
 ### Reverification - 2026-10-24
 
@@ -647,6 +647,7 @@ Evidence: `reports/week3_live_20261024.json`, containing full source text,
 source URLs, supporting quotes and phase timings. This small demonstration is
 not a labelled quality evaluation or a zero-hallucination guarantee. Error paths
 are verified with offline HTTP fixtures, not deliberately induced live failures.
-Week 3 implementation and live checks are complete; publication of these local
-changes to the existing repository remains pending. The earlier CUDA blocker
-remains unresolved.
+Week 3 implementation and live checks are complete. Implementation commit
+`a6903d9` was pushed to the existing repository on 2026-10-24. Submit
+[Scheeza-Ahmad/Parallax_Labs](https://github.com/Scheeza-Ahmad/Parallax_Labs).
+The earlier CUDA blocker remains unresolved.

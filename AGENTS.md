@@ -231,6 +231,6 @@ and measured retrieval-plus-generation latency. User selected Groq.
 - Active model `openai/gpt-oss-20b` verified through authenticated discovery,
   context window 131072. Actual answer end-to-end times: 2452.854 and 1891.465 ms;
   successful-answer mean 2172.160 ms. No quality percentage claimed.
-- Evidence: `reports/week3_live_20261024.json`; README updated. Week 3 changes
-  are local; do not claim publication without committing/pushing and verification.
+- Evidence: `reports/week3_live_20261024.json`; README updated. Week 3 implementation
+  commit `a6903d9` was pushed to origin/main on 2026-10-24.
 - CUDA remains unresolved; frontend and deployment remain out of scope.
