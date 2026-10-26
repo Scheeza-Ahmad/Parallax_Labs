@@ -1,5 +1,18 @@
 # Parallax Labs Internship — Codex Project Instructions
 
+## Active Week 4 scope - 2026-10-24
+
+User supplied Week 4 (Oct 26-Nov 1) screenshot and explicitly requested local work
+only: DO NOT PUSH to GitHub until the user asks. Required: topic modeling, sentiment
+or NER with a small manually labelled evaluation, manual topic validation, edge
+cases, vector metadata filters and documented effectiveness. Implement LDA plus
+spaCy NER; sentiment is not required when choosing the screenshot's NER alternative.
+Keep the Week 2/3 collection intact and enrich a separate collection by copying
+vectors. Draft annotation provenance must stay explicit: user agreed to review
+labels but has not yet confirmed corrections/completion. Never call Codex-created
+labels human-reviewed or claim the human review requirement passed prematurely.
+Frontend, FastAPI and deployment remain out of scope; CUDA remains unresolved.
+
 ## Purpose and current status
 
 This is Scheeza Ahmad's Parallax Labs internship project. Scheeza and Codex will build it together, step by step. Use this file as project context and working instructions when it is placed in the repository root.

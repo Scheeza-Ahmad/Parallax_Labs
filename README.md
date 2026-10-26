@@ -3,14 +3,27 @@
 Scheeza Ahmad's internship project. Week 1 implements environment verification,
 real document acquisition and conservative preprocessing. The retrieval week adds
 token-window chunking, sentence-transformer embeddings, persistent ChromaDB and
-latency benchmarking. Week 3 adds Groq generation with evidence checks (live
-verification pending credentials). NLP analysis and FastAPI remain future scope.
+latency benchmarking. Week 3 adds live-verified Groq generation with evidence
+checks. Week 4 adds LDA topics, named entities and filtered retrieval locally;
+human annotation review is pending. FastAPI remains future scope.
 
-**Latest verified status (2026-10-16):** the entire 6,954-document clean corpus is
+**Retrieval baseline (2026-10-16):** the entire 6,954-document clean corpus is
 indexed as 31,984 chunks in local ChromaDB. Retrieval benchmarking on the reopened
 full database completed: 24 searches, mean 37.45 ms, median 30.99 ms, p95 79.27 ms.
 51 tests pass. The earlier mandatory CUDA requirement remains unresolved.
 See the retrieval-week sections below for commands, evidence and timing limitations.
+
+Latest Week 3/4 results and limitations are documented in their dated sections
+below. Week 4 changes must not be pushed until the user requests publication.
+
+Windows persistence note: the rebuilt `wikipedia_nlp_v2` collection reopened in a
+fresh process with 31,984 chunks. Chroma's current Rust binding then produced a
+native access violation during a large filtered semantic query, while the source
+collection and all small fixture tests remained usable. The failure is in the
+local Chroma/native index path, not caught as a Python exception. The collection
+is retained for diagnosis; Week 4 must not claim a successful full-size filtered
+semantic query until this environment issue is resolved. No collection was
+deleted and no GitHub push was made.
 
 ## Week 1 progress — 2026-10-11
 
@@ -651,3 +664,131 @@ Week 3 implementation and live checks are complete. Implementation commit
 `a6903d9` was pushed to the existing repository on 2026-10-24. Submit
 [Scheeza-Ahmad/Parallax_Labs](https://github.com/Scheeza-Ahmad/Parallax_Labs).
 The earlier CUDA blocker remains unresolved.
+
+
+## Week 4 - NLP analysis and filtered retrieval (local only)
+
+The supplied screenshot specifies Oct 26-Nov 1: topic discovery with BERTopic or
+LDA, sentiment analysis **or NER**, small manually labelled evaluation, manual
+topic review, edge-case handling and vector metadata filtering. This implementation
+chooses **LDA and NER**. Named entities are useful for encyclopedic text; sentiment
+is not implemented or implied. User explicitly requested no GitHub push.
+
+### Approach and reproducibility
+
+- `src/nlp.py`: CountVectorizer + scikit-learn LDA, 10 topics, seed 42, batch
+  learning, 10 iterations, one worker, English stop words, minimum document
+  frequency 2, maximum document frequency .95, vocabulary capped at 15,000.
+  Topic IDs are run-specific, not permanent semantic categories. Top terms aid
+  interpretation; topic weight is mixture mass, not classification confidence.
+- Documents with fewer than 20 whitespace/word tokens or no retained vocabulary
+  receive topic -1 and an explicit short/out-of-vocabulary status. Technical jargon
+  is retained when it occurs in at least two documents; rare technical words may
+  be discarded. Mixed-topic documents retain only their dominant topic for filtering.
+- spaCy `en_core_web_sm` 3.8.0 extracts PERSON, ORG, GPE, LOC and DATE entities.
+  Other entity types are intentionally excluded. Every document is processed;
+  long text uses consecutive 50,000-character windows, retaining global offsets.
+  An entity crossing a window boundary may be missed/split. Names and dates may
+  be mistaken or omitted; metadata must not be treated as factual ground truth.
+- Models and full metadata are saved to ignored `data/nlp/`; only load joblib
+  artifacts produced by trusted local code. Dependency pins include the official
+  spaCy model wheel, existing scikit-learn and joblib versions. No LLM calls or
+  additional paid services are used for this analysis.
+- `scripts/nlp.py enrich` copies the existing embeddings, IDs, source metadata and
+  text into a separate `wikipedia_nlp_v2` collection. It adds document-level
+  `topic_id`, `topic_weight`, `topic_status`, `entity_count` and boolean
+  `has_person/org/gpe/loc/date` fields. No re-embedding is performed. A chunk can
+  inherit a document entity/topic even when that entity is not in the chunk.
+- Source corpus digest and NLP-artifact signature prevent incompatible reuse.
+  Each copied batch is read back, checking metadata, text and vectors. Interrupted
+  runs can resume with the same artifact; changed artifacts require a new collection.
+  The source collection is never updated. Use one writer at a time.
+- Filters are applied by Chroma before similarity ranking, using topic equality,
+  entity presence, minimum topic weight and AND combinations. Zero matches return
+  an empty result; there is no silent fallback to unfiltered retrieval.
+
+### Commands
+
+Run from the repository root after installing `requirements.txt`:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/nlp.py analyze --report reports/week4_topics.json
+.\.venv\Scripts\python.exe scripts/nlp.py enrich --report reports/week4_enrichment.json
+.\.venv\Scripts\python.exe scripts/nlp.py evaluate --report reports/week4_ner_evaluation.json
+.\.venv\Scripts\python.exe scripts/nlp.py search --query "How did Alan Turing contribute to computing?" --entity PERSON --report reports/week4_filtered_search.json
+# Choose a topic ID after inspecting reports/week4_topics.json
+.\.venv\Scripts\python.exe scripts/nlp.py search --query "astronomy" --topic 0 --min-weight 0.4 --report data/nlp/topic_search.json
+# Week 3 integration: dry-run, no API call
+.\.venv\Scripts\python.exe scripts/rag.py ask --collection wikipedia_nlp_v2 --entity PERSON --query "Who was Alan Turing?" --offline --dry-run
+# Remove --dry-run to generate using the configured Groq account
+.\.venv\Scripts\python.exe -m pytest -q --basetemp=data/week4_tests --junitxml=reports/week4_tests.xml
+```
+
+Both search and RAG support topic/entity filtering (RAG uses
+`--min-topic-weight`, NLP search uses `--min-weight`). Filters belong to the enriched
+collection. Original Week 2/3 commands continue using `wikipedia_minilm_v1`.
+
+### Evaluation and human review
+
+`evaluation/ner_labels.json` contains 12 real corpus excerpts and independently
+assigned **Codex draft annotations made before NER predictions**.
+`evaluation/NER_REVIEW.md` is the readable review sheet. The user has agreed to
+review; no completed human review is claimed. Corrections must update text spans
+and offsets consistently before rerunning evaluate. The report preserves annotation
+provenance; human-reviewed accuracy remains pending until that review is recorded.
+
+The evaluation uses exact span + entity type precision/recall/F1, and exact
+whole-example match accuracy. It includes no-entity scientific passages and
+ambiguous dates/geographical names. It is a purposive convenience sample, not an
+independent random holdout; it contains no gold ORG examples, so organizational
+entity accuracy is not established. Do not generalize its metrics to the corpus.
+
+Initial draft-label result: 24 true positives, 12 false positives, 12 false negatives;
+precision/recall/F1 each 66.7%, exact-example accuracy 5/12 (41.7%). Boundary and
+label disagreements matter: model predictions must not be copied into gold labels
+to improve the score. Keep annotation decisions independent of model outputs.
+
+Official references: [LDA](https://scikit-learn.org/stable/modules/generated/sklearn.decomposition.LatentDirichletAllocation.html),
+[spaCy English model](https://spacy.io/models/en),
+[Chroma metadata filtering](https://docs.trychroma.com/docs/querying-collections/metadata-filtering).
+
+Observed draft-set errors include `OBE FRS`, `BC` and `the American Civil War`
+predicted as ORG; missing Wilmslow; Oceania predicted as GPE instead of LOC;
+and date/leading-article boundary mismatches. These examples explain why metadata
+filters can create false positives and exclude otherwise relevant results.
+
+
+### Full-corpus evidence - 2026-10-25
+
+Analyzed all **6,954 documents**, retaining 6,877 topic assignments and 77 short
+unassigned documents (topic -1). Extracted **543,794 mentions** across the five
+NER categories. Every stored entity span was checked against its exact source
+substring; this is an offset/integrity check, not a semantic accuracy measurement.
+The reported elapsed wall time spans a long desktop session and is not a controlled
+uninterrupted runtime benchmark; no throughput claim is made.
+
+| Topic ID | Proposed interpretation | Documents | Qualitative assessment |
+| --- | --- | ---: | --- |
+| 0 | Biology / natural materials | 807 | broad but interpretable |
+| 1 | Religion plus physical concepts | 618 | mixed |
+| 2 | People / health / colors | 614 | weak |
+| 3 | Calendar events and biographical lists | 940 | structural artifact |
+| 4 | Numbers / computing / games | 509 | broad but interpretable |
+| 5 | Entertainment and competitive teams | 588 | mixed |
+| 6 | Geography | 1270 | interpretable |
+| 7 | American people / culture | 478 | broad |
+| 8 | Politics / government / war | 545 | interpretable |
+| 9 | Music and language | 508 | mixed |
+
+Codex inspected 30 representative source excerpts (the top three mixture weights
+per topic), not a human-labelled or random topic-quality evaluation. In particular,
+topic 1 mixes religion and relativity, topic 2 is weak, topic 3 reflects calendar
+list structure, and topic 5 mixes entertainment and sports. Very high mixture
+weights do not imply coherent or correct topics. Treat these as exploratory
+filtering facets; restrictive filters can reduce recall. No topic accuracy or
+retrieval precision percentage is asserted. Human review remains pending.
+
+Evidence: `reports/week4_topics.json`, `reports/week4_topic_review.json`,
+`reports/week4_ner_evaluation.json`, `evaluation/NER_REVIEW.md`, and
+`evaluation/TOPIC_REVIEW.md`. Full document metadata and trained LDA artifacts
+remain in ignored `data/nlp/`.

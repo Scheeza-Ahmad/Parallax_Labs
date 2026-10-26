@@ -1,0 +1,319 @@
+{
+  "annotation_provenance": {
+    "author": "Codex draft, independently assigned before running NER predictions",
+    "human_reviewed": false,
+    "scope": "PERSON ORG GPE LOC DATE; exact spans including leading the in official geographic names; other entity types ignored",
+    "selection": "12 purposively chosen corpus opening excerpts, including scientific text without named entities; not a random held-out accuracy estimate"
+  },
+  "examples": [
+    {
+      "doc_id": "13",
+      "title": "Alan Turing",
+      "source_url": "https://simple.wikipedia.org/wiki/Alan%20Turing",
+      "text": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 20,
+          "label": "PERSON",
+          "text": "Alan Mathison Turing"
+        },
+        {
+          "start": 30,
+          "end": 36,
+          "label": "GPE",
+          "text": "London"
+        },
+        {
+          "start": 38,
+          "end": 50,
+          "label": "DATE",
+          "text": "23 June 1912"
+        },
+        {
+          "start": 53,
+          "end": 61,
+          "label": "GPE",
+          "text": "Wilmslow"
+        },
+        {
+          "start": 63,
+          "end": 71,
+          "label": "GPE",
+          "text": "Cheshire"
+        },
+        {
+          "start": 73,
+          "end": 84,
+          "label": "DATE",
+          "text": "7 June 1954"
+        }
+      ]
+    },
+    {
+      "doc_id": "2138",
+      "title": "Albert Einstein",
+      "source_url": "https://simple.wikipedia.org/wiki/Albert%20Einstein",
+      "text": "Albert Einstein (14 March 1879 – 18 April 1955) was a German-born American scientist.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 15,
+          "label": "PERSON",
+          "text": "Albert Einstein"
+        },
+        {
+          "start": 17,
+          "end": 30,
+          "label": "DATE",
+          "text": "14 March 1879"
+        },
+        {
+          "start": 33,
+          "end": 46,
+          "label": "DATE",
+          "text": "18 April 1955"
+        }
+      ]
+    },
+    {
+      "doc_id": "52",
+      "title": "Afghanistan",
+      "source_url": "https://simple.wikipedia.org/wiki/Afghanistan",
+      "text": "Afghanistan, officially the Islamic Emirate of Afghanistan (Pashto/Dari: ), is a country in Central Asia.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 11,
+          "label": "GPE",
+          "text": "Afghanistan"
+        },
+        {
+          "start": 24,
+          "end": 58,
+          "label": "GPE",
+          "text": "the Islamic Emirate of Afghanistan"
+        },
+        {
+          "start": 92,
+          "end": 104,
+          "label": "LOC",
+          "text": "Central Asia"
+        }
+      ]
+    },
+    {
+      "doc_id": "47",
+      "title": "Atom",
+      "source_url": "https://simple.wikipedia.org/wiki/Atom",
+      "text": "An atom is the basic unit of matter.",
+      "entities": []
+    },
+    {
+      "doc_id": "2",
+      "title": "August",
+      "source_url": "https://simple.wikipedia.org/wiki/August",
+      "text": "August (Aug.) is the eighth month of the year in the Gregorian calendar, coming between July and September.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 6,
+          "label": "DATE",
+          "text": "August"
+        },
+        {
+          "start": 8,
+          "end": 12,
+          "label": "DATE",
+          "text": "Aug."
+        },
+        {
+          "start": 88,
+          "end": 92,
+          "label": "DATE",
+          "text": "July"
+        },
+        {
+          "start": 97,
+          "end": 106,
+          "label": "DATE",
+          "text": "September"
+        }
+      ]
+    },
+    {
+      "doc_id": "48",
+      "title": "Astronomy",
+      "source_url": "https://simple.wikipedia.org/wiki/Astronomy",
+      "text": "Astronomy is the scientific study of celestial bodies.",
+      "entities": []
+    },
+    {
+      "doc_id": "11417",
+      "title": "Amsterdam",
+      "source_url": "https://simple.wikipedia.org/wiki/Amsterdam",
+      "text": "Amsterdam is the capital and largest city in the European country of the Netherlands.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "GPE",
+          "text": "Amsterdam"
+        },
+        {
+          "start": 69,
+          "end": 84,
+          "label": "GPE",
+          "text": "the Netherlands"
+        }
+      ]
+    },
+    {
+      "doc_id": "4494",
+      "title": "Aristotle",
+      "source_url": "https://simple.wikipedia.org/wiki/Aristotle",
+      "text": "Aristotle (Stagira, Macedonia, 384 BC – Chalicis, Euboea, Greece, 7 March 322 BC) was a Greek philosopher.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "PERSON",
+          "text": "Aristotle"
+        },
+        {
+          "start": 11,
+          "end": 18,
+          "label": "GPE",
+          "text": "Stagira"
+        },
+        {
+          "start": 20,
+          "end": 29,
+          "label": "GPE",
+          "text": "Macedonia"
+        },
+        {
+          "start": 31,
+          "end": 37,
+          "label": "DATE",
+          "text": "384 BC"
+        },
+        {
+          "start": 40,
+          "end": 48,
+          "label": "GPE",
+          "text": "Chalicis"
+        },
+        {
+          "start": 50,
+          "end": 56,
+          "label": "LOC",
+          "text": "Euboea"
+        },
+        {
+          "start": 58,
+          "end": 64,
+          "label": "GPE",
+          "text": "Greece"
+        },
+        {
+          "start": 66,
+          "end": 80,
+          "label": "DATE",
+          "text": "7 March 322 BC"
+        }
+      ]
+    },
+    {
+      "doc_id": "27",
+      "title": "Australia",
+      "source_url": "https://simple.wikipedia.org/wiki/Australia",
+      "text": "Australia (officially called the Commonwealth of Australia) is a country and sovereign state in the southern hemisphere, located in Oceania.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "GPE",
+          "text": "Australia"
+        },
+        {
+          "start": 29,
+          "end": 58,
+          "label": "GPE",
+          "text": "the Commonwealth of Australia"
+        },
+        {
+          "start": 132,
+          "end": 139,
+          "label": "LOC",
+          "text": "Oceania"
+        }
+      ]
+    },
+    {
+      "doc_id": "1942",
+      "title": "Africa",
+      "source_url": "https://simple.wikipedia.org/wiki/Africa",
+      "text": "Africa is the second largest continent in the world.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 6,
+          "label": "LOC",
+          "text": "Africa"
+        }
+      ]
+    },
+    {
+      "doc_id": "5414",
+      "title": "Abraham Lincoln",
+      "source_url": "https://simple.wikipedia.org/wiki/Abraham%20Lincoln",
+      "text": "Abraham Lincoln (February 12, 1809 – April 15, 1865) was an American politician who was the 16th president of the United States from 1861 until his assassination in 1865, during the American Civil War.",
+      "entities": [
+        {
+          "start": 0,
+          "end": 15,
+          "label": "PERSON",
+          "text": "Abraham Lincoln"
+        },
+        {
+          "start": 17,
+          "end": 34,
+          "label": "DATE",
+          "text": "February 12, 1809"
+        },
+        {
+          "start": 37,
+          "end": 51,
+          "label": "DATE",
+          "text": "April 15, 1865"
+        },
+        {
+          "start": 110,
+          "end": 127,
+          "label": "GPE",
+          "text": "the United States"
+        },
+        {
+          "start": 133,
+          "end": 137,
+          "label": "DATE",
+          "text": "1861"
+        },
+        {
+          "start": 165,
+          "end": 169,
+          "label": "DATE",
+          "text": "1865"
+        }
+      ]
+    },
+    {
+      "doc_id": "30",
+      "title": "Aquaculture",
+      "source_url": "https://simple.wikipedia.org/wiki/Aquaculture",
+      "text": "Aquaculture is the farming of fish, shrimp, abalones, algae, and other seafood.",
+      "entities": []
+    }
+  ]
+}

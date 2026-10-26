@@ -70,7 +70,7 @@ def missing_chunks(collection, chunks):
     return [c for c in chunks if c.id not in found]
 
 
-def search(collection, encoder, query, top_k=5):
+def search(collection, encoder, query, top_k=5, where=None):
     if not isinstance(query, str) or not query.strip():
         raise ValueError('Query must not be blank')
     if type(top_k) is not int or top_k < 1:
@@ -86,7 +86,7 @@ def search(collection, encoder, query, top_k=5):
     started = perf_counter()
     vector = encoder.encode([query])
     embedded = perf_counter()
-    result = collection.query(query_embeddings=vector, n_results=k,
+    result = collection.query(query_embeddings=vector, n_results=k, **({'where': where} if where else {}),
                               include=['documents', 'metadatas', 'distances'])
     finished = perf_counter()
     hits = [dict(rank=i + 1, chunk_id=cid, text=text, metadata=meta,

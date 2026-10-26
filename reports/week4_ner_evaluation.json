@@ -1,0 +1,563 @@
+{
+  "examples": 12,
+  "true_positive": 24,
+  "false_positive": 12,
+  "false_negative": 12,
+  "precision": 0.6666666666666666,
+  "recall": 0.6666666666666666,
+  "f1": 0.6666666666666666,
+  "exact_example_accuracy": 0.4166666666666667,
+  "details": [
+    {
+      "doc_id": "13",
+      "text": "Alan Mathison Turing OBE FRS (London, 23 June 1912 – Wilmslow, Cheshire, 7 June 1954) was an English mathematician and computer scientist.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 20,
+          "label": "PERSON",
+          "text": "Alan Mathison Turing"
+        },
+        {
+          "start": 30,
+          "end": 36,
+          "label": "GPE",
+          "text": "London"
+        },
+        {
+          "start": 38,
+          "end": 50,
+          "label": "DATE",
+          "text": "23 June 1912"
+        },
+        {
+          "start": 53,
+          "end": 61,
+          "label": "GPE",
+          "text": "Wilmslow"
+        },
+        {
+          "start": 63,
+          "end": 71,
+          "label": "GPE",
+          "text": "Cheshire"
+        },
+        {
+          "start": 73,
+          "end": 84,
+          "label": "DATE",
+          "text": "7 June 1954"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 20,
+          "label": "PERSON",
+          "text": "Alan Mathison Turing"
+        },
+        {
+          "start": 21,
+          "end": 28,
+          "label": "ORG",
+          "text": "OBE FRS"
+        },
+        {
+          "start": 30,
+          "end": 36,
+          "label": "GPE",
+          "text": "London"
+        },
+        {
+          "start": 38,
+          "end": 50,
+          "label": "DATE",
+          "text": "23 June 1912"
+        },
+        {
+          "start": 63,
+          "end": 71,
+          "label": "GPE",
+          "text": "Cheshire"
+        },
+        {
+          "start": 73,
+          "end": 84,
+          "label": "DATE",
+          "text": "7 June 1954"
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "doc_id": "2138",
+      "text": "Albert Einstein (14 March 1879 – 18 April 1955) was a German-born American scientist.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 15,
+          "label": "PERSON",
+          "text": "Albert Einstein"
+        },
+        {
+          "start": 17,
+          "end": 30,
+          "label": "DATE",
+          "text": "14 March 1879"
+        },
+        {
+          "start": 33,
+          "end": 46,
+          "label": "DATE",
+          "text": "18 April 1955"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 15,
+          "label": "PERSON",
+          "text": "Albert Einstein"
+        },
+        {
+          "start": 17,
+          "end": 30,
+          "label": "DATE",
+          "text": "14 March 1879"
+        },
+        {
+          "start": 33,
+          "end": 46,
+          "label": "DATE",
+          "text": "18 April 1955"
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "doc_id": "52",
+      "text": "Afghanistan, officially the Islamic Emirate of Afghanistan (Pashto/Dari: ), is a country in Central Asia.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 11,
+          "label": "GPE",
+          "text": "Afghanistan"
+        },
+        {
+          "start": 24,
+          "end": 58,
+          "label": "GPE",
+          "text": "the Islamic Emirate of Afghanistan"
+        },
+        {
+          "start": 92,
+          "end": 104,
+          "label": "LOC",
+          "text": "Central Asia"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 11,
+          "label": "GPE",
+          "text": "Afghanistan"
+        },
+        {
+          "start": 24,
+          "end": 58,
+          "label": "ORG",
+          "text": "the Islamic Emirate of Afghanistan"
+        },
+        {
+          "start": 60,
+          "end": 71,
+          "label": "ORG",
+          "text": "Pashto/Dari"
+        },
+        {
+          "start": 92,
+          "end": 104,
+          "label": "LOC",
+          "text": "Central Asia"
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "doc_id": "47",
+      "text": "An atom is the basic unit of matter.",
+      "gold": [],
+      "predicted": [],
+      "exact_match": true
+    },
+    {
+      "doc_id": "2",
+      "text": "August (Aug.) is the eighth month of the year in the Gregorian calendar, coming between July and September.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 6,
+          "label": "DATE",
+          "text": "August"
+        },
+        {
+          "start": 8,
+          "end": 12,
+          "label": "DATE",
+          "text": "Aug."
+        },
+        {
+          "start": 88,
+          "end": 92,
+          "label": "DATE",
+          "text": "July"
+        },
+        {
+          "start": 97,
+          "end": 106,
+          "label": "DATE",
+          "text": "September"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 6,
+          "label": "DATE",
+          "text": "August"
+        },
+        {
+          "start": 17,
+          "end": 45,
+          "label": "DATE",
+          "text": "the eighth month of the year"
+        },
+        {
+          "start": 80,
+          "end": 106,
+          "label": "DATE",
+          "text": "between July and September"
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "doc_id": "48",
+      "text": "Astronomy is the scientific study of celestial bodies.",
+      "gold": [],
+      "predicted": [],
+      "exact_match": true
+    },
+    {
+      "doc_id": "11417",
+      "text": "Amsterdam is the capital and largest city in the European country of the Netherlands.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "GPE",
+          "text": "Amsterdam"
+        },
+        {
+          "start": 69,
+          "end": 84,
+          "label": "GPE",
+          "text": "the Netherlands"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "GPE",
+          "text": "Amsterdam"
+        },
+        {
+          "start": 73,
+          "end": 84,
+          "label": "GPE",
+          "text": "Netherlands"
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "doc_id": "4494",
+      "text": "Aristotle (Stagira, Macedonia, 384 BC – Chalicis, Euboea, Greece, 7 March 322 BC) was a Greek philosopher.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "PERSON",
+          "text": "Aristotle"
+        },
+        {
+          "start": 11,
+          "end": 18,
+          "label": "GPE",
+          "text": "Stagira"
+        },
+        {
+          "start": 20,
+          "end": 29,
+          "label": "GPE",
+          "text": "Macedonia"
+        },
+        {
+          "start": 31,
+          "end": 37,
+          "label": "DATE",
+          "text": "384 BC"
+        },
+        {
+          "start": 40,
+          "end": 48,
+          "label": "GPE",
+          "text": "Chalicis"
+        },
+        {
+          "start": 50,
+          "end": 56,
+          "label": "LOC",
+          "text": "Euboea"
+        },
+        {
+          "start": 58,
+          "end": 64,
+          "label": "GPE",
+          "text": "Greece"
+        },
+        {
+          "start": 66,
+          "end": 80,
+          "label": "DATE",
+          "text": "7 March 322 BC"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "PERSON",
+          "text": "Aristotle"
+        },
+        {
+          "start": 11,
+          "end": 18,
+          "label": "GPE",
+          "text": "Stagira"
+        },
+        {
+          "start": 20,
+          "end": 29,
+          "label": "GPE",
+          "text": "Macedonia"
+        },
+        {
+          "start": 35,
+          "end": 37,
+          "label": "ORG",
+          "text": "BC"
+        },
+        {
+          "start": 58,
+          "end": 64,
+          "label": "GPE",
+          "text": "Greece"
+        },
+        {
+          "start": 66,
+          "end": 73,
+          "label": "DATE",
+          "text": "7 March"
+        },
+        {
+          "start": 78,
+          "end": 80,
+          "label": "ORG",
+          "text": "BC"
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "doc_id": "27",
+      "text": "Australia (officially called the Commonwealth of Australia) is a country and sovereign state in the southern hemisphere, located in Oceania.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "GPE",
+          "text": "Australia"
+        },
+        {
+          "start": 29,
+          "end": 58,
+          "label": "GPE",
+          "text": "the Commonwealth of Australia"
+        },
+        {
+          "start": 132,
+          "end": 139,
+          "label": "LOC",
+          "text": "Oceania"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 9,
+          "label": "GPE",
+          "text": "Australia"
+        },
+        {
+          "start": 29,
+          "end": 58,
+          "label": "ORG",
+          "text": "the Commonwealth of Australia"
+        },
+        {
+          "start": 132,
+          "end": 139,
+          "label": "GPE",
+          "text": "Oceania"
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "doc_id": "1942",
+      "text": "Africa is the second largest continent in the world.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 6,
+          "label": "LOC",
+          "text": "Africa"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 6,
+          "label": "LOC",
+          "text": "Africa"
+        }
+      ],
+      "exact_match": true
+    },
+    {
+      "doc_id": "5414",
+      "text": "Abraham Lincoln (February 12, 1809 – April 15, 1865) was an American politician who was the 16th president of the United States from 1861 until his assassination in 1865, during the American Civil War.",
+      "gold": [
+        {
+          "start": 0,
+          "end": 15,
+          "label": "PERSON",
+          "text": "Abraham Lincoln"
+        },
+        {
+          "start": 17,
+          "end": 34,
+          "label": "DATE",
+          "text": "February 12, 1809"
+        },
+        {
+          "start": 37,
+          "end": 51,
+          "label": "DATE",
+          "text": "April 15, 1865"
+        },
+        {
+          "start": 110,
+          "end": 127,
+          "label": "GPE",
+          "text": "the United States"
+        },
+        {
+          "start": 133,
+          "end": 137,
+          "label": "DATE",
+          "text": "1861"
+        },
+        {
+          "start": 165,
+          "end": 169,
+          "label": "DATE",
+          "text": "1865"
+        }
+      ],
+      "predicted": [
+        {
+          "start": 0,
+          "end": 15,
+          "label": "PERSON",
+          "text": "Abraham Lincoln"
+        },
+        {
+          "start": 17,
+          "end": 34,
+          "label": "DATE",
+          "text": "February 12, 1809"
+        },
+        {
+          "start": 37,
+          "end": 51,
+          "label": "DATE",
+          "text": "April 15, 1865"
+        },
+        {
+          "start": 110,
+          "end": 127,
+          "label": "GPE",
+          "text": "the United States"
+        },
+        {
+          "start": 133,
+          "end": 137,
+          "label": "DATE",
+          "text": "1861"
+        },
+        {
+          "start": 165,
+          "end": 169,
+          "label": "DATE",
+          "text": "1865"
+        },
+        {
+          "start": 178,
+          "end": 200,
+          "label": "ORG",
+          "text": "the American Civil War"
+        }
+      ],
+      "exact_match": false
+    },
+    {
+      "doc_id": "30",
+      "text": "Aquaculture is the farming of fish, shrimp, abalones, algae, and other seafood.",
+      "gold": [],
+      "predicted": [],
+      "exact_match": true
+    }
+  ],
+  "model": {
+    "name": "en_core_web_sm",
+    "version": "3.8.0"
+  },
+  "annotation_provenance": {
+    "author": "Codex draft, independently assigned before running NER predictions",
+    "human_reviewed": false,
+    "scope": "PERSON ORG GPE LOC DATE; exact spans including leading the in official geographic names; other entity types ignored",
+    "selection": "12 purposively chosen corpus opening excerpts, including scientific text without named entities; not a random held-out accuracy estimate"
+  },
+  "recorded_at_utc": "2026-10-24T16:33:30.034403+00:00",
+  "interpretation": "Draft-label diagnostic only. Human annotation review pending; no corpus-wide accuracy claim.",
+  "observed_limitations": [
+    "No gold ORG examples; organizational recall not established.",
+    "Date span and leading-article conventions need human review.",
+    "Purposive twelve-excerpt sample; not a random holdout."
+  ]
+}

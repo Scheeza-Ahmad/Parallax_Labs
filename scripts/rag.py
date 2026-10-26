@@ -26,6 +26,9 @@ def main():
     parser.add_argument('--db', type=Path, default=Path('vector_store'))
     parser.add_argument('--collection', default='wikipedia_minilm_v1')
     parser.add_argument('--top-k', type=int, default=5)
+    parser.add_argument('--topic', type=int)
+    parser.add_argument('--entity', choices=['PERSON','ORG','GPE','LOC','DATE'])
+    parser.add_argument('--min-topic-weight', type=float)
     parser.add_argument('--max-distance', type=float, default=.55)
     parser.add_argument('--context-tokens', type=int, default=int(os.getenv('RAG_CONTEXT_TOKENS', '8192')))
     parser.add_argument('--output-tokens', type=int, default=int(os.getenv('RAG_MAX_OUTPUT_TOKENS', '1024')))
@@ -59,7 +62,9 @@ def main():
         encoder = Encoder(offline=args.offline)
         collection, _ = open_collection(client_at(args.db), args.collection)
         startup_seconds = perf_counter() - startup
-        retrieve = lambda q, k: search(collection, encoder, q, k)
+        from src.nlp import make_filter
+        where = make_filter(args.topic, args.entity, args.min_topic_weight)
+        retrieve = lambda q, k: search(collection, encoder, q, k, where=where)
         queries = [args.query] if args.command == 'ask' else json.loads(args.queries.read_text(encoding='utf-8'))
         if not isinstance(queries, list) or not queries or any(not isinstance(q, str) or not q.strip() for q in queries):
             raise ValueError('Queries must be a nonempty list of nonblank strings')
@@ -74,6 +79,7 @@ def main():
         report = {'recorded_at_utc': datetime.now(timezone.utc).isoformat(),
                   'mode': 'dry_run' if args.dry_run else 'live', 'model': args.model,
                   'live_model_metadata': model_info, 'model_discovery_seconds': discovery_seconds,
+                  'metadata_filter': where,
                   'embedding_and_database_startup_seconds': startup_seconds,
                   'encoder': encoder.details, 'collection': args.collection, 'stored_chunks': collection.count(),
                   'query_count': len(queries), 'repeats': args.repeats if args.command == 'benchmark' else 1,

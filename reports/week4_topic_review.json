@@ -1,0 +1,117 @@
+{
+  "reviewer": "Codex qualitative inspection of top terms and three stored source excerpts per topic",
+  "human_reviewed": false,
+  "selection_bias": "Top-weight examples only; not random samples. No coherence or topic accuracy percentage claimed.",
+  "topics": [
+    {
+      "topic_id": 0,
+      "proposed_name": "Biology / natural materials",
+      "assessment": "broad but interpretable",
+      "note": "Biology examples agree with species/animals/plants; chemical/water terms broaden the cluster.",
+      "reviewed_doc_ids": [
+        "6090",
+        "7747",
+        "3750"
+      ]
+    },
+    {
+      "topic_id": 1,
+      "proposed_name": "Religion plus physical concepts",
+      "assessment": "mixed",
+      "note": "God and Satan agree with religion terms, but Principle of relativity is a strong counterexample.",
+      "reviewed_doc_ids": [
+        "305",
+        "16564",
+        "9253"
+      ]
+    },
+    {
+      "topic_id": 2,
+      "proposed_name": "People / health / colors",
+      "assessment": "weak",
+      "note": "Diabetes, gender identity and violet have no narrow shared theme; generic words and RGB tables dominate.",
+      "reviewed_doc_ids": [
+        "12972",
+        "13317",
+        "5557"
+      ]
+    },
+    {
+      "topic_id": 3,
+      "proposed_name": "Calendar events and biographical lists",
+      "assessment": "structural artifact",
+      "note": "All three high-weight articles are calendar days, despite occupation-based top words; list structure drives the cluster.",
+      "reviewed_doc_ids": [
+        "9820",
+        "9921",
+        "10035"
+      ]
+    },
+    {
+      "topic_id": 4,
+      "proposed_name": "Numbers / computing / games",
+      "assessment": "broad but interpretable",
+      "note": "Number, IP address and Game Boy line support a broad computing/numbers theme, not a single narrow subject.",
+      "reviewed_doc_ids": [
+        "528",
+        "2024",
+        "17133"
+      ]
+    },
+    {
+      "topic_id": 5,
+      "proposed_name": "Entertainment and competitive teams",
+      "assessment": "mixed",
+      "note": "Top terms emphasize movies but all three exemplars are sports teams; awards/won vocabulary merges domains.",
+      "reviewed_doc_ids": [
+        "3095",
+        "19418",
+        "19195"
+      ]
+    },
+    {
+      "topic_id": 6,
+      "proposed_name": "Geography",
+      "assessment": "interpretable",
+      "note": "Tokyo, Great Britain and Rhine River agree with city/country/island/river terms.",
+      "reviewed_doc_ids": [
+        "4329",
+        "3051",
+        "9625"
+      ]
+    },
+    {
+      "topic_id": 7,
+      "proposed_name": "American people / culture",
+      "assessment": "broad",
+      "note": "Two musicians and a deaf-education pioneer support an American biographical theme, not a pure music topic.",
+      "reviewed_doc_ids": [
+        "12346",
+        "14204",
+        "21448"
+      ]
+    },
+    {
+      "topic_id": 8,
+      "proposed_name": "Politics / government / war",
+      "assessment": "interpretable",
+      "note": "Nazism, Richard Nixon and Lyndon B. Johnson agree with government/president/war terms.",
+      "reviewed_doc_ids": [
+        "7749",
+        "6027",
+        "10747"
+      ]
+    },
+    {
+      "topic_id": 9,
+      "proposed_name": "Music and language",
+      "assessment": "mixed",
+      "note": "Three rock bands support music terms, but language/words terms indicate another merged domain.",
+      "reviewed_doc_ids": [
+        "17338",
+        "13650",
+        "11584"
+      ]
+    }
+  ]
+}

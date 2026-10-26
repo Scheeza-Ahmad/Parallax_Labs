@@ -1,0 +1,10 @@
+{
+  "source": "wikipedia_minilm_v1",
+  "target": "wikipedia_nlp_v2",
+  "chunks": 31984,
+  "added": 31984,
+  "skipped": 0,
+  "readback_passed": true,
+  "original_preserved": true,
+  "recorded_at_utc": "2026-10-25T15:05:01.394267+00:00"
+}

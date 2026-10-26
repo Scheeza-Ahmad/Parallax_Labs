@@ -1,0 +1,12 @@
+{
+  "source": "wikipedia_minilm_v1",
+  "target": "wikipedia_nlp_v1",
+  "chunks": 31984,
+  "added": 31984,
+  "skipped": 0,
+  "readback_passed": true,
+  "original_preserved": true,
+  "recorded_at_utc": "2026-10-25T14:49:54.405615+00:00",
+  "fresh_process_reopen_passed": false,
+  "failure_note": "In-process read-back passed but subsequent count/query caused Windows native access violation. Collection retained for diagnosis, not accepted for use."
+}
