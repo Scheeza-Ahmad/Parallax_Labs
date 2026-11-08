@@ -5,6 +5,9 @@ data/
 !.env.example
 __pycache__/
 .pytest_cache/
+.pytest_tmp/
+.pytest_tmp_focus/
+.pytest_tmp_week5/
 *.py[cod]
 .cache/
 *.log

@@ -6,6 +6,8 @@ beautifulsoup4
 langdetect
 pyarrow
 pytest
+fastapi
+vaderSentiment
 numpy
 httpx
 python-dotenv

@@ -1,0 +1,10 @@
+{
+  "endpoint": "/retrieve",
+  "base_url": "http://127.0.0.1:8000",
+  "question": "What is an atom made of?",
+  "repeats": 10,
+  "mean_ms": 71.90443997969851,
+  "median_ms": 71.31219998700544,
+  "p95_ms": 91.45309997256845,
+  "scope": "Local HTTP retrieval, includes API and query embedding; excludes startup and Groq generation."
+}

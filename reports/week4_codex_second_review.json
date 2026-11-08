@@ -1,0 +1,18 @@
+{
+  "review_date": "2026-11-07",
+  "reviewer": "Codex second pass",
+  "human_reviewed": false,
+  "label_file": "evaluation/ner_labels.json",
+  "examples_checked": 12,
+  "draft_entities_checked": 36,
+  "span_text_mismatches": 0,
+  "labels_changed": 0,
+  "qualitative_findings": [
+    "The three scientific no-entity excerpts remain useful negative cases.",
+    "DATE spans in the biographies and month example follow the draft's exact-span convention.",
+    "Geographic boundaries such as 'the Netherlands' and 'the Commonwealth of Australia' depend on the stated leading-article convention.",
+    "The sample has no gold ORG entities and is purposively selected; its scores cannot establish corpus-wide entity accuracy."
+  ],
+  "status": "Codex draft rechecked; independent human review has not occurred",
+  "topic_review": "reports/week4_topic_review.json is a Codex qualitative review of ten topics; human_reviewed remains false"
+}

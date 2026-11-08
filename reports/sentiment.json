@@ -1,0 +1,10 @@
+{
+  "method": "VADER, first 10000 characters per article",
+  "documents": 6954,
+  "counts": {
+    "positive": 4154,
+    "negative": 2171,
+    "neutral": 629
+  },
+  "limitation": "Lexicon sentiment is exploratory; neutral encyclopedia text and long articles can be misclassified. No labelled accuracy measured."
+}

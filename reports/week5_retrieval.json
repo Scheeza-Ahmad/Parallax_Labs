@@ -1,0 +1,140 @@
+{
+  "queries": 10,
+  "k": 5,
+  "mean_precision_at_k": 0.18,
+  "mean_recall_at_k": 0.9,
+  "results": [
+    {
+      "question": "What is the month of April?",
+      "retrieved_doc_ids": [
+        "1",
+        "400"
+      ],
+      "relevant_doc_ids": [
+        "1"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "Who was Alan Turing?",
+      "retrieved_doc_ids": [
+        "8532",
+        "8648",
+        "9729",
+        "10034",
+        "9961"
+      ],
+      "relevant_doc_ids": [
+        "13"
+      ],
+      "precision_at_k": 0.0,
+      "recall_at_k": 0.0
+    },
+    {
+      "question": "What is Australia?",
+      "retrieved_doc_ids": [
+        "27"
+      ],
+      "relevant_doc_ids": [
+        "27"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "What is aquaculture?",
+      "retrieved_doc_ids": [
+        "30",
+        "19",
+        "15276",
+        "285"
+      ],
+      "relevant_doc_ids": [
+        "30"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "What is an atom?",
+      "retrieved_doc_ids": [
+        "47",
+        "13990",
+        "247"
+      ],
+      "relevant_doc_ids": [
+        "47"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "What is a computer?",
+      "retrieved_doc_ids": [
+        "112",
+        "2957"
+      ],
+      "relevant_doc_ids": [
+        "112"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "What is Africa?",
+      "retrieved_doc_ids": [
+        "19031",
+        "1942",
+        "4810"
+      ],
+      "relevant_doc_ids": [
+        "1942"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "Who was Albert Einstein?",
+      "retrieved_doc_ids": [
+        "2138"
+      ],
+      "relevant_doc_ids": [
+        "2138"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "Who was Aristotle?",
+      "retrieved_doc_ids": [
+        "4494"
+      ],
+      "relevant_doc_ids": [
+        "4494"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    },
+    {
+      "question": "What is Amsterdam?",
+      "retrieved_doc_ids": [
+        "11417",
+        "3463",
+        "15538",
+        "13794"
+      ],
+      "relevant_doc_ids": [
+        "11417"
+      ],
+      "precision_at_k": 0.2,
+      "recall_at_k": 1.0
+    }
+  ],
+  "label_provenance": {
+    "reviewer": "Codex",
+    "type": "codex_manual",
+    "source": "evaluation\\retrieval_labels.json",
+    "limitation": "Ten purposively selected known-item questions. Relevant IDs are the named source article only, not exhaustive across all Wikipedia articles. Metrics describe this reference set, not corpus-wide relevance or independent human judgment."
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "provenance": "codex_manual",
+  "reviewer": "Codex",
+  "limitation": "Ten purposively selected known-item questions. Relevant IDs are the named source article only, not exhaustive across all Wikipedia articles. Metrics describe this reference set, not corpus-wide relevance or independent human judgment.",
+  "cases": [
+    {"question": "What is the month of April?", "relevant_doc_ids": ["1"]},
+    {"question": "Who was Alan Turing?", "relevant_doc_ids": ["13"]},
+    {"question": "What is Australia?", "relevant_doc_ids": ["27"]},
+    {"question": "What is aquaculture?", "relevant_doc_ids": ["30"]},
+    {"question": "What is an atom?", "relevant_doc_ids": ["47"]},
+    {"question": "What is a computer?", "relevant_doc_ids": ["112"]},
+    {"question": "What is Africa?", "relevant_doc_ids": ["1942"]},
+    {"question": "Who was Albert Einstein?", "relevant_doc_ids": ["2138"]},
+    {"question": "Who was Aristotle?", "relevant_doc_ids": ["4494"]},
+    {"question": "What is Amsterdam?", "relevant_doc_ids": ["11417"]}
+  ]
+}

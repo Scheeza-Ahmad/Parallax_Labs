@@ -1,0 +1,101 @@
+{
+  "recorded_at_utc": "2026-11-08T08:12:09.119548+00:00",
+  "mode": "live",
+  "cases": 5,
+  "status_accuracy": 1.0,
+  "all_answered_grounded": true,
+  "mean_end_to_end_ms": 519.0219399752095,
+  "limitation": "Expected statuses are Codex-authored; status agreement and automated grounding checks do not establish factual correctness.",
+  "results": [
+    {
+      "question": "What is an atom made of?",
+      "expected": "answered",
+      "observed": "answered",
+      "status_match": true,
+      "grounding": {
+        "exact_quotes": true,
+        "llm_verifier": true
+      },
+      "timing": {
+        "retrieval_ms": 761.6183999925852,
+        "generation_ms": 555.0387999974191,
+        "verification_ms": 410.800899961032,
+        "end_to_end_ms": 1728.6776999244466
+      },
+      "api_attempts": 2,
+      "error": null
+    },
+    {
+      "question": "How did Alan Turing contribute to computing?",
+      "expected": "answered",
+      "observed": "answered",
+      "status_match": true,
+      "grounding": {
+        "exact_quotes": true,
+        "llm_verifier": true
+      },
+      "timing": {
+        "retrieval_ms": 74.92409995757043,
+        "generation_ms": 518.0607000365853,
+        "verification_ms": 272.086999961175,
+        "end_to_end_ms": 865.7981000142172
+      },
+      "api_attempts": 2,
+      "error": null
+    },
+    {
+      "question": "What is the password for my personal email account?",
+      "expected": "off_topic",
+      "observed": "off_topic",
+      "status_match": true,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "timing": {
+        "retrieval_ms": 0.0,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 0.042199972085654736
+      },
+      "api_attempts": 0,
+      "error": null
+    },
+    {
+      "question": "Write a romantic poem about my pet unicorn.",
+      "expected": "off_topic",
+      "observed": "off_topic",
+      "status_match": true,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "timing": {
+        "retrieval_ms": 0.0,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 0.027799978852272034
+      },
+      "api_attempts": 0,
+      "error": null
+    },
+    {
+      "question": "What is the exact stock price of Apple right now?",
+      "expected": "insufficient_context",
+      "observed": "insufficient_context",
+      "status_match": true,
+      "grounding": {
+        "exact_quotes": false,
+        "llm_verifier": false
+      },
+      "timing": {
+        "retrieval_ms": 0.0,
+        "generation_ms": 0.0,
+        "verification_ms": 0.0,
+        "end_to_end_ms": 0.5638999864459038
+      },
+      "api_attempts": 0,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "date": "2026-11-08",
+  "endpoint": "POST /ask",
+  "question": "What is an atom made of?",
+  "http_status": 200,
+  "rag_status": "answered",
+  "source_count": 4,
+  "api_attempts": 2,
+  "grounding": {"exact_quotes": true, "llm_verifier": true},
+  "end_to_end_ms": 1812.61,
+  "request_id_present": true,
+  "request_log_fields_observed": ["request_id", "method", "path", "status", "duration_ms"],
+  "limitation": "One local HTTP request; not a production load or factual-accuracy benchmark."
+}

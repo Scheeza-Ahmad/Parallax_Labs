@@ -5,7 +5,155 @@ real document acquisition and conservative preprocessing. The retrieval week add
 token-window chunking, sentence-transformer embeddings, persistent ChromaDB and
 latency benchmarking. Week 3 adds live-verified Groq generation with evidence
 checks. Week 4 adds LDA topics, named entities and filtered retrieval locally;
-human annotation review is pending. FastAPI remains future scope.
+human annotation review is pending. The project brief extension adds a local FastAPI
+service, exploratory sentiment summary and a labelled retrieval evaluation command.
+
+**2026-11-07 status:** The known Week 4 implementation is still local and its
+manual annotation review remains open. `evaluation/REVIEW_NEEDED.md` collects the
+specific user review tasks. A fresh PERSON-filtered search in `wikipedia_nlp_v2`
+returned five chunks with Alan Turing ranked first (`data/nlp/week4_recheck.json`).
+That single run took 9.34 seconds including model encoding and a 9.22-second
+database search; earlier benchmarks must not be assumed to describe every run.
+Week 5 portal requirements were subsequently supplied on 2026-11-07 and are
+recorded below.
+Codex rechecked all 12 NER draft examples and 36 exact spans on 2026-11-07;
+zero span-text mismatches and no changes (`reports/week4_codex_second_review.json`).
+This is a second Codex review, not independent human approval. The user chose to
+defer Groq retesting. The supplied 2026-11-07 screenshot repeats the overall
+project brief and does not specify Week 5 tasks.
+
+## Week 5 — Evaluation & API (Nov 2–8, local work)
+
+Final local result: `reports/WEEK5_FINAL_RESULT.md`. A second live five-case
+generation evaluation on 2026-11-08 passed all expected statuses with two
+grounded answers (`reports/week5_final_generation_20261108.json`). The mean
+end-to-end time over all five cases was 519.022 ms. The current Groq configuration
+works; Gemini migration was unnecessary. Week 5 work is submitted through the
+same internship repository on `main`.
+
+The portal screenshot requires a tested FastAPI service, JSON request logs and
+400/422/500 responses, retrieval Precision@K/Recall@K, automated generation
+quality/latency evaluation and pytest endpoint tests. `src/api.py` now emits one
+JSON log event per request with request ID, method, path, status and duration;
+question bodies and credentials are excluded. Responses include `X-Request-ID`.
+Blank questions return 400, malformed bodies 422, and unexpected errors a
+sanitized 500. The existing retrieval and grounded Groq answer endpoints remain.
+FastAPI implementation follows the [official error](https://fastapi.tiangolo.com/tutorial/handling-errors/),
+[middleware](https://fastapi.tiangolo.com/tutorial/middleware/) and
+[testing](https://fastapi.tiangolo.com/tutorial/testing/) guides.
+
+`evaluation/retrieval_labels.json` contains 10 manually selected known-article
+questions with **Codex-authored** target article IDs. Run:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/evaluate_rag.py --labels evaluation/retrieval_labels.json --k 5 --report reports/week5_retrieval.json
+.\.venv\Scripts\python.exe scripts/evaluate_generation.py --dry-run --report reports/week5_generation_dry_run.json
+.\.venv\Scripts\python.exe -m pytest -q --basetemp .pytest_tmp_week5
+```
+
+Actual retrieval result: mean Precision@5 **0.18**, Recall@5 **0.90** over this
+limited reference set. The target Alan Turing article was missed in the top five.
+Only the named article was labelled relevant for each query, so other genuinely
+relevant articles are unlabelled and precision is conservative. This is not a
+random or exhaustive test set and has no independent human review.
+
+`scripts/evaluate_generation.py` runs five expected-status cases and records
+end-to-end latency, API attempts and existing exact-quote/LLM grounding checks.
+Dry run completed with five cases, mean 85.335 ms, **no generated answers**;
+quality fields are null (`reports/week5_generation_dry_run.json`). To produce a
+live generation-quality report, run the same command without `--dry-run` after
+the local ignored `.env` contains a valid Groq key. An initial 2026-11-08 attempt
+stopped at Groq HTTP 401 before generation (`reports/week5_live_attempt_20261108.json`).
+The new key was subsequently placed in `.env` and the live five-case evaluation
+completed (`reports/week5_generation_live.json`): all five expected statuses
+matched; the two answered cases passed exact-quote and separate LLM verification,
+while two off-topic and one live-price query abstained. Mean end-to-end time over
+all five cases was 520.310 ms; answered cases took 1379.10 and 1221.94 ms.
+The status cases are Codex-authored and automated grounding checks remain fallible;
+5/5 agreement does not establish independent factual accuracy or zero hallucinations.
+An apparent key was removed from tracked `.env.example`, leaving a blank
+placeholder. No secret value was logged or committed by this work.
+One additional live local HTTP `/ask` request returned 200 with four sources,
+both grounding checks true and a request ID; 1812.61 ms end-to-end
+(`reports/week5_api_live_20261108.json`).
+The model ID `openai/gpt-oss-20b` is listed in the current
+[Groq supported models](https://console.groq.com/docs/models). The `/models`
+request does not send a model ID, so changing models cannot resolve its HTTP 401.
+The local `.env` last changed on 2026-10-24, while `.env.example` was edited on
+2026-11-08. The newer credential appears to have been placed in the tracked
+example file. The app reads ignored `.env`; paste a fresh active key there and
+leave `.env.example` blank. Groq documents 401 as an authentication failure in its
+[error guide](https://console.groq.com/docs/errors).
+
+The Week 5 endpoint tests use FastAPI `TestClient` with fake retrieval and check
+successful routes, 400/422/503 errors, sanitized 500, request IDs and OpenAPI.
+The complete local regression suite passed: **116 tests** in 16.83 seconds;
+`pip check` found no broken requirements.
+Run them in an environment that allows the TestClient's local threading/socket
+operations; the restricted sandbox previously hung even on a minimal `/ping`.
+Public hosting, frontend and the earlier CUDA requirement remain unresolved.
+Week 5 changes are submitted through the same internship repository on `main`.
+
+## Project brief extension — local work, 2026-11-06
+
+The existing pipeline already covers 6,954 cleaned Wikipedia articles, 31,984
+embedded chunks in ChromaDB, semantic retrieval, live-verified Groq generation,
+LDA topic modeling, spaCy NER, source checks and latency logs. The new work adds:
+
+- `src/api.py`: `/health`, `/retrieve`, `/ask`, and automatically generated
+  `/docs` and `/openapi.json`. It reuses existing retrieval, metadata filters and
+  citation/evidence checks. A configured Groq key is required for `/ask`.
+  Live local HTTP: `/health`, `/retrieve` and, after the credential was corrected,
+  `/ask` returned 200. Never place the key in Git or chat.
+- `src/sentiment.py` and `scripts/sentiment.py`: VADER scores for the first 10,000
+  characters of each article. Actual full-corpus run: 6,954 documents, 4,154
+  positive, 2,171 negative and 629 neutral (`reports/sentiment.json`). These
+  scores are exploratory; no human sentiment labels or accuracy claim exists.
+  Implementation reference: [VADER project](https://github.com/cjhutto/vaderSentiment).
+- `src/evaluation.py` and `scripts/evaluate_rag.py`: precision@k and recall@k
+  against explicitly human-reviewed relevant document IDs. The command rejects
+  unreviewed labels. No such RAG reference set exists yet, so corpus retrieval
+  quality percentages are still pending. Week 4 NER draft labels also still await
+  user review. Exact quote plus model verification remains a fallible hallucination
+  safeguard, not a proof that every answer is true.
+
+Local PowerShell commands from the project root:
+
+```powershell
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe -m pytest -q
+.\.venv\Scripts\python.exe scripts/sentiment.py
+.\.venv\Scripts\python.exe -m pytest -q --basetemp .pytest_tmp
+.\.venv\Scripts\python.exe -m uvicorn src.api:app --host 127.0.0.1 --port 8000
+```
+
+Visit `http://127.0.0.1:8000/docs` for request schemas and try-out controls.
+In a second PowerShell window, run
+`.\.venv\Scripts\python.exe scripts/benchmark_api.py` for local `/retrieve` HTTP
+latency.
+Verified local run: 10 `/retrieve` HTTP requests, mean 71.904 ms, median
+71.312 ms, p95 91.453 ms (`reports/api_benchmark.json`). This excludes startup
+and generation. All 114 tests passed with `--basetemp .pytest_tmp`; `pip check`
+passed. The default Windows sandbox temporary folder produced one file-rename
+permission failure, so the workspace-local test folder is required here.
+`POST /retrieve` accepts `{"question":"What is an atom?","top_k":5}`.
+`POST /ask` accepts the same JSON; it needs a local ignored `.env` containing
+`GROQ_API_KEY` and makes real provider calls. API startup loads the existing encoder
+and vector database; set `RAG_OFFLINE=true` if the embedding model is already cached.
+Optional environment variables are `RAG_DB`, `RAG_COLLECTION` and `GROQ_MODEL`.
+Run this service behind an authenticated HTTPS proxy for public deployment; local
+development on `127.0.0.1` does not constitute a deployed production service.
+
+For labelled retrieval evaluation, prepare a JSON object with
+`{"provenance":"human_reviewed","reviewer":"name","cases":[{"question":"...","relevant_doc_ids":["..."]}]}`
+using independently reviewed source document IDs, then run
+`.\.venv\Scripts\python.exe scripts/evaluate_rag.py --labels path/to/reviewed_labels.json`.
+The resulting metrics depend on that specific label set and `k`; they are not a
+whole-corpus quality guarantee. The script never fabricates human labels.
+
+This extension was initially developed locally and is included in the Week 5
+submission to the same internship repository.
 
 **Retrieval baseline (2026-10-16):** the entire 6,954-document clean corpus is
 indexed as 31,984 chunks in local ChromaDB. Retrieval benchmarking on the reopened

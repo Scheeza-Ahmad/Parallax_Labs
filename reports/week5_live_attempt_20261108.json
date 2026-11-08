@@ -1,0 +1,8 @@
+{
+  "date": "2026-11-08",
+  "stage": "Groq authenticated model discovery",
+  "result": "blocked",
+  "error_code": "authentication",
+  "message": "Groq rejected the configured local credential (HTTP 401). No generation requests were made; no live quality or latency result exists.",
+  "secrets_recorded": false
+}
