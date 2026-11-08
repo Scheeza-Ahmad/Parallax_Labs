@@ -1,5 +1,99 @@
 # Parallax Labs — Source-grounded RAG Assistant
 
+## Week 6 — Documentation, Benchmarks & Launch (Nov 9–15)
+
+This is the final demonstration guide. The application is a local FastAPI RAG
+service over a historical Simple English Wikipedia snapshot. The code, tests,
+evaluation reports and dependency lock are in this one internship repository.
+Week 6 verification evidence is in `reports/WEEK6_FINAL_RESULT.md`.
+The large dataset, model cache and Chroma store are intentionally Git-ignored and
+must be reproduced on a new machine. No public deployment is claimed.
+
+```mermaid
+flowchart LR
+  A[Wikipedia snapshot] --> B[Clean JSONL: 6,954 articles]
+  B --> C[220-token chunks: 31,984]
+  C --> D[all-MiniLM-L6-v2 embeddings]
+  D --> E[(Persistent ChromaDB)]
+  B --> F[LDA topics + spaCy NER]
+  F --> G[(Separate enriched collection)]
+  E --> H[Semantic retrieval]
+  G --> H
+  H --> I[Groq prompt with cited excerpts]
+  I --> J[Exact quote + LLM evidence checks]
+  J --> K[FastAPI /ask response]
+```
+
+### Reproduce from a fresh Windows checkout
+
+Use Python 3.11, Git, sufficient disk space for the 157 MB source archive,
+embedding model and Chroma index, and internet access for the first install and
+download. From the repository root in PowerShell:
+
+```powershell
+python -m venv .venv
+.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip check
+.\.venv\Scripts\python.exe scripts/ingest_data.py
+.\.venv\Scripts\python.exe scripts/run_preprocessing.py
+.\.venv\Scripts\python.exe scripts/retrieval.py ingest
+.\.venv\Scripts\python.exe scripts/nlp.py analyze --report reports/week4_topics.json
+.\.venv\Scripts\python.exe scripts/nlp.py enrich --report reports/week4_enrichment.json
+.\.venv\Scripts\python.exe -m pytest -q --basetemp .pytest_tmp_week5
+```
+
+Ingestion and indexing are resumable only where documented by their scripts; the
+raw/processed dataset scripts refuse to overwrite completed files. On an existing
+checkout with data already present, skip those two scripts and use the verified
+files. The pinned Wikipedia snapshot, embedding model revision and spaCy model
+are documented below. The full index can take substantial CPU time and disk;
+the previous completed run had 31,984 chunks. CUDA remains a separate unresolved
+Week 1 requirement; CPU operation does not pass the CUDA check.
+
+For live answers, copy `.env.example` to an ignored `.env` and put your own active
+`GROQ_API_KEY` there. Never paste a key into README, Git or chat. Verify the model
+and start the local service:
+
+```powershell
+.\.venv\Scripts\python.exe scripts/rag.py models
+.\.venv\Scripts\python.exe -m uvicorn src.api:app --host 127.0.0.1 --port 8000
+```
+
+Open `http://127.0.0.1:8000/docs` for interactive API documentation. Example
+requests use `POST /retrieve` or `POST /ask` with JSON such as
+`{"question":"What is an atom made of?","top_k":5}`. Other useful examples:
+"How did Alan Turing contribute to computing?", "Who was Albert Einstein?",
+and "What is the exact stock price of Apple right now?" The last query should
+abstain because the corpus is a historical 2023 snapshot. `/health` reports the
+stored chunk count. Topic/entity metadata filters require the enriched collection;
+set `RAG_COLLECTION=wikipedia_nlp_v2` locally for those filters.
+
+### Verified metrics and limits
+
+| Check | Result | Evidence |
+| --- | --- | --- |
+| Clean corpus | 7,000 raw, 6,954 validated unique articles | `reports/preprocessing.json` |
+| Index | 31,984 verified chunks; original collection preserved | `reports/index_full_resume.json`, `reports/week4_enrichment.json` |
+| Retrieval evaluation | Precision@5 0.18, Recall@5 0.90 on 10 Codex-labelled known-article queries | `reports/week5_retrieval.json` |
+| Generation evaluation | 5/5 expected statuses; two cited answers passed exact quote and LLM verifier checks | `reports/week5_final_generation_20261108.json` |
+| Generation latency | 519.022 ms mean across five outcomes; answered cases 1,728.68 and 865.80 ms | Same report |
+| Local HTTP retrieval | 10 requests, mean 71.904 ms, p95 91.453 ms | `reports/api_benchmark.json` |
+| API and regression tests | 116 passed on 2026-11-08; `pip check` clean | Week 5 verification |
+
+These figures describe specific local runs, not cloud service capacity or
+corpus-wide answer accuracy. Retrieval labels and expected statuses were authored
+by Codex; Week 4's separate NER labels remain without independent human review.
+The exact-quote and LLM checks are fallible safeguards. The five-case generation
+mean includes three near-zero abstentions, so use the two answered-case times
+when estimating answer latency. See `reports/WEEK5_FINAL_RESULT.md` for detailed
+evidence and caveats.
+
+The Week 6 portal screenshot also requires a **mandatory End-of-Course exit
+survey** before the final project submission can unlock the internship certificate.
+Scheeza must complete that survey in the portal; this repository cannot verify or
+perform her personal survey response. The screenshot says submissions open Nov 9.
+Do not mark the survey or portal submission complete until confirmed there.
+
 Scheeza Ahmad's internship project. Week 1 implements environment verification,
 real document acquisition and conservative preprocessing. The retrieval week adds
 token-window chunking, sentence-transformer embeddings, persistent ChromaDB and
@@ -8,7 +102,7 @@ checks. Week 4 adds LDA topics, named entities and filtered retrieval locally;
 human annotation review is pending. The project brief extension adds a local FastAPI
 service, exploratory sentiment summary and a labelled retrieval evaluation command.
 
-**2026-11-07 status:** The known Week 4 implementation is still local and its
+**2026-11-07 historical status:** The Week 4 implementation was initially local and its
 manual annotation review remains open. `evaluation/REVIEW_NEEDED.md` collects the
 specific user review tasks. A fresh PERSON-filtered search in `wikipedia_nlp_v2`
 returned five chunks with Alan Turing ranked first (`data/nlp/week4_recheck.json`).
@@ -18,8 +112,8 @@ Week 5 portal requirements were subsequently supplied on 2026-11-07 and are
 recorded below.
 Codex rechecked all 12 NER draft examples and 36 exact spans on 2026-11-07;
 zero span-text mismatches and no changes (`reports/week4_codex_second_review.json`).
-This is a second Codex review, not independent human approval. The user chose to
-defer Groq retesting. The supplied 2026-11-07 screenshot repeats the overall
+This is a second Codex review, not independent human approval. The user initially
+deferred Groq retesting; it subsequently passed on 2026-11-08. The supplied 2026-11-07 screenshot repeats the overall
 project brief and does not specify Week 5 tasks.
 
 ## Week 5 — Evaluation & API (Nov 2–8, local work)
@@ -79,10 +173,9 @@ both grounding checks true and a request ID; 1812.61 ms end-to-end
 The model ID `openai/gpt-oss-20b` is listed in the current
 [Groq supported models](https://console.groq.com/docs/models). The `/models`
 request does not send a model ID, so changing models cannot resolve its HTTP 401.
-The local `.env` last changed on 2026-10-24, while `.env.example` was edited on
-2026-11-08. The newer credential appears to have been placed in the tracked
-example file. The app reads ignored `.env`; paste a fresh active key there and
-leave `.env.example` blank. Groq documents 401 as an authentication failure in its
+An earlier credential was mistakenly put in the tracked example file. The valid
+replacement is now in ignored `.env`, and `.env.example` is blank. Groq documents
+401 as an authentication failure in its
 [error guide](https://console.groq.com/docs/errors).
 
 The Week 5 endpoint tests use FastAPI `TestClient` with fake retrieval and check
@@ -111,9 +204,10 @@ LDA topic modeling, spaCy NER, source checks and latency logs. The new work adds
   scores are exploratory; no human sentiment labels or accuracy claim exists.
   Implementation reference: [VADER project](https://github.com/cjhutto/vaderSentiment).
 - `src/evaluation.py` and `scripts/evaluate_rag.py`: precision@k and recall@k
-  against explicitly human-reviewed relevant document IDs. The command rejects
-  unreviewed labels. No such RAG reference set exists yet, so corpus retrieval
-  quality percentages are still pending. Week 4 NER draft labels also still await
+  against labelled relevant document IDs with explicit provenance. A purposive
+  ten-query Codex-labelled set produced Precision@5 0.18 and Recall@5 0.90;
+  independent human-reviewed and corpus-wide quality estimates are still pending.
+  Week 4 NER draft labels also still await
   user review. Exact quote plus model verification remains a fallible hallucination
   safeguard, not a proof that every answer is true.
 

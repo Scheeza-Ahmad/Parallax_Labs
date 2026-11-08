@@ -12,7 +12,8 @@ from dotenv import load_dotenv
 from src.rag import answer
 
 
-def main():
+def main() -> int:
+    """Run labelled status cases and write live or explicitly dry-run evidence."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--cases', type=Path, default=Path('evaluation/generation_cases.json'))
     parser.add_argument('--report', type=Path, default=Path('reports/week5_generation.json'))

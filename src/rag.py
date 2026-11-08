@@ -32,7 +32,7 @@ The supported list must have exactly one boolean per claim, in the same order.
 Use false whenever uncertain. Do not rewrite the answer.'''
 
 
-def scope_rejection(question):
+def scope_rejection(question: str) -> tuple[str, str] | None:
     """Narrow, English-only rules; semantic relevance still requires the verifier."""
     q = question.lower()
     if re.search(r'\b(write|compose|generate)\b.{0,50}\b(poem|story|email|code)\b', q):
@@ -45,12 +45,15 @@ def scope_rejection(question):
     return None
 
 
-def messages_for(question, sources):
+def messages_for(question: str, sources: list[dict]) -> list[dict[str, str]]:
+    """Keep policy in the system message and untrusted material in user data."""
     return [{'role': 'system', 'content': SYSTEM},
             {'role': 'user', 'content': json.dumps({'question': question, 'sources': sources}, ensure_ascii=False)}]
 
 
-def pack_context(question, hits, context_limit, output_tokens):
+def pack_context(question: str, hits: list[dict], context_limit: int,
+                 output_tokens: int) -> list[dict]:
+    """Include complete retrieved chunks that fit the conservative token budget."""
     sources = []
     for hit in hits:
         source = dict(source_id=f'S{len(sources)+1}', text=hit['text'],
@@ -62,7 +65,8 @@ def pack_context(question, hits, context_limit, output_tokens):
     return sources
 
 
-def parse_claims(content, sources):
+def parse_claims(content: str, sources: list[dict]) -> tuple[str, list[dict]]:
+    """Reject malformed claims and quotes absent from their cited source."""
     try:
         obj = json.loads(content)
         if not isinstance(obj, dict) or set(obj) != {'status', 'claims'}:
@@ -93,7 +97,8 @@ def parse_claims(content, sources):
         raise LLMError('grounding_failed', 'Answer schema/citations/evidence failed validation; answer withheld.') from None
 
 
-def verify_claims(content, count):
+def verify_claims(content: str, count: int) -> bool:
+    """Require the separate verifier to approve every claim and relevance."""
     try:
         obj = json.loads(content)
         return (isinstance(obj, dict) and set(obj) == {'supported', 'answers_question'}
@@ -103,8 +108,9 @@ def verify_claims(content, count):
         return False
 
 
-def answer(question, retrieve, llm=None, top_k=5, max_distance=.55,
-           context_limit=8192, output_tokens=1024, dry_run=False):
+def answer(question: str, retrieve, llm=None, top_k: int = 5,
+           max_distance: float = .55, context_limit: int = 8192,
+           output_tokens: int = 1024, dry_run: bool = False) -> dict:
     """End-to-end timer includes retrieval, prompts, API retries and grounding checks.
 
     Model/client startup and live model discovery are outside this boundary.

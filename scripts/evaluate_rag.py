@@ -8,7 +8,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.evaluation import evaluate_retrieval
 
 
-def main():
+def main() -> None:
+    """Score a labelled question set against the persistent retrieval index."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--labels', type=Path, required=True)
     parser.add_argument('--db', type=Path, default=Path('vector_store'))

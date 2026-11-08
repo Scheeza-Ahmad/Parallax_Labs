@@ -1,6 +1,18 @@
 # Parallax Labs Internship — Codex Project Instructions
 
-## Active Week 4 scope - 2026-10-24
+## Active Week 6 scope - 2026-11-08
+
+The user supplied the Week 6 (Nov 9-Nov 15) screenshot and explicitly requested
+implementation and GitHub push. Required: docstrings/type hints, a comprehensive
+README with setup, architecture and example queries, compiled evaluation and
+performance evidence, and reproducible setup. Code/documentation are prepared and
+tested; `reports/WEEK6_FINAL_RESULT.md` contains verification. The portal says
+submissions open Nov 9. The mandatory End-of-Course survey is a personal portal
+task for Scheeza and is not complete or verifiable from this repository. Never
+claim the survey, portal submission, certificate, CUDA or independent human
+annotation review passed without evidence. Reuse the same GitHub repository.
+
+## Historical Week 4 scope - 2026-10-24
 
 User supplied Week 4 (Oct 26-Nov 1) screenshot and explicitly requested local work
 only: DO NOT PUSH to GitHub until the user asks. Required: topic modeling, sentiment
@@ -19,9 +31,9 @@ This is Scheeza Ahmad's Parallax Labs internship project. Scheeza and Codex will
 
 Source of requirements: three internship portal screenshots supplied by Scheeza: Week 1 tasks, overall project brief, and tech-stack/submission rules. This file transcribes and organizes those requirements. Later official roadmap details may refine them; do not invent missing weekly requirements or deadlines.
 
-Current status (2026-10-15): existing Git repository and Python 3.11.9 venv inspected. Week 1 cleaned JSONL contains 6,954 unique, nonempty records. Required imports and pip check pass; CUDA remains unavailable. Preserve Week 1 code and data. See README and reports for executed retrieval results.
+Current status (2026-11-08): the existing repository contains verified Week 1-5 work. Week 1 cleaned JSONL contains 6,954 unique records, the base index contains 31,984 chunks, and Week 5 FastAPI/live Groq evaluation passed locally. Week 6 documentation and type hints are verified; see README and `reports/WEEK6_FINAL_RESULT.md`. CUDA and independent human annotation review remain unresolved.
 
-Immediate objective: implement the Week 3 screenshot supplied on 2026-10-18: LLM API integration, system prompts and context injection, robust API errors, hallucination checks, out-of-domain handling, and end-to-end latency logs. The user selected Groq. Preserve Week 1/2 code and the full vector database. Frontend and deployment remain out of scope. CUDA remains unresolved.
+Immediate objective: publish the verified Week 6 code/documentation to the same GitHub repository, then leave portal survey and final portal submission for Scheeza. Preserve source data, vector collections and credentials outside Git.
 
 ## Overall project: source-grounded RAG AI assistant
 

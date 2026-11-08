@@ -1,18 +1,23 @@
 """Persistent, signature-checked Chroma storage; never deletes collections."""
 import json
 import math
+from pathlib import Path
+from typing import Any
 from time import perf_counter
 import numpy as np
 from src.chunking import validate_metadata
 
 
-def client_at(path):
+def client_at(path: str | Path) -> Any:
+    """Open persistent local Chroma with telemetry disabled."""
     import chromadb
     from chromadb.config import Settings
     return chromadb.PersistentClient(str(path), settings=Settings(anonymized_telemetry=False))
 
 
-def open_collection(client, name, signature=None, create=False):
+def open_collection(client, name: str, signature: dict | None = None,
+                    create: bool = False) -> tuple:
+    """Open or create only a signature-compatible cosine collection."""
     from chromadb.errors import NotFoundError
     try:
         collection = client.get_collection(name, embedding_function=None)
@@ -34,7 +39,8 @@ def open_collection(client, name, signature=None, create=False):
     return collection, stored
 
 
-def add_chunks(collection, chunks, vectors, dimension):
+def add_chunks(collection, chunks: list, vectors: np.ndarray, dimension: int) -> None:
+    """Validate a batch before storing embeddings and source metadata."""
     if not chunks:
         raise ValueError('Cannot ingest an empty chunk batch')
     if len({c.id for c in chunks}) != len(chunks):
@@ -54,7 +60,8 @@ def add_chunks(collection, chunks, vectors, dimension):
                            'input to resume, or select a new collection.') from exc
 
 
-def missing_chunks(collection, chunks):
+def missing_chunks(collection, chunks: list) -> list:
+    """Find absent IDs while rejecting mismatched existing content."""
     existing = collection.get(ids=[c.id for c in chunks], include=['documents', 'metadatas'])
     found = {i: (t, m) for i, t, m in zip(existing['ids'], existing['documents'], existing['metadatas'])}
     for chunk in chunks:
@@ -70,7 +77,9 @@ def missing_chunks(collection, chunks):
     return [c for c in chunks if c.id not in found]
 
 
-def search(collection, encoder, query, top_k=5, where=None):
+def search(collection, encoder, query: str, top_k: int = 5,
+           where: dict | None = None) -> dict:
+    """Embed a query and return ranked chunks with provenance and timing."""
     if not isinstance(query, str) or not query.strip():
         raise ValueError('Query must not be blank')
     if type(top_k) is not int or top_k < 1:

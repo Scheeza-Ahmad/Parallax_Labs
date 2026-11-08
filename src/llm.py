@@ -9,12 +9,15 @@ BASE_URL = 'https://api.groq.com/openai/v1'
 
 
 class LLMError(RuntimeError):
-    def __init__(self, code, message, attempts=0):
+    """Sanitized provider failure with a stable machine-readable code."""
+    def __init__(self, code: str, message: str, attempts: int = 0) -> None:
+        """Store only a safe error code/message, never provider response bodies."""
         super().__init__(message)
         self.code, self.attempts = code, attempts
 
 
-def retry_delay(value, attempt):
+def retry_delay(value: object, attempt: int) -> float:
+    """Interpret Retry-After without an unbounded wait."""
     try:
         delay = float(value)
     except (TypeError, ValueError):
@@ -25,14 +28,18 @@ def retry_delay(value, attempt):
     return max(0, delay) if math.isfinite(delay) else 2 ** attempt
 
 
-def token_upper_estimate(messages):
+def token_upper_estimate(messages: list[dict[str, str]]) -> int:
+    """Conservative UTF-8 byte proxy for prompt size; not provider tokenization."""
     # Conservative UTF-8-byte proxy, NOT the provider's exact tokenizer count.
     return sum(len(m['content'].encode('utf-8')) + 128 for m in messages) + 128
 
 
 class GroqClient:
-    def __init__(self, key, model='openai/gpt-oss-20b', timeout=20, attempts=3,
-                 client=None, sleep=time.sleep):
+    """Bounded Groq HTTP adapter with model discovery and sanitized errors."""
+    def __init__(self, key: str, model: str = 'openai/gpt-oss-20b',
+                 timeout: float = 20, attempts: int = 3,
+                 client=None, sleep=time.sleep) -> None:
+        """Configure authenticated calls; the key is never included in logs."""
         if not key or not key.strip():
             raise LLMError('missing_key', 'Set GROQ_API_KEY in local .env or environment; never share it in chat.')
         if not 1 <= attempts <= 5 or not math.isfinite(timeout) or not 0 < timeout <= 60:
@@ -44,10 +51,12 @@ class GroqClient:
         self.calls = 0
         self.context_limit = None
 
-    def close(self):
+    def close(self) -> None:
+        """Release the underlying HTTP connection pool."""
         self.client.close()
 
-    def _request(self, method, path, payload=None):
+    def _request(self, method: str, path: str, payload: dict | None = None) -> dict:
+        """Send one bounded request with retries for transient provider failures."""
         for attempt in range(self.attempts):
             self.calls += 1
             try:
@@ -84,13 +93,15 @@ class GroqClient:
                 raise LLMError('invalid_response', 'Groq returned an invalid response envelope.', attempt + 1)
             return data
 
-    def models(self):
+    def models(self) -> list[dict]:
+        """Fetch currently active model metadata using authenticated discovery."""
         data = self._request('GET', '/models').get('data')
         if not isinstance(data, list) or any(not isinstance(m, dict) or not isinstance(m.get('id'), str) for m in data):
             raise LLMError('invalid_response', 'Groq models response is invalid.')
         return data
 
-    def verify_model(self):
+    def verify_model(self) -> dict[str, str | int]:
+        """Confirm model access and context window before sending prompts."""
         match = next((m for m in self.models() if m.get('id') == self.model and m.get('active', True)), None)
         if match is None:
             raise LLMError('model_unavailable', 'Selected model is not active; run models and set GROQ_MODEL.')
@@ -100,7 +111,9 @@ class GroqClient:
         self.context_limit = limit
         return {'id': self.model, 'context_window': limit}
 
-    def complete(self, messages, max_tokens, context_limit):
+    def complete(self, messages: list[dict[str, str]], max_tokens: int,
+                 context_limit: int) -> str:
+        """Request one JSON completion with bounded retries and output checks."""
         if self.context_limit is None:
             raise LLMError('model_unverified', 'Verify the active model before generation.')
         if token_upper_estimate(messages) + max_tokens + 256 > min(context_limit, self.context_limit):

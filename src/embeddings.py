@@ -2,14 +2,19 @@
 import os
 from pathlib import Path
 from time import perf_counter
+import numpy as np
 
 MODEL = 'sentence-transformers/all-MiniLM-L6-v2'
 REVISION = '1110a243fdf4706b3f48f1d95db1a4f5529b4d41'
 
 
 class Encoder:
-    def __init__(self, model=MODEL, revision=REVISION, device='cpu', batch_size=32,
-                 cache='.cache/huggingface/hub', offline=False, threads=4):
+    """Load one pinned embedding model for both indexing and query encoding."""
+
+    def __init__(self, model: str = MODEL, revision: str = REVISION, device: str = 'cpu',
+                 batch_size: int = 32, cache: str = '.cache/huggingface/hub',
+                 offline: bool = False, threads: int = 4) -> None:
+        """Validate the device and expose a signature for index compatibility."""
         if batch_size < 1 or threads < 1:
             raise ValueError('batch_size and threads must be positive')
         os.environ.setdefault('HF_HOME', str(Path('.cache/huggingface').resolve()))
@@ -33,7 +38,8 @@ class Encoder:
         self.details = dict(self.identity, device=str(self.model.device), batch_size=batch_size,
                             threads=threads, model_load_seconds=self.load_seconds)
 
-    def encode(self, texts):
+    def encode(self, texts: list[str]) -> np.ndarray:
+        """Encode nonempty texts without silent truncation; normalize vectors."""
         if not texts or any(not isinstance(t, str) or not t.strip() for t in texts):
             raise ValueError('Encoding requires nonempty texts')
         for text in texts:

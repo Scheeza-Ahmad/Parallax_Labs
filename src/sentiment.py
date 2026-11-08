@@ -2,7 +2,8 @@
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
-def analyze(text, analyzer=None):
+def analyze(text: object, analyzer: SentimentIntensityAnalyzer | None = None) -> dict[str, str | float | None]:
+    """Return VADER polarity for a bounded English passage; never infer accuracy."""
     if not isinstance(text, str) or not text.strip():
         return {'label': 'unscorable', 'compound': None}
     analyzer = analyzer or SentimentIntensityAnalyzer()

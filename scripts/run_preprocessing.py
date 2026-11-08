@@ -11,7 +11,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.preprocessing import clean_text, detect_language
 
 
-def run(input_path, output_path, report_path, minimum):
+def run(input_path: Path, output_path: Path, report_path: Path, minimum: int) -> None:
+    """Clean and validate records before atomically publishing the corpus."""
     if output_path.exists():
         raise FileExistsError(f'Refusing to overwrite {output_path}')
     output_path.parent.mkdir(parents=True, exist_ok=True)

@@ -15,7 +15,8 @@ from src.rag import answer
 from scripts.retrieval import latency_summary
 
 
-def main():
+def main() -> int:
+    """Run model discovery, grounded answers or repeated latency cases."""
     load_dotenv(ROOT / '.env', override=False)
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['models', 'ask', 'benchmark'])

@@ -7,12 +7,14 @@ import math
 
 @dataclass(frozen=True)
 class Chunk:
+    """Source-preserving text window with stable identity and scalar metadata."""
     id: str
     text: str
-    metadata: dict
+    metadata: dict[str, str | int | float | bool]
 
 
-def validate_metadata(metadata):
+def validate_metadata(metadata: dict[str, object]) -> None:
+    """Reject metadata Chroma cannot store or compare reproducibly."""
     if not isinstance(metadata, dict) or not metadata:
         raise ValueError('Metadata must be a nonempty dictionary')
     for key, value in metadata.items():
@@ -22,7 +24,8 @@ def validate_metadata(metadata):
             raise ValueError(f'Nonfinite metadata: {key}')
 
 
-def chunk_document(record, tokenizer, chunk_size=220, overlap=32, max_seq_length=256):
+def chunk_document(record: dict[str, object], tokenizer: object, chunk_size: int = 220,
+                   overlap: int = 32, max_seq_length: int = 256) -> list[Chunk]:
     """Sizes are content tokens (special tokens excluded); offsets are Python characters.
 
     Windows use the model's fast tokenizer offsets, never decode token IDs, so

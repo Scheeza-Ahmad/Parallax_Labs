@@ -9,7 +9,8 @@ from time import perf_counter
 import httpx
 
 
-def main():
+def main() -> None:
+    """Measure local HTTP retrieval latency without provider generation calls."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--base-url', default='http://127.0.0.1:8000')
     parser.add_argument('--query', default='What is an atom made of?')

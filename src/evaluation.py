@@ -1,7 +1,8 @@
 """Retrieval precision/recall over explicitly labelled relevant document IDs."""
 
 
-def evaluate_retrieval(cases, retrieve, k=5):
+def evaluate_retrieval(cases: list[dict], retrieve, k: int = 5) -> dict:
+    """Compute macro precision and recall for a provenance-labelled test set."""
     if not cases:
         raise ValueError('At least one labelled query is required')
     results = []

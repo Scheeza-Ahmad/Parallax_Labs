@@ -5,12 +5,14 @@ import logging
 import os
 from pathlib import Path
 from time import perf_counter
+from typing import Any, AsyncIterator
 from uuid import uuid4
 
 from dotenv import load_dotenv
 from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
+from starlette.responses import Response
 from pydantic import BaseModel, Field
 
 from src.nlp import make_filter
@@ -27,6 +29,7 @@ request_log.propagate = False
 
 
 class Query(BaseModel):
+    """Validated request shared by retrieval and grounded answer endpoints."""
     question: str = Field(min_length=1, max_length=2000)
     top_k: int = Field(default=5, ge=1, le=20)
     max_distance: float = Field(default=.55, ge=0, le=2)
@@ -36,20 +39,28 @@ class Query(BaseModel):
 
 
 class Service:
-    def __init__(self, db='vector_store', collection='wikipedia_minilm_v1', offline=False):
+    """Own the reusable encoder and persistent Chroma collection for one process."""
+
+    def __init__(self, db: str | Path = 'vector_store',
+                 collection: str = 'wikipedia_minilm_v1', offline: bool = False) -> None:
+        """Open an existing collection without mutating or rebuilding it."""
         from src.embeddings import Encoder
         from src.vector_store import client_at, open_collection
         self.encoder = Encoder(offline=offline)
         self.collection, _ = open_collection(client_at(db), collection)
 
-    def retrieve(self, question, top_k, where=None):
+    def retrieve(self, question: str, top_k: int,
+                 where: dict[str, Any] | None = None) -> dict[str, Any]:
+        """Return semantically ranked source chunks, optionally metadata-filtered."""
         from src.vector_store import search
         return search(self.collection, self.encoder, question, top_k, where=where)
 
 
-def create_app(service=None, llm=None):
+def create_app(service: Any = None, llm: Any = None) -> FastAPI:
+    """Build an injectable API; real models load once during application startup."""
     @asynccontextmanager
-    async def lifespan(app):
+    async def lifespan(app: FastAPI) -> AsyncIterator[None]:
+        """Initialize shared resources and close the provider client on shutdown."""
         if app.state.service is None:
             app.state.service = Service(db=os.getenv('RAG_DB', 'vector_store'),
                                         collection=os.getenv('RAG_COLLECTION', 'wikipedia_minilm_v1'),
@@ -64,7 +75,8 @@ def create_app(service=None, llm=None):
     app.state.service, app.state.llm = service, llm
 
     @app.middleware('http')
-    async def request_logging(request: Request, call_next):
+    async def request_logging(request: Request, call_next) -> Response:
+        """Log structured request metadata without bodies, credentials or answers."""
         started = perf_counter()
         request_id = uuid4().hex
         status = 500
@@ -84,29 +96,34 @@ def create_app(service=None, llm=None):
                 'duration_ms': round((perf_counter() - started) * 1000, 3)}))
 
     @app.exception_handler(RequestValidationError)
-    async def invalid_request(request: Request, exc: RequestValidationError):
+    async def invalid_request(request: Request, exc: RequestValidationError) -> JSONResponse:
+        """Return a predictable 422 body without echoing submitted input."""
         return JSONResponse(status_code=422, content={'error': {'code': 'validation_error',
             'message': 'Request body or query parameters are invalid'}})
 
     @app.exception_handler(HTTPException)
-    async def http_error(request: Request, exc: HTTPException):
+    async def http_error(request: Request, exc: HTTPException) -> JSONResponse:
+        """Normalize expected application errors into a stable JSON envelope."""
         return JSONResponse(status_code=exc.status_code, content={'error': {
             'code': 'bad_request' if exc.status_code == 400 else
                     'validation_error' if exc.status_code == 422 else
                     'service_unavailable' if exc.status_code == 503 else 'upstream_error',
             'message': exc.detail}})
 
-    def get_service():
+    def get_service() -> Service:
+        """Expose the startup-loaded retrieval service to endpoint dependencies."""
         if app.state.service is None:
             raise HTTPException(503, 'Retrieval service is unavailable')
         return app.state.service
 
     @app.get('/health')
-    def health(svc=Depends(get_service)):
+    def health(svc=Depends(get_service)) -> dict[str, int | str]:
+        """Report service readiness and persistent index size."""
         return {'status': 'ok', 'stored_chunks': svc.collection.count()}
 
     @app.post('/retrieve')
-    def retrieve(query: Query, svc=Depends(get_service)):
+    def retrieve(query: Query, svc=Depends(get_service)) -> dict[str, Any]:
+        """Search indexed chunks and include source provenance and timing."""
         try:
             where = make_filter(query.topic, query.entity, query.min_topic_weight)
             if not query.question.strip():
@@ -116,7 +133,8 @@ def create_app(service=None, llm=None):
             raise HTTPException(422, str(exc)) from exc
 
     @app.post('/ask')
-    def ask(query: Query, svc=Depends(get_service)):
+    def ask(query: Query, svc=Depends(get_service)) -> dict[str, Any]:
+        """Generate only answers that pass the existing grounding checks."""
         if app.state.llm is None:
             raise HTTPException(503, 'Groq generation is not configured')
         try:
@@ -138,7 +156,8 @@ def create_app(service=None, llm=None):
     return app
 
 
-def build_app():
+def build_app() -> FastAPI:
+    """Load optional local configuration without writing credentials to logs."""
     load_dotenv(Path(__file__).resolve().parents[1] / '.env', override=False)
     key = os.getenv('GROQ_API_KEY')
     llm = None

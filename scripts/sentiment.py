@@ -10,7 +10,8 @@ from src.sentiment import analyze
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
 
-def main():
+def main() -> None:
+    """Score every cleaned article and save an exploratory count summary."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--input', type=Path, default=Path('data/processed/clean_corpus.jsonl'))
     parser.add_argument('--report', type=Path, default=Path('reports/sentiment.json'))

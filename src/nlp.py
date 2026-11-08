@@ -6,7 +6,8 @@ import re
 ENTITY_TYPES = ('PERSON', 'ORG', 'GPE', 'LOC', 'DATE')
 
 
-def discover_topics(texts, topics=10, iterations=10):
+def discover_topics(texts: list[str], topics: int = 10, iterations: int = 10) -> tuple:
+    """Fit deterministic LDA and return model, document assignments and terms."""
     import numpy as np
     from sklearn.feature_extraction.text import CountVectorizer
     from sklearn.decomposition import LatentDirichletAllocation
@@ -34,7 +35,8 @@ def discover_topics(texts, topics=10, iterations=10):
     return vectorizer, model, assignments, descriptions
 
 
-def extract_entities(nlp, text):
+def extract_entities(nlp: object, text: str) -> list[dict[str, object]]:
+    """Extract selected entity types across bounded text windows with offsets."""
     # Process every character in bounded windows; entity offsets remain document-relative.
     entities = []
     for start in range(0, len(text), 50000):
@@ -45,14 +47,17 @@ def extract_entities(nlp, text):
     return entities
 
 
-def metadata_for(record):
+def metadata_for(record: dict[str, object]) -> dict[str, object]:
+    """Convert document-level topic and entities to filterable Chroma scalars."""
     labels = {e['label'] for e in record['entities']}
     return {**{k: record[k] for k in ('topic_id', 'topic_weight', 'topic_status')},
             **{'has_' + label.lower(): label in labels for label in ENTITY_TYPES},
             'entity_count': len(record['entities'])}
 
 
-def make_filter(topic=None, entity=None, min_weight=None):
+def make_filter(topic: int | None = None, entity: str | None = None,
+                min_weight: float | None = None) -> dict | None:
+    """Build a strict metadata filter without silently widening search scope."""
     clauses = []
     if topic is not None:
         if type(topic) is not int or topic < -1:
@@ -69,7 +74,8 @@ def make_filter(topic=None, entity=None, min_weight=None):
     return {'$and': clauses} if len(clauses) > 1 else clauses[0] if clauses else None
 
 
-def evaluate_entities(nlp, examples):
+def evaluate_entities(nlp: object, examples: list[dict]) -> dict[str, object]:
+    """Score exact entity spans and types against provenance-labelled examples."""
     tp = fp = fn = exact = 0
     details = []
     for example in examples:
@@ -95,5 +101,6 @@ def evaluate_entities(nlp, examples):
             'exact_example_accuracy': exact / len(examples) if examples else 0., 'details': details}
 
 
-def fingerprint(records):
+def fingerprint(records: list[dict]) -> str:
+    """Return a deterministic digest used to protect NLP artifact reuse."""
     return hashlib.sha256(json.dumps(records, sort_keys=True, ensure_ascii=False).encode()).hexdigest()

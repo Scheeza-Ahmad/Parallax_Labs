@@ -15,13 +15,15 @@ from src.embeddings import Encoder, MODEL, REVISION
 from src.vector_store import client_at, open_collection, add_chunks, missing_chunks, search
 
 
-def save_report(path, report):
+def save_report(path: Path, report: dict) -> None:
+    """Write a small JSON evidence report with its UTC recording time."""
     path.parent.mkdir(parents=True, exist_ok=True)
     report['recorded_at_utc'] = datetime.now(timezone.utc).isoformat()
     path.write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding='utf-8')
 
 
-def load_corpus(path, limit=None):
+def load_corpus(path: Path, limit: int | None = None) -> tuple[list[dict], str]:
+    """Read unique source records and return a deterministic corpus digest."""
     rows, ids = [], set()
     with path.open(encoding='utf-8') as file:
         for line_number, line in enumerate(file, 1):
@@ -40,7 +42,8 @@ def load_corpus(path, limit=None):
     return rows, digest
 
 
-def ingest(args, encoder):
+def ingest(args: argparse.Namespace, encoder: Encoder) -> None:
+    """Build or resume the signed index, then read back every expected chunk."""
     rows, digest = load_corpus(args.input, args.limit)
     started = perf_counter()
     chunks = []
@@ -92,12 +95,14 @@ def ingest(args, encoder):
     print(json.dumps(report, indent=2))
 
 
-def latency_summary(values):
+def latency_summary(values: list[float]) -> dict[str, float]:
+    """Summarize nonempty measurements using nearest-rank p95."""
     return {'mean': statistics.mean(values), 'median': statistics.median(values),
             'p95': sorted(values)[math.ceil(.95 * len(values)) - 1]}
 
 
-def benchmark(args, collection, encoder):
+def benchmark(args: argparse.Namespace, collection, encoder: Encoder) -> None:
+    """Warm retrieval then measure repeated queries against the full index."""
     queries = json.loads(args.queries.read_text(encoding='utf-8'))
     if not isinstance(queries, list) or not queries or any(not isinstance(q, str) or not q.strip() for q in queries):
         raise ValueError('Queries must be a nonempty JSON list of nonblank strings')
@@ -129,7 +134,8 @@ def benchmark(args, collection, encoder):
     print(json.dumps({k: v for k, v in report.items() if k != 'results'}, indent=2))
 
 
-def main():
+def main() -> None:
+    """Dispatch ingestion, interactive search and retrieval benchmark commands."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('command', choices=['ingest', 'search', 'benchmark'])
     parser.add_argument('--db', type=Path, default=Path('vector_store'))

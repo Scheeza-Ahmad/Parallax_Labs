@@ -11,7 +11,8 @@ REVISION = 'b04c8d1ceb2f5cd4588862100d08de323dccfbaa'
 URL = f'https://huggingface.co/datasets/wikimedia/wikipedia/resolve/{REVISION}/20231101.simple/train-00000-of-00001.parquet'
 
 
-def main():
+def main() -> None:
+    """Download pinned source data and select whole articles without overwrite."""
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--limit', type=int, default=7000)
     parser.add_argument('--raw-dir', type=Path, default=Path('data/raw'))

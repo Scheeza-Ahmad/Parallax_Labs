@@ -4,6 +4,7 @@ import json
 import math
 from pathlib import Path
 import sys
+from collections.abc import Iterator
 from time import perf_counter
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from src.nlp import discover_topics, extract_entities, metadata_for, make_filter, evaluate_entities, fingerprint
@@ -11,7 +12,8 @@ from src.vector_store import client_at, open_collection, search
 from scripts.retrieval import load_corpus, save_report
 
 
-def analyze(args):
+def analyze(args: argparse.Namespace) -> None:
+    """Fit topics and extract entities for every cleaned source document."""
     import spacy
     import joblib
     from threadpoolctl import threadpool_limits
@@ -22,7 +24,8 @@ def analyze(args):
     print('Topics fitted; extracting entities from all documents.', flush=True)
     nlp = spacy.load('en_core_web_sm', enable=['tok2vec', 'ner'])
     records = [{'doc_id': row['doc_id'], **a, 'entities': []} for row, a in zip(rows, assignments)]
-    def segments():
+    def segments() -> Iterator[tuple[str, tuple[int, int]]]:
+        """Yield bounded text spans with their document index and offset."""
         for i, row in enumerate(rows):
             for start in range(0, len(row['text']), 50000):
                 yield row['text'][start:start+50000], (i, start)
@@ -52,7 +55,8 @@ def analyze(args):
                 'elapsed_seconds': perf_counter()-started, 'configuration': artifact['configuration']})
 
 
-def enrich(args):
+def enrich(args: argparse.Namespace) -> None:
+    """Copy validated vectors into a separate metadata-enriched collection."""
     import numpy as np
     artifact = json.loads((args.output / 'metadata.json').read_text(encoding='utf-8'))
     with client_at(args.db) as client:
@@ -96,7 +100,8 @@ def enrich(args):
                     'added': added, 'skipped': skipped, 'readback_passed': True, 'original_preserved': True})
 
 
-def main():
+def main() -> None:
+    """Dispatch topic analysis, enrichment, NER evaluation or filtered search."""
     p = argparse.ArgumentParser(description=__doc__)
     p.add_argument('command', choices=['analyze','enrich','evaluate','search'])
     p.add_argument('--input', type=Path, default=Path('data/processed/clean_corpus.jsonl'))

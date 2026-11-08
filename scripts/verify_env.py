@@ -5,7 +5,8 @@ import platform
 from pathlib import Path
 
 
-def main():
+def main() -> int:
+    """Check imports and CUDA operation, recording all failures explicitly."""
     result = {"python": platform.python_version(), "platform": platform.platform(), "imports": {}}
     passed = True
     for name in ["pandas", "sentence_transformers", "chromadb", "spacy", "torch"]:
